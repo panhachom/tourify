@@ -16,7 +16,7 @@ example :
 
 run 'composer install' 
 
-### If 500 server Error 
+#### If 500 server Error 
 
 - rename .env.example to .env 
 - run 'php artisan key:generate '
