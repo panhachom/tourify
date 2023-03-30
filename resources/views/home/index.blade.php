@@ -1,7 +1,15 @@
 @extends('app')
-
 @section('title', 'Home')
-
 @section('content')
-    <p>Welcome to the home page!</p>
+
+
+@include('shares/navbar')
+
+<div class="p-3">
+    @include('shares/card')
+</div>
+
+@include('shares/footer')
+
+
 @endsection

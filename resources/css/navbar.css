@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,200;1,300;1,400;1,500;1,600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.d-display-none {
+    display: none;
+}
+
+nav .navbar-section-2 {
+    display: flex;
+    flex-direction: row;
+}
+nav .navbar-section-2 .sign-in {
+    display: none ;
+}
+
+nav .navbar-section-4 {
+    display: none;
+}
+
+@media screen and (max-width: 860px) {
+    nav {
+      background-color: lightgreen;
+    }
+    nav .navbar-section-2  {
+        display: block;
+        position: absolute;
+        background-color: red;
+        top: 63px;
+        left: 0;
+        padding: 10px;
+        width: 100%;
+        
+    }
+    nav .navbar-section-2 div {
+        margin-top: 5px;
+        margin-bottom:  5px;
+    }
+    nav .navbar-section-2 {
+        flex-direction: column;
+    }
+    nav .navbar-section-2 .sign-in {
+        display: block ;
+    }
+    nav .navbar-section-3 {
+        display: none;
+    }
+    nav .navbar-section-4 {
+        display: block;
+    }
+  }
+
+
+
+
+  .card-item{
+    width: 330px;
+    height: 380px;
+    background-color: rgb(255, 252, 252 ,);
+    border-radius: 15px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    position: relative;
+  }
+
+  .card-item .location-icon {
+    position: absolute;
+    margin-top: 8px;
+    right: 0;
+    margin-right: 10px;
+    font-size: 14px;
+    background-color: rgba(109, 109, 109, 0.5);
+    color: white;
+    border-radius: 18px;
+  }
+  .card-image img{
+    border-radius: 15px 15px 0 0px;
+    height: 205px;
+    width: 100%;
+  }
+  .card-button-content{
+    height: 100%;
+  }
+  .card-button-content button {
+    font-size: 13px;
+    border-radius: 18px;
+    height: 35px;
+  }
+
+
