@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
  
@@ -21,4 +22,6 @@ Route::get('/', [HomeController::class, 'index']);
 //     return view('welcome');
 // });
 
+// admin dashbaord Route backend only 
 
+Route::get('/theadmin', [AdminController::class, 'index']);
