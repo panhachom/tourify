@@ -4,11 +4,14 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         @vite('resources/css/app.css')
+        @vite('resources/css/navbar.css')
 
         <title>Laravel</title>
 
         <!-- Fonts -->
         <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         <!-- Styles -->
         <style>
@@ -18,12 +21,8 @@
 
     </head>
     <body class="bg-secondary font-fontPoppins">
-        @include('header')
-            
-            <div class="container">
-                @yield('content')
-            </div>
-            
-        @include('footer')
+        <div">
+            @yield('content')
+        </div>    
     </body>
 </html>

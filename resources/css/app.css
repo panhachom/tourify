@@ -4,3 +4,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@media screen and (max-width: 860px) {
+    nav {
+      background-color: lightgreen;
+    }
+  }
