@@ -38,6 +38,13 @@ nav .navbar-section-4 {
 .toggle-menu {
   display: block;
 }
+@media screen and (max-width: 730px) {
+  nav {
+    margin-top: -40px;
+  }
+
+}
+
 
 @media screen and (max-width: 1050px) {
     nav .navbar-section-2  {
