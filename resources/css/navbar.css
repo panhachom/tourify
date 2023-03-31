@@ -8,6 +8,21 @@
     display: none;
 }
 
+nav {
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+}
+.navbar-section-2 a , .navbar-section-3 a {
+ transition: 0.3s;
+}
+.navbar-section-2 a:hover ,.navbar-section-3 a:hover {
+  font-weight: bold;
+  transition-timing-function: 12;
+}
+.logo{
+  background-color: rgba(202, 202, 202, 0.2);
+}
 nav .navbar-section-2 {
     display: flex;
     flex-direction: row;
@@ -20,12 +35,13 @@ nav .navbar-section-4 {
     display: none;
 }
 
-@media screen and (max-width: 860px) {
-    nav {
-      background-color: lightgreen;
-    }
+.toggle-menu {
+  display: block;
+}
+
+@media screen and (max-width: 1050px) {
     nav .navbar-section-2  {
-        display: block;
+        display: none;
         position: absolute;
         background-color: red;
         top: 63px;
@@ -50,6 +66,7 @@ nav .navbar-section-4 {
     nav .navbar-section-4 {
         display: block;
     }
+
   }
 
 
