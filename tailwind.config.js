@@ -11,7 +11,8 @@ module.exports = {
         primary: '#D5603F',
         secondary: '#FFF7F5',
         third: '#00ABB3',
-        fourth: '#343434'
+        fourth: '#343434',
+        onPrimary: 'rgba(202, 202, 202, 0.2)'
       },
       fontFamily: {
         fontPoppins: ['Poppins']
