@@ -3,8 +3,10 @@
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
- 
-Route::get('/', [HomeController::class, 'index']);
+use App\Http\Controllers\SliderController;
+use App\Http\Controllers\VendorManagementController;
+
+Route::get('/home', [HomeController::class, 'index']);
 
 
 /*
@@ -24,4 +26,25 @@ Route::get('/', [HomeController::class, 'index']);
 
 // admin dashbaord Route backend only 
 
-Route::get('/theadmin', [AdminController::class, 'index']);
+// Route::get('/theadmin', [AdminController::class, 'index']);
+
+
+ Route::get('/', function () {
+    return view('admin.dashboard');
+});
+
+Route::get('/test', function () {
+    return view('admin.test');
+});
+
+
+//slider Management
+Route::get('/view_slider', [SliderController::class, 'index']);
+Route::get('/create_slider', [SliderController::class, 'create']);
+Route::post('/slider_store', [SliderController::class, 'store']);
+Route::get('/slider/{id}/edit', [SliderController::class, 'edit']);  
+Route::get('/delete_slider/{id}', [SliderController::class, 'destroy']);
+Route::put('/slider/{id}', [SliderController::class, 'update']);
+
+//Vendor Management
+Route::get('/view_manage_vendor', [VendorManagementController::class, 'index']);
