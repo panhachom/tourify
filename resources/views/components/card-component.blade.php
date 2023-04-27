@@ -36,16 +36,17 @@
 <div class="card-item flex flex-col">
 		<div class="location-icon px-5 py-2 flex">
 		<i class="fa-solid fa-location-dot me-3 my-1"></i>
-		<p>Kampot</p>
+   
+		<p>{{ $placeName }}</p>
 		</div>
 		<div class="card-image">
 			<img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" alt="">
 		</div>
 		<div class="card-content">
 			<div class="px-3 py-4">
-				<h1 class="text-xl font-bold">Cappadocia</h1>
+				<h1 class="text-xl font-bold">{{ $name }}</h1>
 				<p class="font-extralight text-sm mt-2 text-ellipsis">
-					The red and orange sand of the desert are very beautiful, let's take a trip here
+					{{ $description }}
 				</p>
 			</div>
 		</div>
@@ -54,7 +55,7 @@
 				<div>
 				<div class="text-sm font-extralight">Price</div>
 				<div>
-					<span class="font-bold">150</span>
+					<span class="font-bold">{{ $price }}</span>
 					<span class="text-sm font-extralight">/ Person</span>
 				</div>
 				

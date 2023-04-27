@@ -7,6 +7,8 @@ use App\Http\Controllers\SliderController;
 use App\Http\Controllers\VendorManagementController;
 
 Route::get('/home', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index']);
+
 
 
 /*
