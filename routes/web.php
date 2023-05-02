@@ -8,8 +8,8 @@ use App\Http\Controllers\VendorManagementController;
 use App\Http\Controllers\TourListController;
 
 
-Route::get('/tourlist', [TourListController::class, 'index']);
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/tourlist', [TourListController::class, 'index']);
 
 
 

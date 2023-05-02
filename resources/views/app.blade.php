@@ -5,6 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         @vite('resources/css/app.css')
         @vite('resources/css/navbar.css')
+        @vite('resources/css/home.css')
+
 
         <title>Laravel</title>
 
@@ -21,8 +23,9 @@
 
     </head>
     <body class="bg-secondary font-fontPoppins">
-        <div">
+        <div>
             @yield('content')
         </div>    
+    <script src="../path/to/flowbite/dist/datepicker.js"></script>
     </body>
 </html>

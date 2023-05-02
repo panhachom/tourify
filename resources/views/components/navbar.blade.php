@@ -1,5 +1,5 @@
 <nav class="px-5 py-3 bg-primary   text-white">
-	<div class="flex justify-between  items-center px-10">
+	<div class="flex justify-between  items-center md:px-10 px-2">
 		<div class="navbar-section-1">
 			<div class="flex items-center gap-2">
 				<div class="logo w-12 h-12 rounded-full flex justify-center items-center">
@@ -12,10 +12,9 @@
 		</div>
 		<div class="navbar-section-2 toggle-menu gap-10 flex justify-center items-center" id="center-menu">
 			<div class=""><a href="#">Home</a></div>
-			<div class=""><a href="#">About</a></div>
-			<div class=""><a href="#">Destination</a></div>
-			<div class=""><a href="#">Contact</a></div>
-			<div class='max-w-md mx-auto'>
+			<div class=""><a href="#">About Us</a></div>
+			<div class=""><a href="#">Tours</a></div>
+			<!-- <div class='max-w-md mx-auto'>
 				<div class="relative flex items-center w-full h-9 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
 					<div class="grid place-items-center h-full w-12 text-gray-300">
 						<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -29,8 +28,8 @@
 					id="search"
 					placeholder="Search something.." /> 
 				</div>
-			</div>
-			<div class=" sign-in "><a href="#">Logidn</a></div>
+			</div> -->
+			<div class=" sign-in "><a href="#">Login</a></div>
 			<div class=" sign-in "><a href="#">Register</a></div>
 		</div>
 		<div class="navbar-section-3">

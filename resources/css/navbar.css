@@ -9,10 +9,11 @@
 }
 
 nav {
-  position: sticky;
+  position: fixed;
   top: 0;
   width: 100%;
   z-index: 1;
+  overflow-x: hidden;
 }
 .navbar-section-2 a , .navbar-section-3 a {
  transition: 0.3s;
