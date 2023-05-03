@@ -112,9 +112,9 @@
         </div>
 
         <div class="flex justify-center items-center flex-wrap gap-10">
-            @include('shares/card')
-            @include('shares/card')
-            @include('shares/card')
+		<x-card-component placeName="KompongThom" name="John Wick" description="Kompong thom  " price="130" />
+		<x-card-component placeName="KompongThom" name="John Wick" description="Kompong thom  " price="130" />
+		<x-card-component placeName="KompongThom" name="John Wick" description="Kompong thom  " price="130" />
         </div>
     </div>
     <div class="px-40 mt-20 section-4 mb-10">
@@ -125,9 +125,9 @@
         </div>
 
         <div class="flex justify-center items-center flex-wrap gap-10">
-            @include('shares/card')
-            @include('shares/card')
-            @include('shares/card')
+		<x-card-component placeName="KompongThom" name="John Wick" description="Kompong thom  " price="130" />
+		<x-card-component placeName="KompongThom" name="John Wick" description="Kompong thom  " price="130" />
+		<x-card-component placeName="KompongThom" name="John Wick" description="Kompong thom  " price="130" />
         </div>
     </div>
 
@@ -151,7 +151,7 @@
 </div>
 
 
-@include('shares/footer')
+@include('components/footer')
 
 
 @endsection
