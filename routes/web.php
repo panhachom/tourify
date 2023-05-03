@@ -5,8 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\VendorManagementController;
+use App\Http\Controllers\TourListController;
 
-Route::get('/home', [HomeController::class, 'index']);
+
+Route::get('/tourlist', [TourListController::class, 'index']);
 Route::get('/', [HomeController::class, 'index']);
 
 
@@ -31,7 +33,7 @@ Route::get('/', [HomeController::class, 'index']);
 // Route::get('/theadmin', [AdminController::class, 'index']);
 
 
- Route::get('/', function () {
+ Route::get('/admins', function () {
     return view('admin.dashboard');
 });
 
