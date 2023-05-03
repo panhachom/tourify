@@ -3,13 +3,13 @@
 @section('content')
 
 
-@include('shares/navbar')
+@include('components/navbar')
 
 <div class="p-3">
-    @include('shares/card')
+
 </div>
 
-@include('shares/footer')
+@include('components/footer')
 
 
 @endsection
