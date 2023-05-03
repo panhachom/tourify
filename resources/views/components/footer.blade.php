@@ -1,4 +1,4 @@
-<div class="bg-white w-full footer-main mt-9 ">
+<div class="bg-primary w-full text-white footer-main ">
     <div class="footer-content px-12 py-6 flex flex-col gap-10">
         <div class="flex justify-between flex-col  items-start md:flex-row">
             <div class="content-1">
@@ -10,7 +10,7 @@
                         <div class="font-bold tracking-wide	 text-lg">DER LENG</div>
                     </div>
                 </div>
-                <div class="text-xs font-extralight mt-2">
+                <div class="text-xs font-extralight mt-2 pt">
                     With travala you can experience new travel <br>and the best tourist destinations that we have to offer
                 </div>
             </div>

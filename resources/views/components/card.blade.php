@@ -6,6 +6,10 @@
     border-radius: 15px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     position: relative;
+    transition: 0.5s;
+  }
+  .card-item:hover {
+    transform: scale(1.02); 
   }
 
   .card-item .location-icon {
@@ -60,7 +64,7 @@
 				</div>
 				
 			</div>
-				<button class="bg-primary text-white px-4 py-1"> View Detail</button>
+				<button class="bg-primary text-black px-4 py-1"> View Detail</button>
 			</div>
 		</div>
 </div>
