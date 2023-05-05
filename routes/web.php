@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\AboutusController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\listourController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\VendorManagementController;
 use App\Http\Controllers\TourListController;
@@ -10,6 +12,9 @@ use App\Http\Controllers\TourListController;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/tourlist', [TourListController::class, 'index']);
+
+Route::get('/list', [listourController::class, 'index']);
+Route::get('/about', [AboutusController::class, 'index']);
 
 
 
