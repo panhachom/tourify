@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\detailpageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SliderController;
@@ -28,7 +29,7 @@ Route::get('/tourlist', [TourListController::class, 'index']);
 //     return view('welcome');
 // });
 
-// admin dashbaord Route backend only 
+// admin dashbaord Route backend only
 
 // Route::get('/theadmin', [AdminController::class, 'index']);
 
@@ -46,7 +47,7 @@ Route::get('/test', function () {
 Route::get('/view_slider', [SliderController::class, 'index']);
 Route::get('/create_slider', [SliderController::class, 'create']);
 Route::post('/slider_store', [SliderController::class, 'store']);
-Route::get('/slider/{id}/edit', [SliderController::class, 'edit']);  
+Route::get('/slider/{id}/edit', [SliderController::class, 'edit']);
 Route::get('/delete_slider/{id}', [SliderController::class, 'destroy']);
 Route::put('/slider/{id}', [SliderController::class, 'update']);
 

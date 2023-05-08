@@ -19,13 +19,11 @@ module.exports = {
         btn3: '#D53F51',
         btn4: '#86C106',
 
-        
+
       },
       fontFamily: {
         fontPoppins: ['Poppins']
       }
     },
-  },
-  plugins: [],
+    plugins: [],
 }
-
