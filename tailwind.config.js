@@ -18,8 +18,8 @@ module.exports = {
         btn2: '#3F9FD5',
         btn3: '#D53F51',
         btn4: '#86C106',
+        muny: '#0A3761'
 
-        
       },
       fontFamily: {
         fontPoppins: ['Poppins']

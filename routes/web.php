@@ -9,13 +9,18 @@ use App\Http\Controllers\SignInController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\VendorManagementController;
 use App\Http\Controllers\TourListController;
+use App\Http\Controllers\DetailPageController;
 
 
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/tourlist', [TourListController::class, 'index']);
 
-Route::get('/list', [listourController::class, 'index']);
-Route::get('/about', [AboutusController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::get('/tourlist', [TourListController::class, 'index'])->name('list.index');
+Route::get('/detailpage', [DetailPageController::class, 'index'])->name('detailpage.index');
+Route::get('/signup', [HomeController::class, 'signup']);
+
+
+// Route::get('/list', [listourController::class, 'index'])->name('list.index');
+Route::get('/about', [AboutusController::class, 'index'])->name('about.index');
 Route::get('/SignIn', [SignInController::class, 'index']);
 Route::get('/phoneNumber', [SignInController::class, 'phoneNumber']);
 Route::get('/input', [SignInController::class, 'input']);
