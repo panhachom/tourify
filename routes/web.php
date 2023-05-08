@@ -1,15 +1,13 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\detailpageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\SliderController;
-use App\Http\Controllers\VendorManagementController;
-use App\Http\Controllers\TourListController;
-
 
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/tourlist', [TourListController::class, 'index']);
+Route::get('/detailpage', [detailpageController::class, 'index']);
+Route::get('/signup', [HomeController::class, 'signup']);
 
 
 
@@ -28,7 +26,7 @@ Route::get('/tourlist', [TourListController::class, 'index']);
 //     return view('welcome');
 // });
 
-// admin dashbaord Route backend only 
+// admin dashbaord Route backend only
 
 // Route::get('/theadmin', [AdminController::class, 'index']);
 
