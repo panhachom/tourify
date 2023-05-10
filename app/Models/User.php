@@ -20,8 +20,14 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'username',
         'password',
     ];
+
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
+    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -33,6 +39,11 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function isAdmin()
+{
+    return $this->role === 'admin';
+}
+
     /**
      * The attributes that should be cast.
      *
@@ -41,4 +52,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
 }

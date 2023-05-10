@@ -1,6 +1,6 @@
 
 
-@extends('app')
+     @extends('app')
      @section('title', 'Home')
      @section('content')
 
@@ -29,7 +29,7 @@
         @include('layout.partial.messages')
 
         <div class="form-group form-floating mb-3">
-            <input type="text" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="username" value="{{ old('username') }}" placeholder="Phone Number" required="required" autofocus>
+            <input type="text" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="username" value="{{ old('username') }}" placeholder="Username" required="required" autofocus>
             @if ($errors->has('username'))
                 <span class=" text-red-500 text-left"> {{ $errors->first('username') }}</span>
             @endif
@@ -55,9 +55,9 @@
           <div class="mb-6 flex items-center justify-between mt-5">
             <div>
             <a
-              href="{{ route('login.perform') }}"
+              href="{{ url('phoneNumber') }}"
               class="text-primary transition duration-150 ease-in-out hover:text-primary-600 focus:text-primary-600 active:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 dark:focus:text-primary-500 dark:active:text-primary-600 hover:underline dark:text-primary-500"
-              >Sign in with Email</a
+              >Sign in with Phone Number</a
             >
             </div>
 
@@ -70,9 +70,12 @@
           </div>
 
         </form>
-        <!-- <p class="text-sm font-light text-gray-500 dark:text-gray-400 m-6 text-center">
-            Don’t have an account yet? <a href="#" class="font-medium text-primary hover:underline dark:text-primary-500">Sign up here</a>
-        </p> -->
+        <p class="text-sm font-light text-gray-500 dark:text-gray-400 m-6 text-center">
+            Don’t have an account yet? <a href="#" class="font-medium text-primary hover:underline dark:text-primary-500">
+            <a href="{{ route('register.show') }}"> Sign up here</a>
+        </p>
+    
+        
       </div>
     </div>
   </div>
