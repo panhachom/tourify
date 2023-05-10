@@ -12,7 +12,7 @@ i {
 
 </style>
 
-<div class="link-tour-card bg-{{ $color }}">
+<div class="link-tour-card bg-btn2">
     <div class="flex justify-center items-center w-full h-full">
         <div class="flex flex-col justify-center items-center gap-2">
             <i class="{{ $icon }}"></i>  

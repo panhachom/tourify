@@ -10,6 +10,8 @@
 @include('layout.sidebar')
 <div class="p-4 sm:ml-64">
         <h1 class="text-red-700">testing</h1>
+        <a href="{{ route('logout.perform') }}" class="btn btn-outline-light me-2">Logout</a>
+
 </div>
 </body>
 </html>

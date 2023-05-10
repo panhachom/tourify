@@ -10,6 +10,9 @@ use App\Http\Controllers\SliderController;
 use App\Http\Controllers\VendorManagementController;
 use App\Http\Controllers\TourListController;
 use App\Http\Controllers\DetailPageController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\LogoutController;
 
 
 
@@ -49,9 +52,15 @@ Route::get('/verification', [SignInController::class, 'verification']);
 // Route::get('/theadmin', [AdminController::class, 'index']);
 
 
- Route::get('/admins', function () {
-    return view('admin.dashboard');
+// Route::get('/admins', function () {
+//     return view('admin.dashboard');
+// })->name('admins');
+
+
+Route::middleware('admin')->group(function () {
+    Route::get('/admins', function () {return view('admin.dashboard');})->name('admins');
 });
+
 
 Route::get('/test', function () {
     return view('admin.test');
@@ -68,3 +77,28 @@ Route::put('/slider/{id}', [SliderController::class, 'update']);
 
 //Vendor Management
 Route::get('/view_manage_vendor', [VendorManagementController::class, 'index']);
+
+
+
+
+Route::group(['middleware' => ['guest']], function() {
+    /**
+     * Register Routes
+     */
+    Route::get('/register', [RegisterController::class ,'show'])->name('register.show');
+    Route::post('/register', [RegisterController::class ,'register'])->name('register.perform');
+
+    /**
+     * Login Routes
+     */
+    Route::get('/login', [LoginController::class ,'show'])->name('login.show');
+    Route::post('/login', [LoginController::class ,'login'])->name('login.perform');
+
+});
+
+Route::group(['middleware' => ['auth']], function() {
+    /**
+     * Logout Routes
+     */
+    Route::get('/logout', [LogoutController::class ,'perform'])->name('logout.perform');
+});

@@ -32,10 +32,23 @@
 			<div class=" sign-in "><a href="#">Login</a></div>
 			<div class=" sign-in "><a href="#">Register</a></div>
 		</div>
+
+	
+
+    
 		<div class="navbar-section-3">
-				<a href="">Login</a>
-				<span>/</span>
-				<a href="">Register</a>
+			@auth
+				<div class="flex gap-5">
+					<p>{{auth()->user()->username}}</p>
+					<a href="{{ route('logout.perform') }}" class="btn btn-outline-light me-2">Logout</a>
+				</div>
+     		@endauth
+			
+			@guest
+				<a  class="mx-2" href="{{ route('login.perform') }}">Login</a>
+				<a  class="mx-2" href="{{ route('register.perform') }}">Register</a>
+			@endguest
+
 		</div>
 		<div class="navbar-section-4">
 			<i class="fa-solid fa-bars" id ="hamberger-btn"></i>
