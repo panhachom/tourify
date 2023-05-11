@@ -28,11 +28,18 @@
                     <span class="text-danger text-left">{{ $errors->first('email') }}</span>
                 @endif
             </div>
+          
 
             <div class="form-group form-floating mb-3">
                 <input type="text" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="username" value="{{ old('username') }}" placeholder="Username" required="required" autofocus>
                 @if ($errors->has('username'))
                     <span class="text-danger text-left">{{ $errors->first('username') }}</span>
+                @endif
+            </div>
+            <div class="form-group form-floating mb-3">
+                <input type="text" class="form-control bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="phone_number" value="{{ old('phone_number') }}" placeholder="phone number" required="required" autofocus>
+                @if ($errors->has('phone_number'))
+                    <span class="text-danger text-left">{{ $errors->first('phone_number') }}</span>
                 @endif
             </div>
 
