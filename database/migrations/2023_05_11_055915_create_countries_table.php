@@ -13,19 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tours', function (Blueprint $table) {
+        Schema::create('countries', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('description');
-            $table->float('price'); 
-            $table->integer('capacity');
-        
+            $table->string('country');
             $table->timestamps();
-
-            $table->foreign('vendor_id')->references('id')->on('vendors');
-            $table->unsignedBigInteger('vendor_id');
-
-
         });
     }
 
@@ -36,7 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tours');
-        Schema::dropIfExists('country_tour');
+        Schema::dropIfExists('countries');
     }
 };
