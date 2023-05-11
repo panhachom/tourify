@@ -16,6 +16,7 @@ use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\TourController;
 
+use App\Http\Controllers\UserController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/tourlist', [TourListController::class, 'index'])->name('list.index');
@@ -104,3 +105,14 @@ Route::group(['middleware' => ['auth']], function() {
      */
     Route::get('/logout', [LogoutController::class ,'perform'])->name('logout.perform');
 });
+
+
+
+//USER MANAGEMENT ROUTE
+
+Route::get('/view_user', [UserController::class, 'index']);
+Route::get('/create_user', [UserController::class, 'create']);
+Route::post('/user_store', [UserController::class, 'store']);
+Route::get('/user/{id}/edit', [UserController::class, 'edit']);
+Route::put('/user/{id}', [UserController::class, 'update']);
+Route::get('/delete_user/{id}', [UserController::class, 'destroy']);
