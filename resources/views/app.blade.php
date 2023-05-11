@@ -8,6 +8,7 @@
         @vite('resources/css/home.css')
 
 
+
          @vite('resources/css/about_us.css')
         <title>Laravel</title>
 
