@@ -13,7 +13,8 @@ use App\Http\Controllers\DetailPageController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LogoutController;
-
+use App\Http\Controllers\VendorController;
+use App\Http\Controllers\TourController;
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
@@ -78,7 +79,8 @@ Route::put('/slider/{id}', [SliderController::class, 'update']);
 //Vendor Management
 Route::get('/view_manage_vendor', [VendorManagementController::class, 'index']);
 
-
+// Vendor
+Route::resource('/vendor', VendorController::class);
 
 
 Route::group(['middleware' => ['guest']], function() {
