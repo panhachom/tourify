@@ -126,7 +126,7 @@
           </div> 
           <div class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700">
               <a href="#">
-                 <img class="w-72 h-56 rounded-lg sm:rounded-none sm:rounded-l-lg" src="{{ asset('images/muny.jpg') }}" alt="nita">
+                 <img class="w-72 h-56 rounded-lg sm:rounded-none sm:rounded-l-lg" src="{{ asset('images/mu.jpg') }}" alt="nita">
               </a>
               <div class="p-5">
                   <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -194,7 +194,7 @@
           </div>  
         <div class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700">
               <a href="#">
-                 <img class="w-72 h-56 rounded-lg sm:rounded-none sm:rounded-l-lg" src="{{ asset('images/pic1.jpg') }}" alt="khun">
+                 <img class="w-72 h-56 rounded-lg sm:rounded-none sm:rounded-l-lg" src="{{ asset('images/imagess.jpeg') }}" alt="khun">
               </a>
               <div class="p-5">
                   <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
