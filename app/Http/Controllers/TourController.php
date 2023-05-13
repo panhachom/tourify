@@ -45,19 +45,9 @@ class TourController extends Controller
                 'description' => 'required',
                 'price' => 'required',
                 'capacity'=> 'required',
-                'image' => 'required|image|max:2048'
             ]);
     
-            $image = $request->file('image');
-            $filename = time() . '_' . $image->getClientOriginalName();
-            $image->storeAs('public/images', $filename);
-    
             $tour = Tour::create($request->all());
-    
-            $tourImage = new TourImage();
-            $tourImage->tour_id = $tour->id;
-            $tourImage->name = $filename;
-            $tourImage->save();
     
             return redirect()->route('vendor.tours.index', ['vendor' => 1])
                 ->with('success', 'Tour updated successfully.');
