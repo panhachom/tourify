@@ -14,7 +14,8 @@ class ActivityController extends Controller
      */
     public function index()
     {
-        //
+        $activities = Activity::all();
+        return view('vendor.activity.index',compact('activities'));
     }
 
     /**
@@ -24,7 +25,7 @@ class ActivityController extends Controller
      */
     public function create()
     {
-        //
+        return view('vendor.activity.create');
     }
 
     /**
@@ -35,7 +36,13 @@ class ActivityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $activity = new Activity;
+        $activity -> name = $request -> name;
+        $activity -> description = $request -> description;
+
+        $activity -> save();
+        
+        return redirect() -> route('vendor.activity.index', ['vendor'=>1]);
     }
 
     /**
@@ -55,9 +62,10 @@ class ActivityController extends Controller
      * @param  \App\Models\Activity  $activity
      * @return \Illuminate\Http\Response
      */
-    public function edit(Activity $activity)
+    public function edit(Activity $activity, $id)
     {
-        //
+        $activity = Activity::find($id);
+        return view('vendor.activity.update', compact('activity'));
     }
 
     /**
@@ -67,9 +75,14 @@ class ActivityController extends Controller
      * @param  \App\Models\Activity  $activity
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Activity $activity)
+    public function update(Request $request, $id)
     {
-        //
+        $activity = Activity::find($id);
+        $activity -> name = $request -> name;
+        $activity -> description = $request -> description;
+        
+        $activity -> save();
+        return redirect('vendor.activity.index');
     }
 
     /**
@@ -78,8 +91,11 @@ class ActivityController extends Controller
      * @param  \App\Models\Activity  $activity
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Activity $activity)
+    public function destroy($id)
     {
-        //
+        $activity = Slider::findOrFail($id);
+        $slider -> delete();
+
+        return redirect('vendor.activity.index');
     }
 }
