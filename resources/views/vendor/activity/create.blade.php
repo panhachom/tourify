@@ -1,19 +1,27 @@
 @extends('vendor_main')
 @section('title', 'Home')
 @section('content')
-<form action="{{route ('vendor.activity.store', ['vendor' => 1])}}" method = "POST">
-    @csrf
-<div class="sm:col-span-2">
-                  <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
-                  <input type="text" name="name"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type titile" required>
-              </div>
-              <div class="sm:col-span-2">
-                  <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                  <textarea name="description" rows="8" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Your description here" required></textarea>
-              </div>
-              <button type="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-black bg-primary rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
-              Add Activity
-          </button>
-</form>
+<div class="d-flex justify-content-between align-items-center mb-5">
+    <h3>Create New Activity</h3>
+    <a href="{{ route('vendor.activity.index', ['vendor' => 1]) }}" class="btn btn-success text-white">Back</a>
+</div>
+
+<div class="border p-5 rounded">
+    <form method="POST" action="{{ route('vendor.activity.store', ['vendor' => 1]) }}">
+        @csrf
+        <div class="row">
+            <div class="form-group col-12 my-2">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+        
+            <div class="form-group col-12 my-2">
+                <label for="description">Description</label>
+                <textarea id="description" class="form-control" name="description" required></textarea>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success text-white mt-4">Create</button>
+    </form>
+</div>
 
 @endsection
