@@ -45,8 +45,12 @@ class TourImageController extends Controller
         // Validate the request data
         $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ], [
+            'image.required' => 'Please select an image to upload.',
+            'image.image' => 'The uploaded file must be an image.',
+            'image.mimes' => 'The uploaded file must be a JPEG, PNG, JPG, or GIF image.',
+            'image.max' => 'The uploaded file may not be larger than 2MB.',
         ]);
-
         // Get the uploaded file
         $image = $request->file('image');
 

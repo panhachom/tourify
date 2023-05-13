@@ -15,6 +15,9 @@
     <div>
         <label for="image"> Tour Image </label>
         <input type="file" name="image" id="image">
+        @error('image')
+        <div class="invalid-feedback">{{ $message }}</div>
+         @enderror
     </div>
     <div class="mt-4">
         <button type="submit" class="btn btn-primary">Add Image</button>

@@ -34,7 +34,6 @@ Route::get('/input', [SignInController::class, 'input']);
 Route::get('/verification', [SignInController::class, 'verification']);
 
 Route::get('/list', [listourController::class, 'index']);
-Route::get('/about', [AboutusController::class, 'index']);
 Route::get('/profile', [ProfileSettingController::class, 'index']);
 
 
@@ -65,7 +64,22 @@ Route::get('/profile', [ProfileSettingController::class, 'index']);
 
 
 Route::middleware('admin')->group(function () {
+
     Route::get('/admins', function () {return view('admin.dashboard');})->name('admins');
+    Route::get('/admins/view_slider', [SliderController::class, 'index']);
+    Route::get('/admins/create_slider', [SliderController::class, 'create']);
+    Route::post('/admins/slider_store', [SliderController::class, 'store']);
+    Route::get('/admins/slider/{id}/edit', [SliderController::class, 'edit']);  
+    Route::get('/admins/delete_slider/{id}', [SliderController::class, 'destroy']);
+    Route::put('/admins/slider/{id}', [SliderController::class, 'update']); 
+    
+    Route::get('/view_user', [UserController::class, 'index'])->name('admins.view_user');
+    Route::get('/create_user', [UserController::class, 'create']);
+    Route::post('/user_store', [UserController::class, 'store']);
+    Route::get('/user/{id}/edit', [UserController::class, 'edit']);
+    Route::put('/user/{id}', [UserController::class, 'update']);
+    Route::get('/delete_user/{id}', [UserController::class, 'destroy']);
+
 });
 
 
@@ -75,12 +89,7 @@ Route::get('/test', function () {
 
 
 //slider Management
-Route::get('/view_slider', [SliderController::class, 'index']);
-Route::get('/create_slider', [SliderController::class, 'create']);
-Route::post('/slider_store', [SliderController::class, 'store']);
-Route::get('/slider/{id}/edit', [SliderController::class, 'edit']);  
-Route::get('/delete_slider/{id}', [SliderController::class, 'destroy']);
-Route::put('/slider/{id}', [SliderController::class, 'update']);
+
 
 //Vendor Management
 Route::get('/view_manage_vendor', [VendorManagementController::class, 'index']);
@@ -120,9 +129,3 @@ Route::group(['middleware' => ['auth']], function() {
 
 //USER MANAGEMENT ROUTE
 
-Route::get('/view_user', [UserController::class, 'index']);
-Route::get('/create_user', [UserController::class, 'create']);
-Route::post('/user_store', [UserController::class, 'store']);
-Route::get('/user/{id}/edit', [UserController::class, 'edit']);
-Route::put('/user/{id}', [UserController::class, 'update']);
-Route::get('/delete_user/{id}', [UserController::class, 'destroy']);

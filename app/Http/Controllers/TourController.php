@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tour;
-use Illuminate\Http\Request;
 use App\Models\Vendor;
+use Illuminate\Http\Request;
+
 
 class TourController extends Controller
 {
@@ -26,6 +27,7 @@ class TourController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create( )
+    
     {
         return view('vendor.tours.create');
 
@@ -37,23 +39,21 @@ class TourController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request , $vendor_id)
     {
-        try {
-            $request->validate([
-                'name' => 'required',
-                'description' => 'required',
-                'price' => 'required',
-                'capacity'=> 'required',
-            ]);
     
-            $tour = Tour::create($request->all());
-    
-            return redirect()->route('vendor.tours.index', ['vendor' => 1])
-                ->with('success', 'Tour updated successfully.');
-        } catch (\Exception $e) {
-            return back()->withInput()->with('error', 'Failed to create tour. Error message: ' . $e->getMessage());
-        }
+            $tour = new Tour;
+            $vendor = Vendor::findOrFail($vendor_id);
+
+            $tour -> name = $request -> name;
+            $tour -> description = $request -> description;
+            $tour -> price = $request -> price;
+            $tour -> capacity = $request -> capacity;
+            $tour->vendor_id = $vendor->id;
+
+            $tour -> save();
+            
+            return redirect() -> route('vendor.tours.index', ['vendor'=>1]);
     }
     
 
@@ -100,13 +100,6 @@ class TourController extends Controller
         $tour->capacity = $request->capacity;
         $tour->save();
 
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $image) {
-                $filename = $image->getClientOriginalName();
-                $path = $image->storeAs('images', $name, 'public');
-                $tour->images()->create(['name' => $name]);
-            }
-        }
     
         return redirect()->route('vendor.tours.index', ['vendor' => $vendor->id])
             ->with('success', 'Tour updated successfully.');
@@ -119,12 +112,12 @@ class TourController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($vendorId, $tourId)
-{
-    $vendor = Vendor::findOrFail($vendorId);
-    $tour = Tour::findOrFail($tourId);
-    
-    $tour->delete();
+    {
+        $vendor = Vendor::findOrFail($vendorId);
+        $tour = Tour::where('vendor_id', $vendorId)->findOrFail($tourId);
+        
+        $tour->delete();
 
-    return redirect()->route('vendor.tours.index', ['vendor' => $vendor->id]);
-}
+        return redirect()->route('vendor.tours.index', ['vendor' => $vendor->id]);
+    }
 }

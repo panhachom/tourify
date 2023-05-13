@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Laravel</title>
         @vite('resources/css/vendor_main.css')
+
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
 
@@ -21,24 +22,24 @@
     <div class="sidebar">
         <div class="logo-details">
         <i class='bx bxl-c-plus-plus icon'></i>
-            <div class="logo_name">Vendor Name</div>
+            <div class="logo_name">Admin</div>
             <i class='bx bx-menu' id="btn" ></i>
         </div>
-        <div>
+        <div class="nav-list">
         <li>
             <i class='bx bx-search' ></i>
             <input type="text" placeholder="Search...">
             <span class="tooltip">Search</span>
         </li>
         <li>
-            <a href="{{ route('vendor.tours.index', ['vendor' => 1]) }}">
+            <a href="">
             <i class='bx bx-grid-alt'></i>
             <span class="links_name">Tour</span>
             </a>
             <span class="tooltip">Tour</span>
         </li>
         <li>
-        <a href="#">
+        <a href="{{ route('admins.view_user') }}">
             <i class='bx bx-user' ></i>
             <span class="links_name">User</span>
         </a>
@@ -66,14 +67,6 @@
         </a>
         <span class="tooltip">Booking</span>
         </li>
-
-        <li>
-        <a href="{{ route('vendor.activity.index', ['vendor' => 1]) }}">
-            <i class='bx bx-heart' ></i>
-            <span class="links_name">Activity </span>
-        </a>
-        <span class="tooltip">Activity</span>
-        </li>
         
       
         <li class="profile">
@@ -86,7 +79,7 @@
             </div>
             <i class='bx bx-log-out' id="log_out" ></i>
         </li>
-   </div>
+    </div>
     </div>
     <section class="home-section">
         <div class="w-100 px-5 py-4">
@@ -114,6 +107,8 @@
         }
         }
   </script> 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src="../path/to/flowbite/dist/datepicker.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 
