@@ -9,6 +9,9 @@ class TourImage extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name'];
+
+
     public function tour()
     {
         return $this->belongsTo(Tour::class);

@@ -9,6 +9,13 @@ class Tour extends Model
 {
     use HasFactory;
 
+    protected $fillable =[
+        'name',
+        'description',
+        'price',
+        'capacity',
+    ];
+
     public function vendor()
     {
         return $this->belongsTo(Vendor::class);
