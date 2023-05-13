@@ -37,6 +37,11 @@ class Tour extends Model
 
     public function activity()
     {
-        return $this->belongsTo(Activity::class);
+        return $this->belongsToMany(Activity::class);
+    }
+
+    public function countries()
+    {
+        return $this->belongsToMany(Country::class);
     }
 }

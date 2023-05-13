@@ -11,6 +11,12 @@ class Activity extends Model
 
     public function tours()
     {
-        return $this->hasMany(Tour::class);
+        return $this->belongsToMany(Tour::class);
     }
+
+    protected $table = 'activities';
+    protected $fillable = [
+        'name',
+        'description',
+    ];
 }

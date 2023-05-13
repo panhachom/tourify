@@ -66,6 +66,14 @@
         </a>
         <span class="tooltip">Booking</span>
         </li>
+
+        <li>
+        <a href="{{ route('vendor.activity.index', ['vendor' => 1]) }}">
+            <i class='bx bx-heart' ></i>
+            <span class="links_name">Activity </span>
+        </a>
+        <span class="tooltip">Activity</span>
+        </li>
         
       
         <li class="profile">

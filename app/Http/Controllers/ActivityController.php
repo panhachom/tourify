@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Activity;
+use App\Models\Vendor;
 use Illuminate\Http\Request;
 
 class ActivityController extends Controller
@@ -14,7 +15,8 @@ class ActivityController extends Controller
      */
     public function index()
     {
-        //
+        $activities = Activity::all();
+        return view('vendor.activity.index',compact('activities'));
     }
 
     /**
@@ -24,7 +26,7 @@ class ActivityController extends Controller
      */
     public function create()
     {
-        //
+        return view('vendor.activity.create');
     }
 
     /**
@@ -35,7 +37,13 @@ class ActivityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $activity = new Activity;
+        $activity -> name = $request -> name;
+        $activity -> description = $request -> description;
+
+        $activity -> save();
+        
+        return redirect() -> route('vendor.activity.index', ['vendor'=>1]);
     }
 
     /**
@@ -55,9 +63,12 @@ class ActivityController extends Controller
      * @param  \App\Models\Activity  $activity
      * @return \Illuminate\Http\Response
      */
-    public function edit(Activity $activity)
+    public function edit($vendor_ID,$activity_ID)
     {
-        //
+        $activity = Activity::findOrFail($activity_ID);
+        $vendor = Vendor::findOrFail($vendor_ID);
+
+        return view('vendor.activity.edit', compact('vendor','activity'));
     }
 
     /**
@@ -67,9 +78,15 @@ class ActivityController extends Controller
      * @param  \App\Models\Activity  $activity
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Activity $activity)
+    public function update(Request $request, $vendor_ID,$id)
     {
-        //
+        $activity = Activity::findOrFail($id);
+        $vendor = Vendor::findOrFail($vendor_ID);
+        $activity -> name = $request -> name;
+        $activity -> description = $request -> description;
+        
+        $activity -> save();
+        return redirect()->route('vendor.activity.index',['vendor' => $vendor->id]);
     }
 
     /**
@@ -78,8 +95,12 @@ class ActivityController extends Controller
      * @param  \App\Models\Activity  $activity
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Activity $activity)
+    public function destroy($vendor_ID,$id)
     {
-        //
+        $activity = Activity::findOrFail($id);
+        $vendor = Vendor::findOrFail($vendor_ID);
+        $activity -> delete();
+
+        return redirect()->route('vendor.activity.index',['vendor' => $vendor->id]);
     }
 }
