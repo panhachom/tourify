@@ -15,7 +15,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\TourController;
-
+use App\Http\Controllers\TourImageController;
 use App\Http\Controllers\UserController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
@@ -82,6 +82,10 @@ Route::get('/view_manage_vendor', [VendorManagementController::class, 'index']);
 
 // Vendor
 Route::resource('/vendor', VendorController::class);
+Route::resource('vendor.tours', TourController::class);
+
+Route::resource('vendor.tours.images', TourImageController::class)->only([ 'index','create' ,'store', 'destroy']);
+
 
 
 Route::group(['middleware' => ['guest']], function() {
