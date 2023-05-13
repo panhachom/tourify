@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\listourController;
 use App\Http\Controllers\SignInController;
+use App\Http\Controllers\ProfileSettingController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\VendorManagementController;
 use App\Http\Controllers\TourListController;
@@ -31,6 +32,12 @@ Route::get('/phoneNumber', [SignInController::class, 'phoneNumber']);
 Route::get('/input', [SignInController::class, 'input']);
 Route::get('/verification', [SignInController::class, 'verification']);
 
+<<<<<<< HEAD
+=======
+Route::get('/list', [listourController::class, 'index']);
+Route::get('/about', [AboutusController::class, 'index']);
+Route::get('/profile', [ProfileSettingController::class, 'index']);
+>>>>>>> faaf2fa (close #34 Profile settings)
 
 
 
