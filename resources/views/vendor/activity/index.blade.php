@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="d-flex justify-content-between align-items-center mb-5">
-    <h3>Tours</h3>
+    <h3>Activity</h3>
     <a href="{{ route('vendor.activity.create', ['vendor' => 1]) }}" class="btn btn-success text-white">Create New Activity</a>
 </div>
 

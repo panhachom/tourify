@@ -31,7 +31,7 @@
 
             <div class="form-group col-12 my-2">
                 <label for="description">Description</label>
-                <textarea id="description" class="form-control" value="{{ old('name', $tour->description) }}" name="description" required></textarea>
+                <textarea id="description" class="form-control" name="description" required>{{ old('description', $tour->description) }}</textarea>
             </div>
         </div>
         <button type="submit" class="btn btn-success text-white mt-4">Update</button>
