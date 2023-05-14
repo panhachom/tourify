@@ -30,10 +30,6 @@ class Tour extends Model
     {
         return $this->hasMany(TourDate::class);
     }
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
-    }
 
     public function activities()
     {
@@ -42,6 +38,11 @@ class Tour extends Model
 
     public function countries()
     {
-        return $this->belongsToMany(Country::class);
+        return $this->belongsToMany(Country::class, 'country_tour', 'tour_id', 'country_id');
+    }
+    
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
     }
 }

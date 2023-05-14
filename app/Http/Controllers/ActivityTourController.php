@@ -9,26 +9,31 @@ use Illuminate\Http\Request;
 class ActivityTourController extends Controller
 {
     public function index(Request $request, $vendorid, $tourid)
-{
-    $tour = Tour::where('vendor_id', $vendorid) -> where('id', $tourid)->firstOrFail();
-    $params = ['vendor' => $vendorid, 'tour' => $tourid];
+    {
+        $tour = Tour::where('vendor_id', $vendorid)->where('id', $tourid)->firstOrFail();
+        $params = ['vendor' => $vendorid, 'tour' => $tourid];
+        $activities = [];
 
-    $search = $request->input('search');
-    $activities = Activity::where('name', 'like', '%' . $search . '%')->get();
+        if ($request->has('search')) {
+            $search = $request->input('search');
+            $activities = Activity::where('name', 'like', '%' . $search . '%')->get();
+        }
 
-    return view('vendor.tours.activity.index', compact('activities','tour','params'));
-}
-public function add(Tour $tour, Activity $activity)
-{
-
-
-    if ($tour->activities->contains($activity)) {
-        return back()->with('warning', 'Activity already exists for this tour.');
+        return view('vendor.tours.activity.index', compact('activities', 'tour', 'params'));
     }
 
-    $tour->activities()->attach($activity);
+        
+    public function add(Tour $tour, Activity $activity)
+
+    {
+        if ($tour->activities->contains($activity)) {
+            return back()->with('warning', 'Activity already exists for this tour.');
+        }
+
+        $tour->activities()->attach($activity);
 
 
-    return back()->with('success', 'Activity added successfully.');
-}
+        return back()->with('success', 'Activity added successfully.');
+    }
+
 }

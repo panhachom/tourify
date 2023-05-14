@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Tour;
 use App\Models\Vendor;
+use App\Models\Category;
+use App\Models\Country;
+use App\Models\Activity;
+
 use Illuminate\Http\Request;
 
 
@@ -27,9 +31,11 @@ class TourController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create( )
-    
     {
-        return view('vendor.tours.create');
+        $countries = Country::all();
+        $categories = Category::all();
+
+        return view('vendor.tours.create', compact('countries', 'categories'));
 
     }
 
@@ -41,19 +47,23 @@ class TourController extends Controller
      */
     public function store(Request $request , $vendor_id)
     {
+        $tour = new Tour;
     
-            $tour = new Tour;
-            $vendor = Vendor::findOrFail($vendor_id);
+        $vendor = Vendor::findOrFail($vendor_id);
+    
+        $tour->name = $request->name;
+        $tour->description = $request->description;
+        $tour->price = $request->price;
+        $tour->capacity = $request->capacity;
+        $tour->vendor_id = $vendor->id;
 
-            $tour -> name = $request -> name;
-            $tour -> description = $request -> description;
-            $tour -> price = $request -> price;
-            $tour -> capacity = $request -> capacity;
-            $tour->vendor_id = $vendor->id;
+        $tour->save();
 
-            $tour -> save();
-            
-            return redirect() -> route('vendor.tours.index', ['vendor'=>1]);
+        $categories = $request->input('categories', []);
+        $tour->categories()->attach($categories);
+    
+    
+        return redirect()->route('vendor.tours.index', ['vendor' => 1]);
     }
     
 
@@ -80,7 +90,9 @@ class TourController extends Controller
     {
         $vendor = Vendor::findOrFail($vendorId);
         $tour = Tour::findOrFail($tourId);
-        return view('vendor.tours.edit', compact('vendor','tour'));
+        $categories = Category::all();
+
+        return view('vendor.tours.edit', compact('vendor','tour','categories'));
     }
 
     /**
@@ -99,6 +111,10 @@ class TourController extends Controller
         $tour->price = $request->price;
         $tour->capacity = $request->capacity;
         $tour->save();
+
+        $categories = $request->input('categories', []);
+        $tour->categories()->sync($categories);
+    
 
     
         return redirect()->route('vendor.tours.index', ['vendor' => $vendor->id])
@@ -119,5 +135,34 @@ class TourController extends Controller
         $tour->delete();
 
         return redirect()->route('vendor.tours.index', ['vendor' => $vendor->id]);
+    }
+
+
+    public function addCountry($id)
+    
+    {
+        $tour = Tour::findOrFail($id);
+        $countries = Country::all();
+        return view('tours.add-country', compact('tour', 'countries'));
+    }
+
+    public function destroyActivity(Request $request, $vendor, $tour, $activity)
+    {
+        $tour = Tour::findOrFail($tour);
+        $activity = Activity::findOrFail($activity);
+        
+        $tour->activities()->detach($activity);
+        
+        return redirect()->back()->with('success', 'Activity removed successfully.');
+    }
+
+    public function destroyCountry(Request $request, $vendor, $tour, $country)
+    {
+        $tour = Tour::findOrFail($tour);
+        $country = Country::findOrFail($country);
+        
+        $tour->countries()->detach($country);
+        
+        return redirect()->back()->with('success', 'Country removed successfully.');
     }
 }

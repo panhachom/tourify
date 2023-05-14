@@ -25,11 +25,7 @@
             <i class='bx bx-menu' id="btn" ></i>
         </div>
         <div>
-        <li>
-            <i class='bx bx-search' ></i>
-            <input type="text" placeholder="Search...">
-            <span class="tooltip">Search</span>
-        </li>
+     
         <li>
             <a href="{{ route('vendor.tours.index', ['vendor' => 1]) }}">
             <i class='bx bx-grid-alt'></i>
@@ -37,42 +33,23 @@
             </a>
             <span class="tooltip">Tour</span>
         </li>
-        <li>
-        <a href="#">
-            <i class='bx bx-user' ></i>
-            <span class="links_name">User</span>
-        </a>
-        <span class="tooltip">User</span>
-        </li>
-        <li>
-        <a href="#">
-            <i class='bx bx-chat' ></i>
-            <span class="links_name">Category</span>
-        </a>
-        <span class="tooltip">Category</span>
-        </li>
-        <li>
-        <a href="#">
-            <i class='bx bx-pie-chart-alt-2' ></i>
-            <span class="links_name">Location</span>
-        </a>
-        <span class="tooltip">Location</span>
-        </li>
+      
+    
         
        <li>
-        <a href="#">
-            <i class='bx bx-heart' ></i>
-            <span class="links_name">Booking </span>
-        </a>
-        <span class="tooltip">Booking</span>
+            <a href="#">
+            <i class="bi bi-bag"></i>               
+             <span class="links_name">Booking </span>
+            </a>
+            <span class="tooltip">Booking</span>
         </li>
 
         <li>
-        <a href="{{ route('vendor.activity.index', ['vendor' => 1]) }}">
-            <i class='bx bx-heart' ></i>
+            <a href="{{ route('vendor.activity.index', ['vendor' => 1]) }}">
+            <i class="bi bi-card-checklist"></i>           
             <span class="links_name">Activity </span>
-        </a>
-        <span class="tooltip">Activity</span>
+            </a>
+            <span class="tooltip">Activity</span>
         </li>
         
       
@@ -80,8 +57,7 @@
             <div class="profile-details">
             <img src="profile.jpg" alt="profileImg">
             <div class="name_job">
-                <div class="name">Prem Shahi</div>
-                <div class="job">Web designer</div>
+                <div class="job">GetYourGuide</div>
             </div>
             </div>
             <i class='bx bx-log-out' id="log_out" ></i>
