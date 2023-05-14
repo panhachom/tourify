@@ -19,6 +19,7 @@ use App\Http\Controllers\TourController;
 use App\Http\Controllers\TourImageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\ActivityTourController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/tourlist', [TourListController::class, 'index'])->name('list.index');
@@ -99,7 +100,15 @@ Route::resource('/vendor', VendorController::class);
 Route::resource('vendor.tours', TourController::class);
 Route::resource('vendor.activity',ActivityController::class);
 
+
 Route::resource('vendor.tours.images', TourImageController::class)->only([ 'index','create' ,'store', 'destroy']);
+Route::resource('vendor.tours.activity',ActivityTourController::class);
+Route::get('vendor/tours/{tour}/activity/{activity}/add', [ActivityTourController::class ,'add'])->name('vendor.tours.activity.add');
+
+// Route::resource('vendor.tours.activity', ActivityTourController::class)->only([ 'index','create' ,'store', 'destroy']);
+
+
+// Route::get('vendor/tours/{tour}/activity/search',[ ActivityTourController::class, 'search'])->name('vendor.tours.activity.search');
 
 
 
