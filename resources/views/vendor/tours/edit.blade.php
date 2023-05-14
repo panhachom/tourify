@@ -33,6 +33,21 @@
                 <label for="description">Description</label>
                 <textarea id="description" class="form-control" name="description" required>{{ old('description', $tour->description) }}</textarea>
             </div>
+
+            <div class="form-group">
+                <label for="categories">Categories</label>
+                <div class="d-flex justify-content-center align-items-center mt-2 py-1">
+                    @foreach($categories as $category)
+                        <div class="checkbox">
+                            <label>
+                                <input class="mx-1" type="checkbox" name="categories[]" value="{{ $category->id }}" @if($tour->categories->contains($category->id)) checked @endif">
+                                <label class="form-check-label mx-1">{{ $category->name }}</label>
+                            </label>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+
         </div>
         <button type="submit" class="btn btn-success text-white mt-4">Update</button>
     </form>

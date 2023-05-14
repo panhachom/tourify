@@ -19,6 +19,13 @@
         </div>       
     </a>
 
+    <a class="btn btn-secondary px-4 mx-2" href="{{ route('vendor.tours.country.index', ['vendor' => 1, 'tour' => $tour->id]) }}">
+        <div class="d-flex">
+        <i class="bi bi-journals me-2"></i> </i>
+            <div>Country</div>
+        </div>       
+    </a>
+
     
 </a>
 

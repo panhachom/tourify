@@ -7,6 +7,7 @@
     <a href="{{ route('vendor.activity.create', ['vendor' => 1]) }}" class="btn btn-success text-white">Create New Activity</a>
 </div>
 
+
 @if ($activities->isEmpty())
     <p>No Activity. Please add one.</p>
 @else
