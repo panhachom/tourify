@@ -27,11 +27,6 @@
         </div>
         <div class="nav-list">
         <li>
-            <i class='bx bx-search' ></i>
-            <input type="text" placeholder="Search...">
-            <span class="tooltip">Search</span>
-        </li>
-        <li>
             <a href="">
             <i class='bx bx-grid-alt'></i>
             <span class="links_name">Tour</span>
@@ -73,11 +68,14 @@
             <div class="profile-details">
             <img src="profile.jpg" alt="profileImg">
             <div class="name_job">
-                <div class="name">Prem Shahi</div>
-                <div class="job">Web designer</div>
+                <div class="name">Admin</div>
+                <div class="job">Touifyr</div>
             </div>
             </div>
-            <i class='bx bx-log-out' id="log_out" ></i>
+            <a href="{{ route('logout.perform') }}" class="btn btn-outline-dark  me-2">
+                 <i class='bx bx-log-out' id="log_out" ></i>
+            </a>
+
         </li>
     </div>
     </div>
