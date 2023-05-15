@@ -27,6 +27,7 @@
                         <li>Contact Us</li>
                         <li>Testimoni</li>
                         <li>Rating</li>
+                        <li><a href="/reset_password_form">Reset Password</a></li>
                     </ul>
                     <ul class="flex flex-col gap-y-2">
                         <li class="font-bold text-base">Follow Us</li>

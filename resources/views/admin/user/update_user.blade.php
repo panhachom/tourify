@@ -29,7 +29,7 @@
                 <option value="admin">admin</option>
             </select>
             <button type="submit" value="Update" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-lg font-medium text-center text-black bg-primary rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
-              Update Slider
+              Update User
           </button>
           <a href="/view_user" class=" ml-5 inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-lg font-medium text-center text-black bg-secondary rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">Back</a>
         </div>

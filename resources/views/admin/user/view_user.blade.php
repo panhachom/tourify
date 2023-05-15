@@ -14,12 +14,11 @@
                     <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
                 </svg>
             </div> -->
-                            <select name="role" id="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option selected>Search by Role</option>
-                                <option value="cutomer">cutomer</option>
-                                <option value="vendor">vendor</option>
-                                <option value="admin">admin</option>
-                            </select>
+            <a href="/show_customer" class="p-3">Customer</a>
+            <a href="/show_vendor" class="p-3">Vendor</a>
+            <a href="/show_admin"class="p-3">Admin</a>
+            <a href="/view_user">Back</a>
+
         </div>
     </div>
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -46,7 +45,7 @@
             </tr>
         </thead>
         <tbody>
-        @foreach($user as $user_data)
+            @foreach($user as $user_data)
             <tr class="bg-white border-b ">
                 <th scope="row" class="px-6 py-4 font-medium text-primary whitespace-nowrap text-center ">{{$user_data->id}}</th>
                 <td class="px-6 py-4 text-center">{{$user_data->username}}</td>
@@ -55,10 +54,10 @@
                 <td class="px-6 py-4 text-center">{{$user_data->phone_number}}</td>
                 <td class="px-6 py-4 text-center">
                     <a href="{{url('user/'.$user_data->id.'/edit')}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                    <a href="{{url('delete_user', $user_data->id)}}"class=" ml-2 font-medium text-red-600 dark:text-red-500 hover:underline">Delete</a>
+                    <a href="{{url('delete_user', $user_data->id)}}" class=" ml-2 font-medium text-red-600 dark:text-red-500 hover:underline">Delete</a>
                 </td>
             </tr>
-        @endforeach
+            @endforeach
 
 
 

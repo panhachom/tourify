@@ -13,8 +13,12 @@ use App\Http\Controllers\DetailPageController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\TourController;
+
+use App\Mail\MyTestEmail;
+use Illuminate\Support\Facades\Mail;
 
 use App\Http\Controllers\UserController;
 
@@ -116,3 +120,18 @@ Route::post('/user_store', [UserController::class, 'store']);
 Route::get('/user/{id}/edit', [UserController::class, 'edit']);
 Route::put('/user/{id}', [UserController::class, 'update']);
 Route::get('/delete_user/{id}', [UserController::class, 'destroy']);
+Route::get('/reset_password', [UserController::class, 'reset_password']);
+Route::get('/show_customer',[UserController::class, 'show_customer']);
+Route::get('/show_vendor',[UserController::class, 'show_vendor']);
+Route::get('/show_admin',[UserController::class, 'show_admin']);
+
+Route::get('/testroute', function() {
+    $name = "Funny Coder";
+
+    // The email sending is done using the to method on the Mail facade
+    Mail::to('sethamanith3333@gmail.com')->send(new MyTestEmail($name));
+});
+
+Route::get('/reset_password_form', [ResetPasswordController::class, 'index']);
+Route::post('/forgot-password', [ResetPasswordController::class, 'forgotPassword']);
+Route::post('/reset-password', [ResetPasswordController::class, 'reset']);

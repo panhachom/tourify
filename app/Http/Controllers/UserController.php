@@ -80,12 +80,19 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = new User;
-        $user -> username = $request -> username;
-        $user -> password = $request->password;
-        $user -> email = $request -> email;
-        $user -> phone_number = $request -> phone_number;
-        $user -> role =$request -> role;
-        $user -> save();
+        // $user -> username = $request -> username;
+        // $user -> password = $request->password;
+        // $user -> email = $request -> email;
+        // $user -> phone_number = $request -> phone_number;
+        // $user -> role =$request -> role;
+        // $user -> save();
+        $user -> where('id', $id)
+              ->update(['username' => $request -> username,
+                        'password' => $request-> password,
+                        'email' => $request->email,
+                        'phone_number'=> $request->phone_number,
+                        'role' => $request->role]
+                        );
         return redirect('/view_user');
     }
 
@@ -100,5 +107,23 @@ class UserController extends Controller
         $user = User::find($id);
         $user -> delete();
         return redirect('/view_user');
+    }
+    public function reset_password(){
+        return view('admin/user.reset_password');
+    }
+    public function show_customer(){
+        $user = User::all();
+        $user = User::where('role', 'customer')->get();
+        return view('admin/user.view_user', compact('user'));
+    }
+    public function show_vendor(){
+        $user = User::all();
+        $user = User::where('role', 'vendor')->get();
+        return view('admin/user.view_user', compact('user'));
+    }
+    public function show_admin(){
+        $user = User::all();
+        $user = User::where('role', 'admin')->get();
+        return view('admin/user.view_user', compact('user'));
     }
 }
