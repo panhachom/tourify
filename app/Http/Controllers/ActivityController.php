@@ -37,13 +37,17 @@ class ActivityController extends Controller
      */
     public function store(Request $request)
     {
-        $activity = new Activity;
-        $activity -> name = $request -> name;
-        $activity -> description = $request -> description;
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+        ]);
 
-        $activity -> save();
-        
-        return redirect() -> route('vendor.activity.index', ['vendor'=>1]);
+        $activity = new Activity;
+        $activity->name = $validatedData['name'];
+        $activity->description = $validatedData['description'];
+        $activity->save();
+
+        return redirect()->route('vendor.activity.index', ['vendor' => 1])->with('success', 'Activity created successfully.');
     }
 
     /**
@@ -78,15 +82,21 @@ class ActivityController extends Controller
      * @param  \App\Models\Activity  $activity
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $vendor_ID,$id)
+    public function update(Request $request, $vendorId, $id)
     {
         $activity = Activity::findOrFail($id);
-        $vendor = Vendor::findOrFail($vendor_ID);
-        $activity -> name = $request -> name;
-        $activity -> description = $request -> description;
-        
-        $activity -> save();
-        return redirect()->route('vendor.activity.index',['vendor' => $vendor->id]);
+        $vendor = Vendor::findOrFail($vendorId);
+    
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+    
+        $activity->name = $validatedData['name'];
+        $activity->description = $validatedData['description'];
+        $activity->save();
+    
+        return redirect()->route('vendor.activity.index', ['vendor' => $vendor->id])->with('success', 'Activity updated successfully.');
     }
 
     /**

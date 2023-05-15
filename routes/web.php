@@ -21,6 +21,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\ActivityTourController;
 use App\Http\Controllers\CountryTourController;
+use App\Http\Controllers\TourDateController;
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
@@ -104,6 +105,7 @@ Route::resource('vendor.activity',ActivityController::class);
 
 
 Route::resource('vendor.tours.images', TourImageController::class)->only([ 'index','create' ,'store', 'destroy']);
+Route::resource('vendor.tours.tour_date', TourDateController::class);
 
 Route::resource('vendor.tours.activity',ActivityTourController::class);
 Route::get('vendor/tours/{tour}/activity/{activity}/add', [ActivityTourController::class ,'add'])->name('vendor.tours.activity.add');

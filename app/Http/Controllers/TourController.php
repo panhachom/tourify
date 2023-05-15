@@ -45,27 +45,39 @@ class TourController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request , $vendor_id)
+    public function store(Request $request, $vendor_id)
     {
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required|numeric',
+            'capacity' => 'required|integer',
+            'qty' => 'required|integer',
+            'categories' => 'required|array',
+            'categories.*' => 'exists:categories,id',
+        ]);
+
         $tour = new Tour;
-    
+
         $vendor = Vendor::findOrFail($vendor_id);
-    
-        $tour->name = $request->name;
-        $tour->description = $request->description;
-        $tour->price = $request->price;
-        $tour->capacity = $request->capacity;
+
+        $tour->name = $validatedData['name'];
+        $tour->description = $validatedData['description'];
+        $tour->price = $validatedData['price'];
+        $tour->capacity = $validatedData['capacity'];
+        $tour->qty = $validatedData['qty'];
         $tour->vendor_id = $vendor->id;
 
         $tour->save();
 
-        $categories = $request->input('categories', []);
+        $categories = $validatedData['categories'];
         $tour->categories()->attach($categories);
-    
-    
+
         return redirect()->route('vendor.tours.index', ['vendor' => 1]);
     }
+
     
+
 
     /**
      * Display the specified resource.
@@ -93,6 +105,7 @@ class TourController extends Controller
         $categories = Category::all();
 
         return view('vendor.tours.edit', compact('vendor','tour','categories'));
+        
     }
 
     /**
@@ -106,16 +119,27 @@ class TourController extends Controller
     {
         $vendor = Vendor::findOrFail($vendorId);
         $tour = Tour::findOrFail($tourId);
-        $tour->name = $request->name;
-        $tour->description = $request->description;
-        $tour->price = $request->price;
-        $tour->capacity = $request->capacity;
-        $tour->save();
-
-        $categories = $request->input('categories', []);
-        $tour->categories()->sync($categories);
     
-
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required|numeric',
+            'capacity' => 'required|integer',
+            'qty' => 'required|integer',
+            'categories' => 'required|array',
+            'categories.*' => 'exists:categories,id',
+        ]);
+    
+        $tour->name = $validatedData['name'];
+        $tour->description = $validatedData['description'];
+        $tour->price = $validatedData['price'];
+        $tour->capacity = $validatedData['capacity'];
+        $tour->qty = $validatedData['qty'];
+        $tour->vendor_id = $vendor->id;
+        $tour->save();
+    
+        $categories = $validatedData['categories'];
+        $tour->categories()->sync($categories);
     
         return redirect()->route('vendor.tours.index', ['vendor' => $vendor->id])
             ->with('success', 'Tour updated successfully.');
