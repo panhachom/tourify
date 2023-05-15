@@ -14,6 +14,7 @@ class Tour extends Model
         'description',
         'price',
         'capacity',
+        'qty'
     ];
 
     public function vendor()

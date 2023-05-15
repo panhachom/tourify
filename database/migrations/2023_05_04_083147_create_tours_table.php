@@ -19,7 +19,8 @@ return new class extends Migration
             $table->text('description');
             $table->float('price'); 
             $table->integer('capacity');
-        
+            $table->integer('qty');
+
             $table->timestamps();
 
             $table->foreign('vendor_id')->references('id')->on('vendors');

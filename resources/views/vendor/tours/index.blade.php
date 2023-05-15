@@ -27,6 +27,7 @@
                       <td>{{ $tour->description }}</td>
                       <td>{{ $tour->price }}</td>
                       <td>{{ $tour->capacity }} </td>
+
                       <td>
                           <a href="{{ route('vendor.tours.edit', ['vendor' => 1, 'tour' => $tour->id]) }}" class="btn btn-sm btn-light"><i class="bi bi-pencil text-primary font-weight-bold"></i></a>
                           <form action="{{ route('vendor.tours.destroy', ['vendor' => 1, 'tour' => $tour->id]) }}" method="POST" class="d-inline">
@@ -44,8 +45,6 @@
   </table>
 
 @endif
-
-
 
 @endsection
 

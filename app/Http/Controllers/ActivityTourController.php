@@ -16,8 +16,11 @@ class ActivityTourController extends Controller
 
         if ($request->has('search')) {
             $search = $request->input('search');
-            $activities = Activity::where('name', 'like', '%' . $search . '%')->get();
-        }
+            if($search != ''){
+                $activities = Activity::where('name', 'like', '%' . $search . '%')->get();
+
+            }
+        } 
 
         return view('vendor.tours.activity.index', compact('activities', 'tour', 'params'));
     }

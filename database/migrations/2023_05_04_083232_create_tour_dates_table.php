@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+
+    protected $fillable = ['start_date', 'end_date'];
+
     /**
      * Run the migrations.
      *

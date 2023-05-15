@@ -16,7 +16,8 @@ class CountryTourController extends Controller
 
         if ($request->has('search')) {
             $search = $request->input('search');
-            $countries = Country::where('country', 'like', '%' . $search . '%')->get();
+             $countries = Country::where('country', 'like', '%' . $search . '%')->get();
+            
         }
 
         return view('vendor.tours.country.index', compact('countries', 'tour', 'params'));

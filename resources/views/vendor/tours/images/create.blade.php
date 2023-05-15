@@ -15,12 +15,14 @@
     <div>
         <label for="image"> Tour Image </label>
         <input type="file" name="image" id="image">
-        @error('image')
-        <div class="invalid-feedback">{{ $message }}</div>
-         @enderror
+        @if ($errors->has('image'))
+                <div class="alert alert-danger mx-1">
+                    {{ $errors->first('image') }}
+                </div>
+        @endif
     </div>
     <div class="mt-4">
-        <button type="submit" class="btn btn-primary">Add Image</button>
+        <button type="submit" class="btn btn-success">Create</button>
     </div>
 </form>
 
