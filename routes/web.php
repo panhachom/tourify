@@ -11,6 +11,9 @@ use App\Http\Controllers\TourListController;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/tourlist', [TourListController::class, 'index']);
+Route::get('/signup', [HomeController::class, 'signup']);
+Route::get('/detailpage', [detailpageController::class, 'index']);
+Route::get('/booking', [HomeController::class, 'bookingInfo']);
 
 
 
