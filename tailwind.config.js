@@ -23,7 +23,7 @@ module.exports = {
                 },
                 fontFamily: {
                     fontPoppins: ['Poppins']
-                }
+                },
                 content: [
                     "./resources/**/*.blade.php",
                     "./resources/**/*.js",
@@ -46,3 +46,5 @@ module.exports = {
                 },
                 plugins: [],
             }
+        }
+    }
