@@ -27,6 +27,7 @@ use App\Http\Controllers\ResetPasswordController;
 
 use App\Mail\MyTestEmail;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\UpdateController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/tourlist', [TourListController::class, 'index'])->name('list.index');
@@ -43,7 +44,7 @@ Route::get('/verification', [SignInController::class, 'verification']);
 
 Route::get('/list', [listourController::class, 'index']);
 Route::get('/profile', [ProfileSettingController::class, 'index']);
-
+Route::post('/profile', [ProfileSettingController::class, 'updatePassword'])->name('update-password');
 
 
 /*
@@ -88,6 +89,7 @@ Route::middleware('admin')->group(function () {
     Route::put('/user/{id}', [UserController::class, 'update']);
     Route::get('/delete_user/{id}', [UserController::class, 'destroy']);
 
+<<<<<<< HEAD
     Route::get('/delete_user/{id}', [UserController::class, 'destroy']);
     Route::get('/reset_password', [UserController::class, 'reset_password']);
     Route::get('/show_customer',[UserController::class, 'show_customer']);
@@ -105,6 +107,8 @@ Route::middleware('admin')->group(function () {
     Route::post('/forgot-password', [ResetPasswordController::class, 'forgotPassword']);
     Route::post('/reset-password', [ResetPasswordController::class, 'reset']);
 
+=======
+>>>>>>> 22736fe (save-code)
 });
 
 
