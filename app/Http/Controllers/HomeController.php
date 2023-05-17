@@ -14,4 +14,8 @@ class HomeController extends Controller
     {
         return view('SignUp.signUp');
     }
+    public function bookingInfo()
+    {
+        return view('Booking_info.bookingInfo');
+    }
 }

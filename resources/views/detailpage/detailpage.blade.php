@@ -11,7 +11,7 @@
     @extends('app')
     @section('title', 'Home')
     @section('content')
-        @include('shares/navbar')
+        @include('components/navbar')
         <title>Detailpage</title>
         <style>
             .image .mx-auto{
@@ -139,13 +139,13 @@
             <p class="text-3xl font-medium text-muny">Related Tours</p>
         </div>
         <div class="mt-24 flex justify-center gap-10 items-center flex-wrap px-10 w-full pb-10">
-            @include('shares/card')
-            @include('shares/card')
-            @include('shares/card')
+            <x-card-component placeName="KompongThom" name="John Wick" description="Kompong thom  " price="130" />
+            <x-card-component placeName="KompongThom" name="John Wick" description="Kompong thom  " price="130" />
+            <x-card-component placeName="KompongThom" name="John Wick" description="Kompong thom  " price="130" />
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
 
     </body>
-    @include('shares/footer')
+    @include('components/footer')
 @endsection
 </html>
