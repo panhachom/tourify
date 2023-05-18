@@ -19,9 +19,10 @@
     </select>
 </div>
 
-    <table class="table mt-5 table-bordered">
-        <thead class="thead-light  bg-dark text-white">
+    <table class="table mt-5 table-striped">
+        <thead class="thead-light   text-black text-center">
         <tr>
+            <th>ID</th>
             <th>Username</th>
             <th>Email</th>
             <th>Role</th>
@@ -29,19 +30,22 @@
             <th>Action</th>
         </tr>
     </thead>
-        <tbody>
+        <tbody class="text-center">
             @foreach($user as $user_data)
                 <tr>
+                    <td>{{$user_data->id}}</td>
                     <td>{{ $user_data->username }}</td>
                     <td>{{ $user_data->email }}</td>
                     <td>{{ $user_data->role }}</td>
                     <td>{{ $user_data->phone_number }} </td>
                     <td>
                         <a href="{{url('user/'.$user_data->id.'/edit')}}" class="btn btn-sm btn-light">
-                            <i class="bi bi-pencil text-primary font-weight-bold"></i>
+                            <i class="bi bi-pencil text-primary font-weight-bold p-3 "></i>
+                            <span><p>Edit</p></span>
                         </a>
                         <a href="{{url('delete_user', $user_data->id)}}"class="btn btn-sm btn-light">
                             <i class="bi bi-trash text-danger"></i>
+                            <span><p>Delete</p></span>
                         </a>
                     </td>
                 </tr>

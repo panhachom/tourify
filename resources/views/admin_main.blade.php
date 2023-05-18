@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Laravel</title>
         @vite('resources/css/vendor_main.css')
+        
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
@@ -41,15 +42,30 @@
         <span class="tooltip">User</span>
         </li>
         <li>
+        <a href="/view_vendor">
+            <i class='bx bx-store-alt' ></i>
+            <span class="links_name">Vendor</span>
+        </a>
+        <span class="tooltip">Vendor</span>
+        </li>
+        <li>
         <a href="#">
-            <i class='bx bx-chat' ></i>
+            <i class='bx bx-category' ></i>
             <span class="links_name">Category</span>
         </a>
         <span class="tooltip">Category</span>
         </li>
         <li>
+        <li>
         <a href="#">
-            <i class='bx bx-pie-chart-alt-2' ></i>
+            <i class='bx bx-slideshow' ></i>
+            <span class="links_name">Slider</span>
+        </a>
+        <span class="tooltip">Slider</span>
+        </li>
+        <li>
+        <a href="#">
+            <i class='bx bx-location-plus' ></i>
             <span class="links_name">Location</span>
         </a>
         <span class="tooltip">Location</span>
@@ -68,8 +84,8 @@
             <div class="profile-details">
             <img src="profile.jpg" alt="profileImg">
             <div class="name_job">
-                <div class="name">Admin</div>
-                <div class="job">Touifyr</div>
+                <div class="name">Admin Panel</div>
+                <div class="job">Touify</div>
             </div>
             </div>
             <a href="{{ route('logout.perform') }}" class="btn btn-outline-dark  me-2">

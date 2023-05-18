@@ -20,6 +20,7 @@ use App\Http\Controllers\TourImageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\ActivityTourController;
+use App\Http\Controllers\AdminVendorController;
 use App\Http\Controllers\CountryTourController;
 use App\Http\Controllers\TourDateController;
 use App\Http\Controllers\ResetPasswordController;
@@ -89,8 +90,7 @@ Route::middleware('admin')->group(function () {
     Route::put('/user/{id}', [UserController::class, 'update']);
     Route::get('/delete_user/{id}', [UserController::class, 'destroy']);
 
-<<<<<<< HEAD
-    Route::get('/delete_user/{id}', [UserController::class, 'destroy']);
+    // Route::get('/delete_user/{id}', [UserController::class, 'destroy']);
     Route::get('/reset_password', [UserController::class, 'reset_password']);
     Route::get('/show_customer',[UserController::class, 'show_customer']);
     Route::get('/show_vendor',[UserController::class, 'show_vendor']);
@@ -107,8 +107,14 @@ Route::middleware('admin')->group(function () {
     Route::post('/forgot-password', [ResetPasswordController::class, 'forgotPassword']);
     Route::post('/reset-password', [ResetPasswordController::class, 'reset']);
 
-=======
->>>>>>> 22736fe (save-code)
+    //vendor Management
+    Route::get('/view_vendor', [AdminVendorController::class, 'index']);
+    Route::get('/create_vendor',[AdminVendorController::class, 'create']);
+    Route::post('/vendor_store', [AdminVendorController::class, 'store']);
+    Route::get('/vendor/{id}/edit', [AdminVendorController::class, 'edit']);
+    Route::put('/vendor/{id}', [AdminVendorController::class, 'update']);
+    Route::get('/delete_vendor/{id}', [AdminVendorController::class, 'destroy']);
+
 });
 
 

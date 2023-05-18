@@ -19,10 +19,13 @@ return new class extends Migration
             $table->text('about_us');
             $table->string('email');
             $table->string('contact');
-            $table->string('logo');
+            $table->string('logo')->nullable();
             $table->timestamps();
+            $table->unsignedBigInteger('user_id')->nullable(); 
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
+    
 
     /**
      * Reverse the migrations.
