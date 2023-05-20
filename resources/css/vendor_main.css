@@ -241,3 +241,50 @@
       display: none;
     }
   }
+
+
+  .table_style {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+
+  .radius {
+    border-radius: 10px;
+  }
+
+  .table-head-color {
+    background-color: #ffe6de;
+  }
+
+  .vendor-title {
+    /* box-shadow: rgba(200, 110, 54, 0.24) 0px 3px 8px; */
+    /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+    box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+    transition-duration: 0.25s;
+  }
+
+  .vendor-title:hover {
+    transform: scale(1.007);
+    }
+
+  .vendor-icon:hover{
+  }
+
+
+  .header_color {
+    background-color: #ffcec1;
+  }
+  .price-message {
+    background-color: #2fff75;
+    font-size: 14px;
+    border-radius: 5px;
+    margin-top: 5px;
+    color: black;
+    margin-bottom: 15px;
+
+    width: 95px;
+  }
+
+  .small-text{
+    font-size: 12px;
+    color: grey;
+  }

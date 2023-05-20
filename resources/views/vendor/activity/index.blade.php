@@ -2,17 +2,22 @@
 @section('title', 'Home')
 @section('content')
 
-<div class="d-flex justify-content-between align-items-center mb-5">
+<div class="d-flex justify-content-between align-items-center mb-5 w-full  px-4 py-3 vendor-title">
+  <div class="d-flex justify-content-center align-items-center">
+    <i class="bi bi-back h4 me-3 vendor-icon "></i>
     <h3>Activity</h3>
-    <a href="{{ route('vendor.activity.create', ['vendor' => 1]) }}" class="btn btn-success text-white">Create New Activity</a>
+  </div>
+  <a href="{{ route('vendor.activity.create', ['vendor' => 1]) }}" class="btn btn-success text-white">Create New Activity</a>
+
 </div>
+
 
 
 @if ($activities->isEmpty())
     <p>No Activity. Please add one.</p>
 @else
-  <table class="table mt-5 table-bordered">
-    <thead class="thead-light  bg-dark text-white">
+  <table class="table mt-5 table-borderless table-hover table_style">
+    <thead class=" header_color  text-black text-center">
       <tr>
           <th>No</th>
           <th>Name</th>
@@ -22,7 +27,7 @@
           <th>Action</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody class="text-center">
       @foreach($activities as $index => $activity_item)
                   <tr>
                       <td>{{ $index + 1 }}</td>

@@ -14,7 +14,8 @@ class Tour extends Model
         'description',
         'price',
         'capacity',
-        'qty'
+        'qty',
+        'inStock'
     ];
 
     public function vendor()
@@ -50,4 +51,18 @@ class Tour extends Model
     public function Promotion(){
         return $this->belongsToMany(Promotion::class);
     }
+    public function bookings()
+    {
+        return $this->belongsToMany(Booking::class);
+    }
+
+    public function updateStatusIfQuantityPositive()
+    {
+        if ($this->qty > 0 ) {
+            $this->inStock = true;
+            $this->save();
+        }
+    }
+
+
 }

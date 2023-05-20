@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('name');
             $table->text('description');
             $table->float('price'); 
+            $table->float('discount_price')->nullable();
+
             $table->integer('capacity');
             $table->integer('qty');
             $table->float('discount_price')->unsigned()->nullable();

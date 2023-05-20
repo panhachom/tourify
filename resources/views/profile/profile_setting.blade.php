@@ -28,9 +28,7 @@
                             <button type="submit" class="bg-primary py-1 px-2 rounded hover:bg-primary text-white text-sm mx-24">Upload</button>
                         </div>
                      </form> --}}
-                      @foreach ($users as $user)
-                    <h1 class="text-gray-900 font-bold text-xl leading-8 my-1 text-center">{{$user ->username}}</h1>
-                     @endforeach
+                    <h1 class="text-gray-900 font-bold text-xl leading-8 my-1 text-center">{{$user->username}}</h1>
                     <h3 class="text-gray-600 font-lg text-semibold leading-6"></h3>
                     <p class="text-sm text-gray-500 hover:text-gray-600 leading-6"></p>
                     <ul
@@ -70,30 +68,23 @@
                         <div class="grid md:grid-cols-2 text-sm">
                             <div class="grid grid-cols-2">
                                 <div class="px-4 py-2 font-semibold">User Name</div>
-                                @foreach ($users as $user)
                                 <div class="px-4 py-2">{{$user ->username}}</div>
-                                @endforeach
                             </div>
                             
                             <div class="grid grid-cols-2">
                                 <div class="px-4 py-2 font-semibold">Phone Number</div>
-                                @foreach ($users as $user)
                                 <div class="px-4 py-2">{{$user ->phone_number}}</div>
-                                @endforeach
+                            
                             </div>
                             <div class="grid grid-cols-2">
                                 <div class=" list-disc px-4 py-2 font-semibold ">Email</div>
                                 <div class="px-4 py-2">
-                                     @foreach ($users as $user)
                                     <a class="text-blue-800" href="mailto:jane@example.com">{{$user ->email}}</a>
-                                      @endforeach
                                 </div>
                             </div>
                             {{-- <div class="grid grid-cols-2">
                                 <div class="px-4 py-2 font-semibold">Password</div>
-                                 @foreach ($users as $user)
                                 <div class="px-4 py-2">{{$user ->password}}</div>
-                                @endforeach
                             </div> --}}
                         </div>
                     </div>

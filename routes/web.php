@@ -24,7 +24,6 @@ use App\Http\Controllers\AdminVendorController;
 use App\Http\Controllers\CountryTourController;
 use App\Http\Controllers\TourDateController;
 use App\Http\Controllers\ResetPasswordController;
-use App\Http\Controllers\PromotionController;
 
 
 use App\Mail\MyTestEmail;
@@ -32,9 +31,13 @@ use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\UpdateController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
-Route::get('/tourlist', [TourListController::class, 'index'])->name('list.index');
+
+
 Route::get('/detailpage', [DetailPageController::class, 'index'])->name('detailpage.index');
 Route::get('/signup', [HomeController::class, 'signup']);
+
+Route::resource('tour_list',TourListController::class);
+
 
 
 // Route::get('/list', [listourController::class, 'index'])->name('list.index');
@@ -90,12 +93,8 @@ Route::middleware('admin')->group(function () {
     Route::get('/user/{id}/edit', [UserController::class, 'edit']);
     Route::put('/user/{id}', [UserController::class, 'update']);
     Route::get('/delete_user/{id}', [UserController::class, 'destroy']);
-
-<<<<<<< HEAD
+    
     // Route::get('/delete_user/{id}', [UserController::class, 'destroy']);
-=======
-    Route::get('/delete_user/{id}', [UserController::class, 'destroy']);
->>>>>>> 9c8d307 (close #76)
     Route::get('/reset_password', [UserController::class, 'reset_password']);
     Route::get('/show_customer',[UserController::class, 'show_customer']); 
     Route::get('/show_vendor',[UserController::class, 'show_vendor']);
@@ -118,7 +117,6 @@ Route::middleware('admin')->group(function () {
     Route::post('/forgot-password', [ResetPasswordController::class, 'forgotPassword']);
     Route::post('/reset-password', [ResetPasswordController::class, 'reset']);
 
-<<<<<<< HEAD
     //vendor Management
     Route::get('/view_vendor', [AdminVendorController::class, 'index']);
     Route::get('/create_vendor',[AdminVendorController::class, 'create']);
@@ -127,8 +125,6 @@ Route::middleware('admin')->group(function () {
     Route::put('/vendor/{id}', [AdminVendorController::class, 'update']);
     Route::get('/delete_vendor/{id}', [AdminVendorController::class, 'destroy']);
 
-=======
->>>>>>> 9c8d307 (close #76)
 });
 
 
@@ -143,10 +139,22 @@ Route::get('/test', function () {
 //Vendor Management
 Route::get('/view_manage_vendor', [VendorManagementController::class, 'index']);
 
+
+
+
 // Vendor
 Route::resource('/vendor', VendorController::class);
 Route::resource('vendor.tours', TourController::class);
 Route::resource('vendor.activity',ActivityController::class);
+Route::resource('vendor.booking',VendorBookingController::class);
+Route::get('/vendor/booking/approved_booking/{vendor}',[VendorBookingController::class, 'approved_booking'] )
+    ->name('vendor.booking.approved_booking');
+Route::get('/vendor/booking/unapproved_booking/{vendor}',[VendorBookingController::class, 'unapproved_booking'] )
+->name('vendor.booking.unapproved_booking');
+
+
+
+
 
 
 Route::resource('vendor.tours.images', TourImageController::class)->only([ 'index','create' ,'store', 'destroy']);
@@ -161,6 +169,10 @@ Route::resource('vendor.tours.country',CountryTourController::class);
 Route::get('vendor/tours/{tour}/country/{country}/add', [CountryTourController::class ,'add'])->name('vendor.tours.country.add');
 Route::delete('vendors/{vendor}/tours/{tour}/countries/{country}', [TourController::class ,'destroyCountry'])->name('vendor.tours.country.destroy');
 
+
+// Booking 
+
+Route::resource('tour_list.booking',BookingController::class);
 
 
 
@@ -192,3 +204,7 @@ Route::group(['middleware' => ['auth']], function() {
 
 //USER MANAGEMENT ROUTE
 
+
+
+
+// Vendor Booking 

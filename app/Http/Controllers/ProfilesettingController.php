@@ -15,12 +15,8 @@ class ProfileSettingController extends Controller
 {
     public function index()
     {
-        $users = User::all();
-        return view('profile.profile_setting',
-        [
-            'users'=> $users
-        ]
-    );
+        $user = Auth::user();
+        return view('profile.profile_setting', compact('user'));
     }
     public function updatePassword(Request $request){
         $request->validate([

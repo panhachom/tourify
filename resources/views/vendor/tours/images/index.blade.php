@@ -2,17 +2,23 @@
 @section('title', 'Home')
 @section('content')
 
-<div class="d-flex justify-content-between align-items-center mb-5">
+
+<div class="d-flex justify-content-between align-items-center mb-5 w-full  px-4 py-3 vendor-title">
+  <div class="d-flex justify-content-center align-items-center">
+    <i class="bi bi-back h4 me-3 vendor-icon "></i>
     <h3>{{ $tour->name}}</h3>
-    <a href="{{ route('vendor.tours.images.create', $params) }}" class="btn btn-success">New Image</a>
+  </div>
+  <a href="{{ route('vendor.tours.images.create', $params) }}" class="btn btn-success">New Image</a>
+
 </div>
+
 
 @include('components/tour_tabs')
 
 @if ($images->isEmpty())
     <p>No Image. Please add one.</p>
 @else
-<table class="table mt-5">
+<table class="table mt-5 table_style">
   <thead class="thead-light">
     <tr>
         <th>No</th>

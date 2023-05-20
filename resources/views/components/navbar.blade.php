@@ -13,7 +13,7 @@
 		<div class="navbar-section-2 toggle-menu gap-10 flex justify-center items-center" id="center-menu">
 			<div class=""><a href="{{ route('home.index') }}">Home</a></div>
 			<div class=""><a href="{{ route('about.index') }}">About Us</a></div>
-			<div class=""><a href="{{ route('list.index') }}">Tours</a></div>
+			<div class=""><a href="{{ route('tour_list.index') }}">Tours</a></div>
 			<!-- <div class='max-w-md mx-auto'>
 				<div class="relative flex items-center w-full h-9 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
 					<div class="grid place-items-center h-full w-12 text-gray-300">
