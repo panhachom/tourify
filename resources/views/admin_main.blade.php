@@ -17,6 +17,18 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <title>@yield('title')</title>
         
+
+        <!-- Select -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+
+        <!-- Multiple Select -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.2/css/bootstrap.min.css" integrity="sha512-CpIKUSyh9QX2+zSdfGP+eWLx23C8Dj9/XmHjZY2uDtfkdLGo0uY12jgcnkX9vXOgYajEKb/jiw67EYm+kBf+6g==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     </head>
     <body class="bg-secondary font-fontPoppins">
         
@@ -70,6 +82,14 @@
         </a>
         <span class="tooltip">Location</span>
         </li>
+
+        <li>
+        <a href="{{ route('promotion.index')}}">
+        <i class="bi bi-gift"></i>
+            <span class="links_name">Promotion</span>
+        </a>
+        <span class="tooltip">Promotion</span>
+        </li>
         
        <li>
         <a href="#">
@@ -84,8 +104,13 @@
             <div class="profile-details">
             <img src="profile.jpg" alt="profileImg">
             <div class="name_job">
+<<<<<<< HEAD
                 <div class="name">Admin Panel</div>
                 <div class="job">Touify</div>
+=======
+                <div class="name">Admin</div>
+                <div class="job">Tourify</div>
+>>>>>>> 9c8d307 (close #76)
             </div>
             </div>
             <a href="{{ route('logout.perform') }}" class="btn btn-outline-dark  me-2">
@@ -126,5 +151,50 @@
   <script src="../path/to/flowbite/dist/datepicker.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('.select2').select2();
+    });
+</script>
+
+<script>
+    $(document).ready(function(){
+        $('.booking_tour_id').select2({
+            placeholder: 'Select',
+            allowClear: true,
+            dropdownParent: $('.col-md-6.offset-md-3.form-group')
+        });
+
+        $("#booking_tour_id").select2({
+            ajax:{
+                url: "{{ route('get-tour')}}",
+                type: "post",
+                delay: 250,
+                dataType: 'json',
+                data: function(params){
+                    return{
+                        name:params.term,
+                        "_token": "{{ csrf_token() }}"
+
+                    };
+                },
+                processResults: function(data){
+                    return{
+                        results: $.map(data,function(item){
+                            return{
+                                id: item.id,
+                                text: item.name,
+                            }
+                        })
+                    }
+                }
+            }
+        })
+    })
+</script>
   </body>
 </html>

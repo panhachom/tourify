@@ -24,6 +24,7 @@ use App\Http\Controllers\AdminVendorController;
 use App\Http\Controllers\CountryTourController;
 use App\Http\Controllers\TourDateController;
 use App\Http\Controllers\ResetPasswordController;
+use App\Http\Controllers\PromotionController;
 
 
 use App\Mail\MyTestEmail;
@@ -90,9 +91,13 @@ Route::middleware('admin')->group(function () {
     Route::put('/user/{id}', [UserController::class, 'update']);
     Route::get('/delete_user/{id}', [UserController::class, 'destroy']);
 
+<<<<<<< HEAD
     // Route::get('/delete_user/{id}', [UserController::class, 'destroy']);
+=======
+    Route::get('/delete_user/{id}', [UserController::class, 'destroy']);
+>>>>>>> 9c8d307 (close #76)
     Route::get('/reset_password', [UserController::class, 'reset_password']);
-    Route::get('/show_customer',[UserController::class, 'show_customer']);
+    Route::get('/show_customer',[UserController::class, 'show_customer']); 
     Route::get('/show_vendor',[UserController::class, 'show_vendor']);
     Route::get('/show_admin',[UserController::class, 'show_admin']);
 
@@ -102,11 +107,18 @@ Route::middleware('admin')->group(function () {
         // The email sending is done using the to method on the Mail facade
         Mail::to('sethamanith3333@gmail.com')->send(new MyTestEmail($name));
     });
+    
+    Route::resource('promotion',PromotionController::class);
+    Route::post("/tours", [PromotionController::class, 'getTour'])->name('get-tour');
+
+  
+    Route::post("/tours", [PromotionController::class, 'getTour'])->name('get-tour');
 
     Route::get('/reset_password_form', [ResetPasswordController::class, 'index']);
     Route::post('/forgot-password', [ResetPasswordController::class, 'forgotPassword']);
     Route::post('/reset-password', [ResetPasswordController::class, 'reset']);
 
+<<<<<<< HEAD
     //vendor Management
     Route::get('/view_vendor', [AdminVendorController::class, 'index']);
     Route::get('/create_vendor',[AdminVendorController::class, 'create']);
@@ -115,6 +127,8 @@ Route::middleware('admin')->group(function () {
     Route::put('/vendor/{id}', [AdminVendorController::class, 'update']);
     Route::get('/delete_vendor/{id}', [AdminVendorController::class, 'destroy']);
 
+=======
+>>>>>>> 9c8d307 (close #76)
 });
 
 
