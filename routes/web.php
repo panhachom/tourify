@@ -24,6 +24,8 @@ use App\Http\Controllers\AdminVendorController;
 use App\Http\Controllers\CountryTourController;
 use App\Http\Controllers\TourDateController;
 use App\Http\Controllers\ResetPasswordController;
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\VendorBookingController;
 
 
 use App\Mail\MyTestEmail;
@@ -95,6 +97,7 @@ Route::middleware('admin')->group(function () {
     Route::get('/delete_user/{id}', [UserController::class, 'destroy']);
     
     // Route::get('/delete_user/{id}', [UserController::class, 'destroy']);
+    Route::get('/delete_user/{id}', [UserController::class, 'destroy']);
     Route::get('/reset_password', [UserController::class, 'reset_password']);
     Route::get('/show_customer',[UserController::class, 'show_customer']); 
     Route::get('/show_vendor',[UserController::class, 'show_vendor']);

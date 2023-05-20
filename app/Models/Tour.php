@@ -48,9 +48,6 @@ class Tour extends Model
         return $this->belongsToMany(Category::class);
     }
 
-    public function Promotion(){
-        return $this->belongsToMany(Promotion::class);
-    }
     public function bookings()
     {
         return $this->belongsToMany(Booking::class);
