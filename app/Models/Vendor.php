@@ -9,6 +9,15 @@ class Vendor extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'about_us',
+        'email',
+        'contact',
+        'logo',
+        'user_id',
+    ];
+
     public function tours()
     {
         return $this->hasMany(Tour::class);
@@ -17,5 +26,8 @@ class Vendor extends Model
     public function location()
     {
         return $this->belongsTo(Location::class);
+    }
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 }
