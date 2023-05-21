@@ -5,6 +5,14 @@
      @section('content')
 
    <section class="h-screen">
+    <div class="p-2">
+      <a
+      href="{{ url()->previous() }}"              
+      class="text-primary transition duration-150 ease-in-out hover:text-primary-600 focus:text-primary-600 active:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 dark:focus:text-primary-500 dark:active:text-primary-600 hover:underline dark:text-primary-500 my-10 p-5"
+                >Back</a
+      >
+    </div>
+  
     <div class="container h-full  px-6 py-24  ms-24">
 
     <div class="g-6 flex h-full flex-wrap items-center justify-center lg:justify-between w-full rounded-b-lg ">

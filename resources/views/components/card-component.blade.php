@@ -31,9 +31,15 @@
     border-radius: 18px;
     height: 35px;
   }
+  .max-line {
+    overflow: hidden;
+   display: -webkit-box;
+   -webkit-line-clamp: 2; /* number of lines to show */
+           line-clamp: 2; 
+   -webkit-box-orient: vertical
+  }
 </style>
-<a href="{{ route('detailpage.index') }}">
-
+<a href="{{ route('tour_list.show', ['tour_list' => intval($id)]) }}">
   <div class="card-item flex flex-col">
       <div class="location-icon px-5 py-2 flex">
       <i class="fa-solid fa-location-dot me-3 my-1"></i>
@@ -41,12 +47,12 @@
       <p>{{ $placeName }}</p>
       </div>
       <div class="card-image">
-        <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" alt="">
-      </div>
+        <img src="{{ asset('images/tours/' . $image) }}" alt="Tour Image">
+            </div>
       <div class="card-content">
         <div class="px-3 py-4">
           <h1 class="text-xl font-bold">{{ $name }}</h1>
-          <p class="font-extralight text-sm mt-2 text-ellipsis">
+          <p class="font-extralight text-sm mt-2 max-line">
             {{ $description }}
           </p>
         </div>

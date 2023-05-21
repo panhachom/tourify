@@ -2,7 +2,7 @@
 @section('title', 'Home')
 @section('content')
 
- <h1>hi</h1>
+ <h1>Vendor Page</h1>
 
 
 

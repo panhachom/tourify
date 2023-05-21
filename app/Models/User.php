@@ -41,9 +41,14 @@ class User extends Authenticatable
     ];
 
     public function isAdmin()
-{
-    return $this->role === 'admin';
-}
+    {
+        return $this->role === 'admin';
+    }
+
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
 
     /**
      * The attributes that should be cast.

@@ -15,15 +15,16 @@
     </div>
 
 	<div class="mt-24 flex justify-center gap-10 items-center flex-wrap px-10 py-16 w-full">
-		<x-card-component placeName="KompongThom" name="John Wick" description="Kompong thom  " price="130" />
-		<x-card-component placeName="KompongThom" name="John Wick" description="Kompong thom  " price="130" />
-		<x-card-component placeName="KompongThom" name="John Wick" description="Kompong thom  " price="130" />
-		<x-card-component placeName="KompongThom" name="John Wick" description="Kompong thom  " price="130" />
-		<x-card-component placeName="KompongThom" name="John Wick" description="Kompong thom  " price="130" />
-		<x-card-component placeName="KompongThom" name="John Wick" description="Kompong thom  " price="130" />
-		<x-card-component placeName="KompongThom" name="John Wick" description="Kompong thom  " price="130" />
-		<x-card-component placeName="KompongThom" name="John Wick" description="Kompong thom  " price="130" />
-		<x-card-component placeName="KompongThom" name="John Wick" description="Kompong thom  " price="130" />
+	@foreach($tours as $tour)
+    <x-card-component
+        placeName="{{ $tour->vendor->name }}"
+        name="{{ $tour->name }}"
+        description="{{ $tour->description }}"
+        price="{{ $tour->price }}"
+        image="{{ $tour->tour_images->isNotEmpty() ? $tour->tour_images->first()->name : null }}"
+		id="{{ $tour->id }}"
+    />
+   @endforeach
 	</div>
 	<div></div>
 
