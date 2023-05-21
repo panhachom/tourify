@@ -91,11 +91,8 @@ Route::middleware('admin')->group(function () {
     Route::put('/user/{id}', [UserController::class, 'update']);
     Route::get('/delete_user/{id}', [UserController::class, 'destroy']);
 
-<<<<<<< HEAD
     // Route::get('/delete_user/{id}', [UserController::class, 'destroy']);
-=======
     Route::get('/delete_user/{id}', [UserController::class, 'destroy']);
->>>>>>> 9c8d307 (close #76)
     Route::get('/reset_password', [UserController::class, 'reset_password']);
     Route::get('/show_customer',[UserController::class, 'show_customer']); 
     Route::get('/show_vendor',[UserController::class, 'show_vendor']);
@@ -118,7 +115,6 @@ Route::middleware('admin')->group(function () {
     Route::post('/forgot-password', [ResetPasswordController::class, 'forgotPassword']);
     Route::post('/reset-password', [ResetPasswordController::class, 'reset']);
 
-<<<<<<< HEAD
     //vendor Management
     Route::get('/view_vendor', [AdminVendorController::class, 'index']);
     Route::get('/create_vendor',[AdminVendorController::class, 'create']);
@@ -127,8 +123,6 @@ Route::middleware('admin')->group(function () {
     Route::put('/vendor/{id}', [AdminVendorController::class, 'update']);
     Route::get('/delete_vendor/{id}', [AdminVendorController::class, 'destroy']);
 
-=======
->>>>>>> 9c8d307 (close #76)
 });
 
 
