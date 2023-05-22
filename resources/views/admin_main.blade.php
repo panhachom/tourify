@@ -40,7 +40,7 @@
         </div>
         <div class="nav-list">
         <li>
-            <a href="">
+            <a href="/view_all_post">
             <i class='bx bx-grid-alt'></i>
             <span class="links_name">Tour</span>
             </a>

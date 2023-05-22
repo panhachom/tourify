@@ -20,6 +20,7 @@ use App\Http\Controllers\TourImageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\ActivityTourController;
+use App\Http\Controllers\AdminManageTourContoller;
 use App\Http\Controllers\AdminVendorController;
 use App\Http\Controllers\CountryTourController;
 use App\Http\Controllers\TourDateController;
@@ -118,12 +119,18 @@ Route::middleware('admin')->group(function () {
     Route::post('/reset-password', [ResetPasswordController::class, 'reset']);
 
     //vendor Management
-    Route::get('/view_vendor', [AdminVendorController::class, 'index']);
+    Route::get('/view_vendor', [AdminVendorController::class, 'index'])->name('admins.view_vendor');
     Route::get('/create_vendor',[AdminVendorController::class, 'create']);
     Route::post('/vendor_store', [AdminVendorController::class, 'store']);
     Route::get('/vendor/{id}/edit', [AdminVendorController::class, 'edit']);
     Route::put('/vendor/{id}', [AdminVendorController::class, 'update']);
     Route::get('/delete_vendor/{id}', [AdminVendorController::class, 'destroy']);
+
+    //Manage All Tour Post
+    Route::get('/view_all_post', [AdminManageTourContoller::class, 'index']);
+    Route::get('/tour/{id}/edit',[AdminManageTourContoller::class, 'edit']);
+    Route::put('/tour/{id}', [AdminManageTourContoller::class, 'update']);
+    Route::get('/delete_tour_post/{id}', [AdminManageTourContoller::class, 'destroy']);
 
 });
 

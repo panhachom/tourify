@@ -27,13 +27,10 @@ class Vendor extends Model
     {
         return $this->belongsTo(Location::class);
     }
-<<<<<<< HEAD
     public function user(){
         return $this->belongsTo(User::class);
-=======
-
+    }
     public function promotions(){
         return $this->hasMany(Promotions::class);
->>>>>>> 9c8d307 (close #76)
     }
 }
