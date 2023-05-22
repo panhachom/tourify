@@ -2,8 +2,11 @@
 @section('title', 'Home')
 @section('content')
 
-<div class="d-flex justify-content-between align-items-center mb-5">
+<div class="d-flex justify-content-between align-items-center mb-5 w-full  px-4 py-3 vendor-title">
+  <div class="d-flex justify-content-center align-items-center">
+    <i class="bi bi-back h4 me-3 vendor-icon "></i>
     <h3>User</h3>
+  </div>
     <a href="{{ url('create_user') }}" class="btn btn-success text-white">Create New User</a>
 </div>
 
@@ -19,18 +22,21 @@
     </select>
 </div>
 
-    <table class="table mt-5 table-striped">
-        <thead class="thead-light   text-black text-center">
+    <table class="table mt-5 table-borderless table-hover table_style">
+        <thead class="thead-light header_color text-black">
         <tr>
-            <th>ID</th>
+            <th>No</th>
             <th>Username</th>
             <th>Email</th>
             <th>Role</th>
             <th>Phone Number</th>
-            <th>Action</th>
+            <th class="text-center">Action</th>
         </tr>
     </thead>
-        <tbody class="text-center">
+        <tbody class="t">
+      <div class="d-none">
+      {{ $i= 1}}
+       </div>
             @foreach($user as $user_data)
                 <tr>
                     <td>{{$user_data->id}}</td>
@@ -38,14 +44,12 @@
                     <td>{{ $user_data->email }}</td>
                     <td>{{ $user_data->role }}</td>
                     <td>{{ $user_data->phone_number }} </td>
-                    <td>
+                    <td class="text-center">
                         <a href="{{url('user/'.$user_data->id.'/edit')}}" class="btn btn-sm btn-light">
-                            <i class="bi bi-pencil text-primary font-weight-bold p-3 "></i>
-                            <span><p>Edit</p></span>
+                            <i class="bi bi-pencil text-primary font-weight-bold p-3 ">Edit</i>
                         </a>
                         <a href="{{url('delete_user', $user_data->id)}}"class="btn btn-sm btn-light">
-                            <i class="bi bi-trash text-danger"></i>
-                            <span><p>Delete</p></span>
+                            <i class="bi bi-trash text-danger">Delete</i>
                         </a>
                     </td>
                 </tr>

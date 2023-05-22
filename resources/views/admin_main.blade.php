@@ -40,7 +40,7 @@
         </div>
         <div class="nav-list">
         <li>
-            <a href="">
+            <a href="/view_all_post">
             <i class='bx bx-grid-alt'></i>
             <span class="links_name">Tour</span>
             </a>
@@ -104,13 +104,8 @@
             <div class="profile-details">
             <img src="profile.jpg" alt="profileImg">
             <div class="name_job">
-<<<<<<< HEAD
                 <div class="name">Admin Panel</div>
                 <div class="job">Touify</div>
-=======
-                <div class="name">Admin</div>
-                <div class="job">Tourify</div>
->>>>>>> 9c8d307 (close #76)
             </div>
             </div>
             <a href="{{ route('logout.perform') }}" class="btn btn-outline-dark  me-2">

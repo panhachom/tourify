@@ -1,0 +1,32 @@
+.countdown-timer .group  .value{
+ background-color: white;
+ color: #FF29A8;
+ font-weight: bold;
+ text-align: center;
+ border-radius: 8px;
+ padding-top: 5px;
+ padding-bottom: 5px;
+ width: 40px;
+ margin: 3px;
+}
+
+.countdown-timer{
+  display: flex;
+}
+
+.countdown-timer .group  .text{
+  color: white;
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
+
+ }
+
+
+ .image-promotion {
+  width: 1400px;
+ 
+ }
+ .shadow-box {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+ }

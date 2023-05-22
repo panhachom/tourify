@@ -13,14 +13,14 @@ class TourImageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($vendorid, $tourid)
+    public function index($vendor_id, $tour_id)
     {
-        $tour = Tour::where('vendor_id', $vendorid)->where('id', $tourid)->firstOrFail();
+        $tour = Tour::where('vendor_id', $vendor_id)->where('id', $tour_id)->firstOrFail();
         $images = $tour->tour_images()->get();
 
-        $params = ['vendor' => $vendorid, 'tour' => $tourid];
+        $params = ['vendor' => $vendor_id, 'tour' => $tour_id];
 
-        return view('vendor.tours.images.index', compact('tour', 'images', 'params'));
+        return view('vendor.tours.images.index', compact('tour', 'images', 'params' ,'vendor_id'));
     }
 
     /**
@@ -28,10 +28,11 @@ class TourImageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($vendorid ,$tourid)
+    public function create($vendor_id ,$tourid)
     {
-        $tour = Tour::where('vendor_id', 1)->where('id', $tourid)->firstOrFail();
-        return view('vendor.tours.images.create', compact('tour'));
+        $tour = Tour::where('vendor_id', $vendor_id)->where('id', $tourid)->firstOrFail();
+
+        return view('vendor.tours.images.create', compact('tour','vendor_id'));
     }
 
     /**
@@ -40,7 +41,7 @@ class TourImageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $vendorid, $tourid)
+    public function store(Request $request, $vendor_id, $tour_id)
     {
         // Validate the request data
         $request->validate([
@@ -62,33 +63,13 @@ class TourImageController extends Controller
 
         // Save the image details to the database
         $tourImage = new TourImage;
-        $tourImage->tour_id = $tourid;
+        $tourImage->tour_id = $tour_id;
         $tourImage->name = $imageName;
         $tourImage->save();
 
-        return redirect()->route('vendor.tours.images.index', [$vendorid, $tourid])->with('success', 'Tour image has been added successfully');
+        return redirect()->route('vendor.tours.images.index', [$vendor_id, $tour_id])->with('success', 'Tour image has been added successfully');
     }
 
-
-
-
-
-
-
-
-
-    
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\TourImage  $tourImage
-     * @return \Illuminate\Http\Response
-     */
-    public function show(TourImage $tourImage)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -119,10 +100,10 @@ class TourImageController extends Controller
      * @param  \App\Models\TourImage  $tourImage
      * @return \Illuminate\Http\Response
      */
-    public function destroy($vendorid, $tourid, TourImage $image)
+    public function destroy($vendor_id, $tour_id, TourImage $image)
     {
         $image->delete();
-        return redirect()->route('vendor.tours.images.index', [$vendorid, $tourid])->with('success', 'Tour image has been deleted successfully');
+        return redirect()->route('vendor.tours.images.index', [$vendor_id, $tour_id])->with('success', 'Tour image has been deleted successfully');
     }
 }
 

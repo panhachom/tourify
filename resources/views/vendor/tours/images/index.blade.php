@@ -1,4 +1,4 @@
-@extends('vendor_main')
+@extends('vendor/show')
 @section('title', 'Home')
 @section('content')
 
@@ -27,14 +27,15 @@
     </tr>
   </thead>
   <tbody>
+  <div class="d-none"> {{ $i= 1}}</div>
     @foreach($images as $image)
         <tr>
-            <td style="vertical-align: middle;">{{ $image->id }}</td>
+            <td style="vertical-align: middle;">{{ $i++ }}</td>
             <td style="vertical-align: middle;">
                 <img src="{{ asset('images/tours/' . $image->name) }}" alt="Tour Image" style="width: 60px;height: 60px;">
             </td>
             <td style="vertical-align: middle;">
-                <form action="{{ route('vendor.tours.images.destroy', ['vendor' => 1, 'tour' =>  $tour->id, 'image' => $image->id]) }}" method="POST">
+                <form action="{{ route('vendor.tours.images.destroy', ['vendor' => $vendor_id, 'tour' =>  $tour->id, 'image' => $image->id]) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-sm btn-light" onclick="return confirm('Are you sure you want to delete this image?')">

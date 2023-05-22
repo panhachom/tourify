@@ -2,13 +2,17 @@
 @section('title', 'Home')
 @section('content')
 
-<div class="d-flex justify-content-between align-items-center mb-5">
+
+<div class="d-flex justify-content-between align-items-center mb-5 w-full  px-4 py-3 vendor-title">
+  <div class="d-flex justify-content-center align-items-center">
+    <i class="bi bi-back h4 me-3 vendor-icon "></i>
     <h3>{{ $user->username}}</h3>
-    <a href="{{ route('admins.view_user') }}" class="btn btn-success text-white">Back</a>
+  </div>
+  <a href="{{ route('admins.view_user') }}" class="btn btn-success text-white">Back</a>
 </div>
 
 
-<div class="border p-5 rounded">
+<div class="border p-5 table_style radius">
     <form action="{{url('/user/'.$user->id)}}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')

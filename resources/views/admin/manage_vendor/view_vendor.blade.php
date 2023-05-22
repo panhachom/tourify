@@ -2,18 +2,16 @@
 @section('title', 'Home')
 @section('content')
 
-
-<div class="d-flex justify-content-between align-items-center mb-5">
+<div class="d-flex justify-content-between align-items-center mb-5 w-full  px-4 py-3 vendor-title">
+  <div class="d-flex justify-content-center align-items-center">
+    <i class="bi bi-back h4 me-3 vendor-icon "></i>
     <h3>Vendor Management</h3>
+  </div>
     <a href="{{ url('create_vendor') }}" class="btn btn-success text-white">Create New Vendor</a>
 </div>
 
-<div >
-    
-</div>
-
-    <table class="table mt-5 table-striped">
-        <thead class="thead-light  bg-light  text-black">
+    <table class="table mt-5 table-borderless table-hover table_style">
+        <thead class="thead-light header_color text-black">
         <tr class="text-center">
             <th>ID</th>
             <th>Name</th>
@@ -36,12 +34,10 @@
                     <td>{{$vendor_data->user_id}}</td>
                     <td>
                     <a href="{{url('vendor/'.$vendor_data->id.'/edit')}}" class="btn btn-sm btn-light">
-                            <i class="bi bi-pencil text-primary font-weight-bold p-3 "></i>
-                            <span><p>Edit</p></span>
+                            <i class="bi bi-pencil text-primary font-weight-bold  ">Edit</i>
                         </a>
                         <a href="{{url('delete_vendor', $vendor_data->id)}}"class="btn btn-sm btn-light">
-                            <i class="bi bi-trash text-danger"></i>
-                            <span><p>Delete</p></span>
+                            <i class="bi bi-trash text-danger"> Delete</i>
                         </a>
                     </td>
                 </tr>

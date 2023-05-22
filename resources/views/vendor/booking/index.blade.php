@@ -1,4 +1,4 @@
-@extends('vendor_main')
+@extends('vendor/show')
 @section('title', 'Home')
 @section('content')
 
@@ -54,12 +54,12 @@
                       </td>
 
                       <td>
-                          <a href="{{ route('vendor.booking.edit', ['vendor' => 1, 'booking' => $booking->id]) }}" class="btn btn-sm btn-light"><i class="bi bi-pencil text-primary font-weight-bold"></i></a>
-                          <form action="" method="POST" class="d-inline">
-                                  @csrf
-                                  @method('DELETE')
+                          <a href="{{ route('vendor.booking.edit', ['vendor' => $vendor_id, 'booking' => $booking->id]) }}" class="btn btn-sm btn-light"><i class="bi bi-pencil text-primary font-weight-bold"> Edit</i></a>
+                          <form action="{{ route('vendor.booking.destroy', ['vendor' => $vendor_id, 'booking' => $booking->id]) }}" method="POST">
+                              @csrf
+                              @method('DELETE')
                                   <button type="submit" class="btn btn-sm btn-light" onclick="return confirm('Are you sure you want to delete this tour?')">
-                                  <i class="bi bi-trash text-danger"></i>
+                                  <i class="bi bi-trash text-danger"> Delete</i>
                                   </button>
                           </form>
                       </td>

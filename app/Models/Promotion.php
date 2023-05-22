@@ -30,4 +30,21 @@ class Promotion extends Model
         'status'
     ];
 
+
+    public function updateToursIfEndDateEqualsStartDate()
+    {
+        if ($this->end_date === $this->start_date) {
+            // End date is equal to the start date
+            $this->end_date = $this->start_date;
+            $this->save();
+
+            // Set tour prices to null
+            $this->tours()->syncWithoutDetaching(
+                $this->tours()->pluck('id')->mapWithKeys(function ($id) {
+                    return [$id => ['discount_price' => null]];
+                })
+            );
+        }
+    }
+
 }

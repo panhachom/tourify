@@ -1,4 +1,4 @@
-@extends('vendor_main')
+@extends('vendor/show')
 @section('title', 'Home')
 @section('content')
 
@@ -7,8 +7,7 @@
     <i class="bi bi-back h4 me-3 vendor-icon "></i>
     <h3>All Tours</h3>
   </div>
-  <a href="{{ route('vendor.tours.create', ['vendor' => 1]) }}" class="btn btn-success text-white">Create New Tour</a>
-
+  <a href="{{ route('vendor.tours.create', ['vendor' => $vendor_id]) }}" class="btn btn-success text-white">Create New Tour</a>
 </div>
 
 @if ($tours->isEmpty())
@@ -19,10 +18,9 @@
       <tr>
           <th>No.</th>
           <th>Name</th>
-          <th>Description</th>
           <th>Price</th>
-          <th>Capacity</th>
-          <th>Actions</th>
+          <th class="text-center">Capacity</th>
+          <th class="text-center">Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -41,17 +39,16 @@
                         </div>
 
                       </td>
-                      <td>{{ $tour->description }}</td>
                       <td class="text-success">${{ $tour->price }}</td>
-                      <td class="">{{ $tour->capacity }} </td>
+                      <td class="text-center">{{ $tour->capacity }} </td>
 
-                      <td>
-                          <a href="{{ route('vendor.tours.edit', ['vendor' => 1, 'tour' => $tour->id]) }}" class="btn btn-sm btn-light"><i class="bi bi-pencil text-primary font-weight-bold"></i></a>
-                          <form action="{{ route('vendor.tours.destroy', ['vendor' => 1, 'tour' => $tour->id]) }}" method="POST" class="d-inline">
+                      <td class="text-center">
+                          <a href="{{ route('vendor.tours.edit', ['vendor' => $vendor_id, 'tour' => $tour->id]) }}" class="btn btn-sm btn-light"><i class="bi bi-pencil text-primary font-weight-bold"> Edit</i></a>
+                          <form action="{{ route('vendor.tours.destroy', ['vendor' => $vendor_id, 'tour' => $tour->id]) }}" method="POST" class="d-inline">
                                   @csrf
                                   @method('DELETE')
                                   <button type="submit" class="btn btn-sm btn-light" onclick="return confirm('Are you sure you want to delete this tour?')">
-                                  <i class="bi bi-trash text-danger"></i>
+                                  <i class="bi bi-trash text-danger"> Delete</i>
                                   </button>
                           </form>
                       </td>

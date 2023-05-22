@@ -1,18 +1,18 @@
-@extends('vendor_main')
+@extends('vendor/show')
 @section('title', 'Home')
 @section('content')
 
 <div class="d-flex justify-content-between align-items-center mb-5">
     <h3>Create New Tour</h3>
-    <a href="{{ route('vendor.tours.index', ['vendor' => 1]) }}" class="btn btn-success text-white">Back</a>
+    <a href="{{ route('vendor.tours.index', ['vendor' => $vendor_id]) }}" class="btn btn-success text-white">Back</a>
 </div>
 
 <div class="border p-5 rounded">
-    <form method="POST" action="{{ route('vendor.tours.store', ['vendor' => 1]) }}">
+    <form method="POST" action="{{ route('vendor.tours.store', ['vendor' => $vendor_id]) }}">
         @csrf
         <div class="row">
             <div class="form-group col-12 my-2">
-                <label for="name">Name</label>
+                <label for="name"> <small><i class="fa-solid fa-asterisk"></i></small> Name</label>
                 <input type="text" class="form-control" id="name" name="name" required value="{{ old('name') }}">
             </div>
 
@@ -23,7 +23,7 @@
             @endif
         
             <div class="form-group col-6 my-2 ">
-                <label for="price">Price</label>
+                <label for="price"> <small><i class="fa-solid fa-asterisk"></i></small> Price</label>
                 <input type="text" class="form-control" id="price" name="price" required value="{{ old('price') }}">
             </div>
 
@@ -35,7 +35,7 @@
 
 
             <div class="form-group col-6 my-2 ">
-                <label for="capacity">Capacity</label>
+                <label for="capacity"> <small><i class="fa-solid fa-asterisk"></i></small> Capacity</label>
                 <input type="text" class="form-control" id="capacity" name="capacity" required value="{{ old('capacity') }}" >
             </div>
             @if ($errors->has('capacity'))
@@ -45,7 +45,7 @@
             @endif
 
             <div class="form-group col-6 my-2 ">
-                <label for="qty">Quantity</label>
+                <label for="qty">  <small><i class="fa-solid fa-asterisk"></i></small> Availability</label>
                 <input type="text" class="form-control" id="qty" name="qty" required value="{{ old('qty') }}">
             </div>
 
@@ -65,7 +65,7 @@
                 </div>
             @endif
             <div class="form-group my-1">
-                <label>Categories</label>
+                <label><small><i class="fa-solid fa-asterisk"></i></small> Categories</label>
                 <div class="d-flex justify-content-center align-items-center mt-2 py-1">
                     @foreach($categories as $category)
                         <div class="form-check">

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboutusController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminManageTourController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\listourController;
@@ -26,8 +27,8 @@ use App\Http\Controllers\TourDateController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\VendorBookingController;
-
-
+use App\Http\Controllers\PromotionController;
+use App\Http\Controllers\CustomerPromotionController;
 use App\Mail\MyTestEmail;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\UpdateController;
@@ -39,6 +40,11 @@ Route::get('/detailpage', [DetailPageController::class, 'index'])->name('detailp
 Route::get('/signup', [HomeController::class, 'signup']);
 
 Route::resource('tour_list',TourListController::class);
+Route::get('/sport-category', [TourListController::class, 'sport_category'])->name('sport-category');
+Route::get('/adventure-category', [TourListController::class, 'adventure_category'])->name('adventure-category');
+Route::get('/cultural-category', [TourListController::class, 'cultural_category'])->name('cultural-category');
+Route::get('/food_and_drink-category', [TourListController::class, 'food_and_drink_category'])->name('food_and_drink-category');
+Route::get('/history-category', [TourListController::class, 'history_category'])->name('history-category');
 
 
 
@@ -115,21 +121,59 @@ Route::middleware('admin')->group(function () {
 
   
     Route::post("/tours", [PromotionController::class, 'getTour'])->name('get-tour');
+    
 
     Route::get('/reset_password_form', [ResetPasswordController::class, 'index']);
     Route::post('/forgot-password', [ResetPasswordController::class, 'forgotPassword']);
     Route::post('/reset-password', [ResetPasswordController::class, 'reset']);
 
     //vendor Management
-    Route::get('/view_vendor', [AdminVendorController::class, 'index']);
+    Route::get('/view_vendor', [AdminVendorController::class, 'index'])->name('admins.view_vendor');
     Route::get('/create_vendor',[AdminVendorController::class, 'create']);
     Route::post('/vendor_store', [AdminVendorController::class, 'store']);
     Route::get('/vendor/{id}/edit', [AdminVendorController::class, 'edit']);
     Route::put('/vendor/{id}', [AdminVendorController::class, 'update']);
     Route::get('/delete_vendor/{id}', [AdminVendorController::class, 'destroy']);
+    //Vendor Management
+    Route::get('/view_manage_vendor', [VendorManagementController::class, 'index']);
+
+    Route::get('/view_all_post', [AdminManageTourController::class, 'index']);
+    Route::get('/tour/{id}/edit',[AdminManageTourController::class, 'edit']);
+    Route::put('/tour/{id}', [AdminManageTourController::class, 'update']);
+    Route::get('/delete_tour_post/{id}', [AdminManageTourController::class, 'destroy']);
+
+
+
 
 });
 
+
+Route::middleware('auth.vendor')->group(function () {
+Route::get('/vendor/{id}', [VendorController::class, 'show'])->name('vendor.show');
+
+
+    Route::resource('vendor.tours', TourController::class);
+    Route::resource('vendor.activity',ActivityController::class);
+    Route::resource('vendor.booking',VendorBookingController::class);
+    Route::get('/vendor/booking/approved_booking/{vendor}',[VendorBookingController::class, 'approved_booking'] )
+        ->name('vendor.booking.approved_booking');
+    Route::get('/vendor/booking/unapproved_booking/{vendor}',[VendorBookingController::class, 'unapproved_booking'] )
+    ->name('vendor.booking.unapproved_booking');
+    Route::resource('vendor.tours.images', TourImageController::class)->only([ 'index','create' ,'store', 'destroy']);
+    Route::resource('vendor.tours.tour_date', TourDateController::class);
+
+    Route::resource('vendor.tours.activity',ActivityTourController::class);
+    Route::get('vendor/tours/{tour}/activity/{activity}/add', [ActivityTourController::class ,'add'])->name('vendor.tours.activity.add');
+    Route::delete('vendors/{vendor}/tours/{tour}/activities/{activity}', [TourController::class ,'destroyActivity'])->name('vendor.tours.activity.destroy');
+
+
+    Route::resource('vendor.tours.country',CountryTourController::class);
+    Route::get('vendor/tours/{tour}/country/{country}/add', [CountryTourController::class ,'add'])->name('vendor.tours.country.add');
+    Route::delete('vendors/{vendor}/tours/{tour}/countries/{country}', [TourController::class ,'destroyCountry'])->name('vendor.tours.country.destroy');
+
+
+
+});
 
 Route::get('/test', function () {
     return view('admin.test');
@@ -139,38 +183,6 @@ Route::get('/test', function () {
 //slider Management
 
 
-//Vendor Management
-Route::get('/view_manage_vendor', [VendorManagementController::class, 'index']);
-
-
-
-
-// Vendor
-Route::resource('/vendor', VendorController::class);
-Route::resource('vendor.tours', TourController::class);
-Route::resource('vendor.activity',ActivityController::class);
-Route::resource('vendor.booking',VendorBookingController::class);
-Route::get('/vendor/booking/approved_booking/{vendor}',[VendorBookingController::class, 'approved_booking'] )
-    ->name('vendor.booking.approved_booking');
-Route::get('/vendor/booking/unapproved_booking/{vendor}',[VendorBookingController::class, 'unapproved_booking'] )
-->name('vendor.booking.unapproved_booking');
-
-
-
-
-
-
-Route::resource('vendor.tours.images', TourImageController::class)->only([ 'index','create' ,'store', 'destroy']);
-Route::resource('vendor.tours.tour_date', TourDateController::class);
-
-Route::resource('vendor.tours.activity',ActivityTourController::class);
-Route::get('vendor/tours/{tour}/activity/{activity}/add', [ActivityTourController::class ,'add'])->name('vendor.tours.activity.add');
-Route::delete('vendors/{vendor}/tours/{tour}/activities/{activity}', [TourController::class ,'destroyActivity'])->name('vendor.tours.activity.destroy');
-
-
-Route::resource('vendor.tours.country',CountryTourController::class);
-Route::get('vendor/tours/{tour}/country/{country}/add', [CountryTourController::class ,'add'])->name('vendor.tours.country.add');
-Route::delete('vendors/{vendor}/tours/{tour}/countries/{country}', [TourController::class ,'destroyCountry'])->name('vendor.tours.country.destroy');
 
 
 // Booking 
@@ -205,9 +217,8 @@ Route::group(['middleware' => ['auth']], function() {
 
 
 
-//USER MANAGEMENT ROUTE
+Route::get('/customer_promotion/{promotion}', [CustomerPromotionController::class ,'show'])->name('customer_promotion.show');
 
 
 
 
-// Vendor Booking 

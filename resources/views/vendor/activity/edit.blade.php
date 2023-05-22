@@ -1,4 +1,4 @@
-@extends('vendor_main')
+@extends('vendor/show')
 @section('title', 'Home')
 @section('content')
 
@@ -7,12 +7,12 @@
     <i class="bi bi-back h4 me-3 vendor-icon "></i>
     <h3>{{ $activity->name}}</h3>
   </div>
-  <a href="{{ route('vendor.activity.index', ['vendor' => 1]) }}" class="btn btn-success text-white">Back</a>
+  <a href="{{ route('vendor.activity.index', ['vendor' => $vendor_id]) }}" class="btn btn-success text-white">Back</a>
 
 </div>
 
 <div class="border p-5 table_style radius">
-    <form action="{{ route('vendor.activity.update', ['vendor' => 1, 'activity' => $activity->id]) }}" method="POST">
+    <form action="{{ route('vendor.activity.update', ['vendor' => $vendor_id, 'activity' => $activity->id]) }}" method="POST">
             @csrf
             @method('PUT')
         <div class="row">
@@ -38,7 +38,6 @@
 
 
         </div>
-        <form action="{{ route('vendor.activity.update', ['vendor' => $vendor->id, 'activity' => $activity->id]) }}" method="POST" class="d-inline">
     @csrf
     @method('PUT')
     <button type="submit" class="btn btn-success text-white mt-4" onclick="return confirm('Are you sure you want to update this Activity?')">

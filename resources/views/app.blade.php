@@ -6,6 +6,8 @@
         @vite('resources/css/app.css')
         @vite('resources/css/navbar.css')
         @vite('resources/css/home.css')
+        @vite('resources/css/countdown.css')
+
 
 
 

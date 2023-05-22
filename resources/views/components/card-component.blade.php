@@ -38,6 +38,13 @@
            line-clamp: 2; 
    -webkit-box-orient: vertical
   }
+  .max-line-2 {
+    overflow: hidden;
+   display: -webkit-box;
+   -webkit-line-clamp: 1; /* number of lines to show */
+           line-clamp: 2; 
+   -webkit-box-orient: vertical
+  }
 </style>
 <a href="{{ route('tour_list.show', ['tour_list' => intval($id)]) }}">
   <div class="card-item flex flex-col">
@@ -51,8 +58,8 @@
             </div>
       <div class="card-content">
         <div class="px-3 py-4">
-          <h1 class="text-xl font-bold">{{ $name }}</h1>
-          <p class="font-extralight text-sm mt-2 max-line">
+          <h1 class=" text-lg font-bold max-line-2">{{ $name }}</h1>
+          <p class="font-extralight text-xs mt-1 max-line">
             {{ $description }}
           </p>
         </div>

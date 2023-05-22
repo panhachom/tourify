@@ -13,10 +13,10 @@ class ActivityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($vendor_id)
     {
         $activities = Activity::all();
-        return view('vendor.activity.index',compact('activities'));
+        return view('vendor.activity.index',compact('activities','vendor_id'));
     }
 
     /**
@@ -24,9 +24,9 @@ class ActivityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($vendor_id)
     {
-        return view('vendor.activity.create');
+        return view('vendor.activity.create',compact('vendor_id'));
     }
 
     /**
@@ -35,7 +35,7 @@ class ActivityController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request ,$vendor_id)
     {
         $validatedData = $request->validate([
             'name' => 'required',
@@ -47,7 +47,7 @@ class ActivityController extends Controller
         $activity->description = $validatedData['description'];
         $activity->save();
 
-        return redirect()->route('vendor.activity.index', ['vendor' => 1])->with('success', 'Activity created successfully.');
+        return redirect()->route('vendor.activity.index', ['vendor' => $vendor_id])->with('success', 'Activity created successfully.');
     }
 
     /**
@@ -67,12 +67,11 @@ class ActivityController extends Controller
      * @param  \App\Models\Activity  $activity
      * @return \Illuminate\Http\Response
      */
-    public function edit($vendor_ID,$activity_ID)
+    public function edit($vendor_id,$activity_id)
     {
-        $activity = Activity::findOrFail($activity_ID);
-        $vendor = Vendor::findOrFail($vendor_ID);
+        $activity = Activity::findOrFail($activity_id);
 
-        return view('vendor.activity.edit', compact('vendor','activity'));
+        return view('vendor.activity.edit', compact('activity','vendor_id'));
     }
 
     /**

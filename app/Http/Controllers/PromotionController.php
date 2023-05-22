@@ -41,7 +41,7 @@ class PromotionController extends Controller
     public function store(Request $request){
         
         $request->validate([
-            'image_name' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image_name' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'title' => ['required', 'string', 'regex:/^[a-zA-Z0-9\s]+$/'],
             'description' => ['required', 'string', 'regex:/^[a-zA-Z0-9\s]+$/'],
             'percent' => 'required|numeric|regex:/^\d+(\.\d{1,2})?$/',
@@ -78,6 +78,18 @@ class PromotionController extends Controller
         $promotions -> save();
 
         $tours = $request->input('tours', []);
+
+        foreach ($tours as $tourId) {
+            $tour = Tour::find($tourId);
+            if ($tour) {
+                $tour->discount_price = $tour->price - ($promotions -> percent * $tour->price / 100);
+                $tour->save();
+            }
+        }
+    
+        $promotions->tours()->attach($tours);
+        
+
         $promotions->tours()->attach($tours);
     
         return redirect()->route('promotion.index')->with('success', 'Activity created successfully');

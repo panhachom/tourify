@@ -2,18 +2,22 @@
 
 namespace App\View\Components;
 
+use App\Models\Promotion;
 use Illuminate\View\Component;
 
 class Slider extends Component
 {
+    public $promotions;
+
     /**
      * Create a new component instance.
      *
+     * @param  Promotion  $promotion
      * @return void
      */
-    public function __construct()
+    public function __construct(Promotion $promotions)
     {
-        //
+        $this->promotions = $promotions;
     }
 
     /**
