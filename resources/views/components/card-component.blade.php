@@ -32,8 +32,7 @@
     height: 35px;
   }
 </style>
-<a href="{{ route('detailpage.index') }}">
-
+<a href="{{ route('tour_list.show', ['tour_list' => intval($id)]) }}">
   <div class="card-item flex flex-col">
       <div class="location-icon px-5 py-2 flex">
       <i class="fa-solid fa-location-dot me-3 my-1"></i>

@@ -29,12 +29,18 @@ use App\Mail\MyTestEmail;
 use Illuminate\Support\Facades\Mail;
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
-Route::get('/tourlist', [TourListController::class, 'index'])->name('list.index');
+
+Route::resource('tour_list', TourListController::class);
+
+Route::get('/sport', [TourListController::class,'sport_category'])->name('sport');
+Route::get('/cultural', [TourListController::class,'cultural_category'])->name('cultural');
+Route::get('/adventure', [TourListController::class,'adventure_category'])->name('adventure');
+Route::get('/Food', [TourListController::class,'foodanddrink_category'])->name('Food');
+Route::get('/history', [TourListController::class,'history_category'])->name('history');
+
 Route::get('/detailpage', [DetailPageController::class, 'index'])->name('detailpage.index');
 Route::get('/signup', [HomeController::class, 'signup']);
 
-
-// Route::get('/list', [listourController::class, 'index'])->name('list.index');
 Route::get('/about', [AboutusController::class, 'index'])->name('about.index');
 Route::get('/SignIn', [SignInController::class, 'index']);
 Route::get('/phoneNumber', [SignInController::class, 'phoneNumber']);
@@ -43,7 +49,7 @@ Route::get('/verification', [SignInController::class, 'verification']);
 
 Route::get('/list', [listourController::class, 'index']);
 Route::get('/profile', [ProfileSettingController::class, 'index']);
-
+Route::get('/content', [TourListController::class, 'contentUpdate']);
 
 
 /*
