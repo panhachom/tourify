@@ -14,14 +14,14 @@ class TourDateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($vendorid, $tourid)
+    public function index($vendor_id, $tour_id)
     {
-        $tour = Tour::where('vendor_id', $vendorid)->where('id', $tourid)->firstOrFail();
+        $tour = Tour::where('vendor_id', $vendor_id)->where('id', $tour_id)->firstOrFail();
         $tour_dates = $tour->tour_dates()->get();
 
-        $params = ['vendor' => $vendorid, 'tour' => $tourid];
+        $params = ['vendor' => $vendor_id, 'tour' => $tour_id];
 
-        return view('vendor.tours.tour_date.index', compact('tour', 'tour_dates', 'params'));
+        return view('vendor.tours.tour_date.index', compact('tour', 'tour_dates', 'params','vendor_id'));
     }
 
     /**
@@ -29,10 +29,10 @@ class TourDateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($vendorid ,$tourid)
+    public function create($vendor_id ,$tour_id)
     {
-        $tour = Tour::where('vendor_id', 1)->where('id', $tourid)->firstOrFail();
-        return view('vendor.tours.tour_date.create', compact('tour'));
+        $tour = Tour::where('vendor_id', 1)->where('id', $tour_id)->firstOrFail();
+        return view('vendor.tours.tour_date.create', compact('tour','vendor_id'));
     }
 
     /**
@@ -41,7 +41,7 @@ class TourDateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $vendorid, $tourid)
+    public function store(Request $request, $vendor_id, $tour_id)
     {
         $validatedData = $request->validate([
             'start_date' => 'required|date',
@@ -49,13 +49,13 @@ class TourDateController extends Controller
         ]);
 
         $tourdate = new Tourdate;
-        $tourdate->tour_id = $tourid;
+        $tourdate->tour_id = $tour_id;
         $tourdate->start_date = $validatedData['start_date'];
         $tourdate->end_date = $validatedData['end_date'];
 
         $tourdate->save();
 
-        return redirect()->route('vendor.tours.tour_date.index', ['vendor' => $vendorid, 'tour' => $tourid])->with('success', 'Tour dates added successfully.');
+        return redirect()->route('vendor.tours.tour_date.index', ['vendor' => $vendor_id, 'tour' => $tour_id])->with('success', 'Tour dates added successfully.');
     }
 
     /**
@@ -75,13 +75,13 @@ class TourDateController extends Controller
      * @param  \App\Models\TourDate  $tourDate
      * @return \Illuminate\Http\Response
      */
-    public function edit($vendorId, $tourId, $tourDateId)
+    public function edit($vendor_id, $tourId, $tourDateId)
     {
         $tourDate = TourDate::findOrFail($tourDateId);
         $tour = Tour::findOrFail($tourId);
 
 
-        return view('vendor.tours.tour_date.edit', compact('tourDate', 'vendorId', 'tourId', 'tour'));
+        return view('vendor.tours.tour_date.edit', compact('tourDate', 'vendor_id', 'tourId', 'tour'));
     }
 
     /**
@@ -91,7 +91,7 @@ class TourDateController extends Controller
      * @param  \App\Models\TourDate  $tourDate
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $vendorId, $tourId, $tourDateId)
+    public function update(Request $request, $vendor_id, $tour_id, $tourDateId)
     {
         $validatedData = $request->validate([
             'start_date' => 'required|date',
@@ -103,7 +103,7 @@ class TourDateController extends Controller
         $tourDate->end_date = $validatedData['end_date'];
         $tourDate->save();
     
-        return redirect()->route('vendor.tours.tour_date.index', ['vendor' => 1, 'tour' => $tourId])->with('success', 'Tour date updated successfully.');
+        return redirect()->route('vendor.tours.tour_date.index', ['vendor' => $vendor_id, 'tour' => $tour_id])->with('success', 'Tour date updated successfully.');
     }
 
     /**
@@ -112,11 +112,11 @@ class TourDateController extends Controller
      * @param  \App\Models\TourDate  $tourDate
      * @return \Illuminate\Http\Response
      */
-    public function destroy($vendorId, $tourId, $tourDateId)
+    public function destroy($vendor_id, $tour_id, $tourDateId)
     {
         $tourDate = TourDate::findOrFail($tourDateId);
         $tourDate->delete();
 
-        return redirect()->route('vendor.tours.tour_date.index', ['vendor' => 1, 'tour' => $tourId])->with('success', 'Tour date deleted successfully.');
+        return redirect()->route('vendor.tours.tour_date.index', ['vendor' => $vendor_id, 'tour' => $tour_id])->with('success', 'Tour date deleted successfully.');
     }
 }

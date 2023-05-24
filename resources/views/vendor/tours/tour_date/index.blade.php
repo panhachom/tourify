@@ -1,4 +1,4 @@
-@extends('vendor_main')
+@extends('vendor/show')
 @section('title', 'Home')
 @section('content')
 
@@ -7,11 +7,13 @@
     <i class="bi bi-back h4 me-3 vendor-icon "></i>
     <h3>{{ $tour->name}}</h3>
   </div>
+  <a href="{{ route('vendor.tours.index', ['vendor' => $vendor_id]) }}" class="btn btn-success text-white">Back</a>
+
 </div>
 
 @include('components/tour_tabs')
 <!-- create.blade.php -->
-<form action="{{ route('vendor.tours.tour_date.store', ['vendor' => 1, 'tour' => $tour->id]) }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('vendor.tours.tour_date.store', ['vendor' => $vendor_id, 'tour' => $tour->id]) }}" method="POST" enctype="multipart/form-data">
 
     @csrf
 
@@ -61,8 +63,8 @@
             <td> {{ date('Y-m-d', strtotime($tourDate->end_date)) }}</td>
             <td>
                 <div class="d-flex gap-2">
-                <a href="{{ route('vendor.tours.tour_date.edit', ['vendor' => 1, 'tour' => $tour->id ,'tour_date' => $tourDate->id]) }}" class="btn btn-sm btn-light"><i class="bi bi-pencil text-primary font-weight-bold"></i></a>
-                <form action="{{ route('vendor.tours.tour_date.destroy', ['vendor' => 1, 'tour' => $tour->id, 'tour_date' => $tourDate->id]) }}" method="POST">
+                <a href="{{ route('vendor.tours.tour_date.edit', ['vendor' => $vendor_id, 'tour' => $tour->id ,'tour_date' => $tourDate->id]) }}" class="btn btn-sm btn-light"><i class="bi bi-pencil text-primary font-weight-bold"></i></a>
+                <form action="{{ route('vendor.tours.tour_date.destroy', ['vendor' => $vendor_id, 'tour' => $tour->id, 'tour_date' => $tourDate->id]) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-sm btn-light" onclick="return confirm('Are you sure you want to delete this Activity?')">

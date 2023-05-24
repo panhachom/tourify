@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 
 class ActivityTourController extends Controller
 {
-    public function index(Request $request, $vendorid, $tourid)
+    public function index(Request $request, $vendor_id, $tour_id)
     {
-        $tour = Tour::where('vendor_id', $vendorid)->where('id', $tourid)->firstOrFail();
-        $params = ['vendor' => $vendorid, 'tour' => $tourid];
+        $tour = Tour::where('vendor_id', $vendor_id)->where('id', $tour_id)->firstOrFail();
+        $params = ['vendor' => $vendor_id, 'tour' => $tour_id];
         $activities = [];
 
         if ($request->has('search')) {
@@ -22,7 +22,7 @@ class ActivityTourController extends Controller
             }
         } 
 
-        return view('vendor.tours.activity.index', compact('activities', 'tour', 'params'));
+        return view('vendor.tours.activity.index', compact('activities', 'tour', 'params','vendor_id'));
     }
 
         

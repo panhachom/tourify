@@ -2,16 +2,19 @@
 @section('title', 'Home')
 @section('content')
 
-<div class="d-flex justify-content-between align-items-center mb-5">
+<div class="d-flex justify-content-between align-items-center mb-5 w-full  px-4 py-3 vendor-title">
+  <div class="d-flex justify-content-center align-items-center">
+    <i class="bi bi-back h4 me-3 vendor-icon "></i>
     <h3>Promotion</h3>
-    <a href=" {{ route('promotion.create') }}" class="btn btn-success text-white">Create New Promotion</a>
+  </div>
+  <a href=" {{ route('promotion.create') }}" class="btn btn-success text-white">Create New Promotion</a>
 </div>
 
 @if ($promotions->isEmpty())
     <p>No Promotion. Please add one.</p>
 @else
-  <table class="table mt-5 table-bordered">
-    <thead class="thead-light  bg-dark text-white">
+  <table class="table mt-5 table-borderless table-hover table_style">
+    <thead class="thead-light header_color text-black">
       <tr>
           <th>No</th>
           <th>Title</th>
@@ -26,7 +29,7 @@
                   <tr>
                       <td>{{ $index + 1 }}</td>
                       <td>{{ $promotion_item->title }}</td>
-                      <td>{{ $promotion_item->description }}</td>
+                      <td>{{ Str::limit($promotion_item->description, 50, '...') }}</td>
                       <td>{{ $promotion_item->created_at -> format('d/m/Y')}} </td>
                       <td>{{ $promotion_item->updated_at -> format('d/m/Y')}}</td>
                       <td>

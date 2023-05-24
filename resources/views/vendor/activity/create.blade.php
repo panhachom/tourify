@@ -1,13 +1,13 @@
-@extends('vendor_main')
+@extends('vendor/show')
 @section('title', 'Home')
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-5">
     <h3>Create New Activity</h3>
-    <a href="{{ route('vendor.activity.index', ['vendor' => 1]) }}" class="btn btn-success text-white">Back</a>
+    <a href="{{ route('vendor.activity.index', ['vendor' => $vendor_id]) }}" class="btn btn-success text-white">Back</a>
 </div>
 
 <div class="border p-5 rounded">
-    <form method="POST" action="{{ route('vendor.activity.store', ['vendor' => 1]) }}">
+    <form method="POST" action="{{ route('vendor.activity.store', ['vendor' => $vendor_id]) }}">
         @csrf
         <div class="row">
             <div class="form-group col-12 my-2">

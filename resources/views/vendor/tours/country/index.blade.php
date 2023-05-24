@@ -1,4 +1,4 @@
-@extends('vendor_main')
+@extends('vendor/show')
 @section('title', 'Home')
 @section('content')
 
@@ -7,11 +7,13 @@
     <i class="bi bi-back h4 me-3 vendor-icon "></i>
     <h3>{{ $tour->name}}</h3>
   </div>
+  <a href="{{ route('vendor.tours.index', ['vendor' => $vendor_id]) }}" class="btn btn-success text-white">Back</a>
+
 </div>
 
 @include('components/tour_tabs')
 
-<form action="{{ route('vendor.tours.country.index', ['vendor' => 1, 'tour' => $tour->id]) }}" method="GET">
+<form action="{{ route('vendor.tours.country.index', ['vendor' => $vendor_id, 'tour' => $tour->id]) }}" method="GET">
   <div class="form-group">
     <div class="w-50 d-flex">
       <input type="text" name="search" id="search" class="form-control" placeholder="Search Country">
@@ -55,7 +57,7 @@
         <tr>
             <td> {{ $country->country }}</td>
             <td>
-               <form action="{{ route('vendor.tours.country.destroy', ['vendor' => 1, 'tour' => $tour->id, 'country' => $country->id]) }}" method="POST" style="display: inline-block">
+               <form action="{{ route('vendor.tours.country.destroy', ['vendor' => $vendor_id, 'tour' => $tour->id, 'country' => $country->id]) }}" method="POST" style="display: inline-block">
                 @csrf
                 @method('DELETE')
                 <input type="hidden" name="country_id" value="{{ $country->id }}">

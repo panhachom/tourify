@@ -19,27 +19,25 @@ class Booking extends Model
     {
         return $this->belongsToMany(Tour::class);
     }
-
     
 
    public static function generateBookingNumber($vendorId)
     {
-        $vendor = Vendor::find($vendorId); // Assuming you have a Vendor model
+        $latestBooking = self::orderBy('id', 'desc')->first();
 
-        // $prefix = Str::upper(Str::limit($vendor->name, 3, '')); // Assuming the vendor name is stored in the 'name' column
+        if ($latestBooking) {
+            $lastSequenceNumber = (int)substr($latestBooking->booking_number, -7);
+            $newSequenceNumber = str_pad($lastSequenceNumber + 1, 7, '0', STR_PAD_LEFT);
+        } else {
+            $newSequenceNumber = '0000001';
+        }
 
-        do {
-            $sequenceNumber = rand(1, 99999999);
-            $sequenceNumber = str_pad($sequenceNumber, 8, '0', STR_PAD_LEFT);
-            $bookingNumber = $sequenceNumber; // $prefix . $sequenceNumber; Add the prefix if desired
-
-            $existingBooking = self::where('booking_number', $bookingNumber)->first();
-        } while ($existingBooking);
-
-        return $bookingNumber;
+        return $newSequenceNumber;
     }
 
+    
 
+    
     public function intit_booking_tour_qty($value)
     {
         $this->attributes['approved'] = boolval($value);

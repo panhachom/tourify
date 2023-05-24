@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Models\Promotion;
 
 class HomeController extends Controller
 {
@@ -11,7 +12,9 @@ class HomeController extends Controller
         if (Auth::check() && Auth::user()->role === 'admin') {
             return redirect()->route('admins');
         }
-        return view('home.index');
+        $promotions = Promotion::all();
+
+        return view('home.index', compact('promotions'));
     }
 
     public function signup()

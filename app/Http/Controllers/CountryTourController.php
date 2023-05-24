@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 
 class CountryTourController extends Controller
 {
-    public function index(Request $request, $vendorid, $tourid)
+    public function index(Request $request, $vendor_id, $tour_id)
     {
-        $tour = Tour::where('vendor_id', $vendorid)->where('id', $tourid)->firstOrFail();
-        $params = ['vendor' => $vendorid, 'tour' => $tourid];
+        $tour = Tour::where('vendor_id', $vendor_id)->where('id', $tour_id)->firstOrFail();
+        $params = ['vendor' => $vendor_id, 'tour' => $tour_id];
         $countries = [];
 
         if ($request->has('search')) {
@@ -20,7 +20,7 @@ class CountryTourController extends Controller
             
         }
 
-        return view('vendor.tours.country.index', compact('countries', 'tour', 'params'));
+        return view('vendor.tours.country.index', compact('countries', 'tour', 'params','vendor_id'));
     }
 
     public function add(Tour $tour, Country $country)

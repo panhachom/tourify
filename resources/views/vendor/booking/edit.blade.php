@@ -1,4 +1,4 @@
-@extends('vendor_main')
+@extends('vendor/show')
 @section('title', 'Edit Booking')
 @section('content')
 
@@ -7,12 +7,12 @@
     <i class="bi bi-back h4 me-3 vendor-icon "></i>
     <h4> Booking Number : {{ strtoupper(substr($booking->tours->first()->vendor->name, 0, 3)) }}-{{ $booking->booking_number }}</h4>
   </div>
-  <a href="{{ route('vendor.booking.index', ['vendor' => 1]) }}" class="btn btn-success text-white">Back</a>
+  <a href="{{ route('vendor.booking.index', ['vendor' => $vendor_id]) }}" class="btn btn-success text-white">Back</a>
 
 </div>
 
 <div class="border p-5 table_style radius">
-    <form action="{{ route('vendor.booking.update', ['vendor' => 1, 'booking' => $booking->id]) }}" method="POST">
+    <form action="{{ route('vendor.booking.update', ['vendor' => $vendor_id, 'booking' => $booking->id]) }}" method="POST">
         @csrf
         @method('PUT')
 

@@ -1,9 +1,13 @@
-@extends('vendor_main')
+@extends('vendor/show')
 @section('title', 'Home')
 @section('content')
 
-<div class="d-flex justify-content-between align-items-center mb-5">
+
+<div class="d-flex justify-content-between align-items-center mb-5 w-full  px-4 py-3 vendor-title">
+  <div class="d-flex justify-content-center align-items-center">
+    <i class="bi bi-back h4 me-3 vendor-icon "></i>
     <h3>Unapproved Booking</h3>
+  </div>
 </div>
 
 
@@ -42,7 +46,7 @@
 
 
                       <td>
-                          <a href="" class="btn btn-sm btn-light"><i class="bi bi-pencil text-primary font-weight-bold"></i></a>
+                          <a href="{{ route('vendor.booking.edit', ['vendor' => $vendor_id, 'booking' => $booking->id]) }}" class="btn btn-sm btn-light"><i class="bi bi-pencil text-primary font-weight-bold"></i></a>
                           <form action="" method="POST" class="d-inline">
                                   @csrf
                                   @method('DELETE')

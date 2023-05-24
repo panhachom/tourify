@@ -18,10 +18,11 @@ class TourController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($vendor_id)
     {
-         $tours = Tour::all();
-        return view('vendor.tours.index', compact('tours'));
+        $tours = Tour::all();
+
+        return view('vendor.tours.index', compact('tours','vendor_id'));
 
     }
 
@@ -30,12 +31,12 @@ class TourController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create( )
+    public function create($vendor_id)
     {
         $countries = Country::all();
         $categories = Category::all();
 
-        return view('vendor.tours.create', compact('countries', 'categories'));
+        return view('vendor.tours.create', compact('countries', 'categories','vendor_id'));
 
     }
 
@@ -59,38 +60,25 @@ class TourController extends Controller
 
         $tour = new Tour;
 
-        $vendor = Vendor::findOrFail($vendor_id);
-
         $tour->name = $validatedData['name'];
-        $tour->description = $validatedData['description'];
+        $tour->description = $request->description;
         $tour->price = $validatedData['price'];
         $tour->capacity = $validatedData['capacity'];
         $tour->qty = $validatedData['qty'];
-        $tour->vendor_id = $vendor->id;
+        $tour->vendor_id = $vendor_id;
 
         $tour->save();
 
         $categories = $validatedData['categories'];
         $tour->categories()->attach($categories);
 
-        return redirect()->route('vendor.tours.index', ['vendor' => 1]);
+        $categories = Category::all();
+
+
+        return view('vendor.tours.edit', compact('tour','categories','vendor_id','tour','categories'))->with('success', 'Tour created successfully.');;
+
     }
 
-    
-
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Tour  $tour
-     * @return \Illuminate\Http\Response
-     */
-    public function show($vendorId, $tourId)
-    {
-        $vendor = Vendor::findOrFail($vendorId);
-        $tour = Tour::findOrFail($tourId);
-        return view('vendor.tours.show', compact('vendor', 'tour'));
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -98,13 +86,12 @@ class TourController extends Controller
      * @param  \App\Models\Tour  $tour
      * @return \Illuminate\Http\Response
      */
-    public function edit($vendorId, $tourId)
+    public function edit($vendor_id, $tourId)
     {
-        $vendor = Vendor::findOrFail($vendorId);
         $tour = Tour::findOrFail($tourId);
         $categories = Category::all();
 
-        return view('vendor.tours.edit', compact('vendor','tour','categories'));
+        return view('vendor.tours.edit', compact('tour','categories','vendor_id'));
         
     }
 
@@ -122,7 +109,6 @@ class TourController extends Controller
     
         $validatedData = $request->validate([
             'name' => 'required',
-            'description' => 'required',
             'price' => 'required|numeric',
             'capacity' => 'required|integer',
             'qty' => 'required|integer',
@@ -131,7 +117,7 @@ class TourController extends Controller
         ]);
     
         $tour->name = $validatedData['name'];
-        $tour->description = $validatedData['description'];
+        $tour->description = $request->description;
         $tour->price = $validatedData['price'];
         $tour->capacity = $validatedData['capacity'];
         $tour->qty = $validatedData['qty'];
@@ -151,14 +137,13 @@ class TourController extends Controller
      * @param  \App\Models\Tour  $tour
      * @return \Illuminate\Http\Response
      */
-    public function destroy($vendorId, $tourId)
+    public function destroy($vendor_id, $tourId)
     {
-        $vendor = Vendor::findOrFail($vendorId);
-        $tour = Tour::where('vendor_id', $vendorId)->findOrFail($tourId);
-        
+        $tour = Tour::where('vendor_id', $vendor_id)->findOrFail($tourId);
+        $tour->countries()->detach();
         $tour->delete();
 
-        return redirect()->route('vendor.tours.index', ['vendor' => $vendor->id]);
+        return redirect()->route('vendor.tours.index', ['vendor' => $vendor_id]);
     }
 
 

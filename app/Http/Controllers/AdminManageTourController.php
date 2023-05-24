@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Vendor;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Tour;
 
-class VendorController extends Controller
+
+class AdminManageTourController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +16,9 @@ class VendorController extends Controller
      */
     public function index()
     {
-        return view('vendor.index');
+        $tour = Tour::all();
+        $tour = Tour::OrderBy('id', 'desc')->get();
+        return view('admin/manage_all_tour.view_all_tour', compact('tour'));
     }
 
     /**
@@ -41,46 +45,58 @@ class VendorController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Vendor  $vendor
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $vendor_id = $id ;
-        return view('vendor.show', compact('vendor_id'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Vendor  $vendor
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Vendor $vendor)
+    public function edit($id)
     {
-        //
+        $tour = Tour::find($id);
+        return view('admin/manage_all_tour.update_all_tour', compact('tour'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Vendor  $vendor
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Vendor $vendor)
+    public function update(Request $request, $id)
     {
-        //
+        $tour = new Tour;
+        $tour -> where('id', $id)
+        ->update(['name' => $request -> name,
+                  'description' => $request-> description,
+                  'price' => $request->price,
+                  'capacity'=> $request->capacity,
+                  'qty'=> $request->qty
+                  ]
+                  );
+
+        return redirect('/view_all_post');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Vendor  $vendor
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Vendor $vendor)
+    public function destroy($id)
     {
-        //
+        $tour = Tour::findOrFail($id);
+        $tour->delete();
+        return redirect('/view_all_post');
     }
 }

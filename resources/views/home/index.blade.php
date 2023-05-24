@@ -47,8 +47,51 @@
     
    <!-- SECTION Slider  -->
    <div class="slider-section mt-16">
-    <x-slider />
+    <div class="main-slider">
+        <div class="slider">
+        <div class="slides">
+            <!--radio buttons start-->
+            <input type="radio" name="radio-btn" id="radio1">
+            <input type="radio" name="radio-btn" id="radio2">
+
+            @foreach($promotions as $index => $promotion)
+                <input type="radio" name="radio-btn" id="radio{{ $index + 1 }}">
+            @endforeach
+
+            @foreach($promotions as $index => $promotion)
+                <div class="slide{{ $index === 0 ? ' first' : '' }}">
+                    <a href="{{ route('customer_promotion.show', ['promotion' => intval($promotion->id)]) }}">
+                        <img src="{{ asset('images/promotions/' . $promotion->image_name) }}" alt="Tour Image">
+                    </a>
+                </div>
+            @endforeach
+            <div class="navigation-auto">
+                @foreach($promotions as $index => $promotion)
+                    <div class="auto-btn{{ $index + 1 }}"></div>
+                @endforeach
+            </div>
+        </div>
+      
+        </div>
+    </div>
+  
+
+<script type="text/javascript">
+    var counter = 1;
+    setInterval(function(){
+        document.getElementById('radio' + counter).checked = true;
+        counter++;
+        if(counter > 4){
+        counter = 1;
+        }
+    }, 5000);
+</script>
+
+ 
+      
    </div>
+
+
   <!-- SECTION Slider  -->
 
     <!-- SECTION 2 -->
@@ -130,6 +173,7 @@
 		<x-card-component placeName="KompongThom" name="John Wick" description="Kompong thom  " price="130" />
         </div>
     </div>
+
 
     <!-- SECTION 5 -->
     <!-- <div class=" bg-slate-800 text-white flex justify-evenly px-10 py-16">
