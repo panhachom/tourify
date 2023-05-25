@@ -11,8 +11,6 @@
 
 </div>
 
-
-
 @if ($activities->isEmpty())
     <p>No Activity. Please add one.</p>
 @else
@@ -42,16 +40,39 @@
                                   @method('DELETE')
                                   <button type="submit" class="btn btn-sm btn-light" onclick="return confirm('Are you sure you want to delete this Activity?')">
                                   <i class="bi bi-trash text-danger"></i>
+                                  <span><p>Delete</p></span>
                                   </button>
                           </form>
                       </td>
                   </tr>
-
               @endforeach
     </tbody>
   </table>
 
-@endif
+  @if (session('success'))
+    <div id="success-alert" class="alert alert-success text-center">
+        {{ session('success') }}
+    </div>
+  @endif
 
+  <script>
+      // Hide the success message after 3 seconds
+      setTimeout(function () {
+          document.getElementById('success-alert').style.display = 'none';
+      }, 3000);
+  </script>
+
+  <style>
+      #success-alert {
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 9999;
+          width: 300px;
+      }
+  </style>
+
+@endif
 
 @endsection

@@ -50,6 +50,28 @@
 
 @endif
 
-@endsection
-    
+@if (session('success'))
+<div id="success-alert" class="alert alert-success text-center">
+    {{ session('success') }}
+</div>
+@endif
 
+<script>
+    // Hide the success message after 3 seconds
+    setTimeout(function () {
+        document.getElementById('success-alert').style.display = 'none';
+    }, 3000);
+</script>
+
+<style>
+    #success-alert {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        width: 300px;
+    }
+</style>
+
+@endsection

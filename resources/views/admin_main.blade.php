@@ -156,7 +156,7 @@
 </script>
 
 <script>
-    $(document).ready(function(){
+    $(document).ready(function() {
         $('.booking_tour_id').select2({
             placeholder: 'Select',
             allowClear: true,
@@ -164,31 +164,50 @@
         });
 
         $("#booking_tour_id").select2({
-            ajax:{
+            ajax: {
                 url: "{{ route('get-tour')}}",
                 type: "post",
                 delay: 250,
                 dataType: 'json',
-                data: function(params){
-                    return{
-                        name:params.term,
+                data: function(params) {
+                    var selectedVendor = $("#vendor_id").val(); // Get the selected vendor
+                    if (!selectedVendor) {
+                        return null; // Return null if no vendor is selected
+                    }
+                    return {
+                        name: params.term,
+                        vendorId: selectedVendor, // Pass the selected vendor ID to the server
                         "_token": "{{ csrf_token() }}"
-
                     };
                 },
-                processResults: function(data){
-                    return{
-                        results: $.map(data,function(item){
-                            return{
-                                id: item.id,
-                                text: item.name,
-                            }
+                processResults: function(data) {
+                    // Exclude the null tour option
+                    var results = $.map(data, function(item) {
+                        return {
+                            id: item.id,
+                            text: item.name,
+                        };
+                    });
+
+                    return {
+                        results: results.filter(function(result) {
+                            return result.id !== ""; // Exclude the null tour option
                         })
-                    }
+                    };
                 }
             }
-        })
-    })
+        });
+
+        // Clear selected tours when the vendor changes
+        $("#vendor_id").on('change', function() {
+            $("#booking_tour_id").val([]).trigger('change'); // Clear the selected tours
+        });
+    });
 </script>
+
+
+
+
+
   </body>
 </html>

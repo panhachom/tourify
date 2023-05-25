@@ -2,8 +2,12 @@
 @section('title', 'Home')
 @section('content')
 
-<div class="d-flex justify-content-between align-items-center mb-5">
-    <h3>Promotion</h3>
+<div class="d-flex justify-content-between align-items-center mb-5 w-full px-4 py-3 vendor-title">
+  <div class="d-flex justify-content-center align-items-center">
+    <i class="bi bi-back h4 me-3 vendor-icon "></i>
+    <h3>Create Promotion</h3>
+  </div>
+  <a href="{{ route('promotion.index') }}" class="btn btn-success text-white">Back</a>
 </div>
 
 <div class="border p-5 rounded">
@@ -40,15 +44,15 @@
                 </div>
             @endif
 
-            <div class="form-group col-6 my-2 ">
-                <label for="vendor_id">Vendor</label>
-                <select class="form-control select2" name="vendor_id" id="vendor_id" required>
-                    <option value=""></option>
-                    @foreach($vendors as $vendor)
-                        <option value="{{$vendor->id}}">{{$vendor->name}}</option>
-                    @endforeach
-                </select>
-            </div>
+            <div class="form-group col-6 my-2">
+    <label for="vendor_id">Vendor</label>
+    <select class="form-control select2" name="vendor_id" id="vendor_id" required>
+        <option value=""></option>
+        @foreach($vendors as $vendor)
+            <option value="{{ $vendor->id }}">{{ $vendor->name }}</option>
+        @endforeach
+    </select>
+</div>
 
             @if ($errors->has('price')) 
                 <div class="alert alert-danger">
