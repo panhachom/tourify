@@ -52,8 +52,19 @@ class TourListController extends Controller
     public function show($tourId)
     {
         $tour = Tour::findOrFail($tourId);
+        // dd($tour);
         return view('tour_list.show', compact('tour'));
     }
 
    
+}
+    public function getByCategory($category)
+    {
+        $tours = Category::where('name', $category)
+            ->firstOrFail()
+            ->tours()
+            ->get();
+
+        return response()->    json($tours);
+    }
 }

@@ -17,6 +17,14 @@
     </div>
 
 	<div class="mt-24 flex justify-center gap-10 items-center flex-wrap px-10 py-16 w-full">
+    @if (reset($tours) == 'result') 
+    <svg height="100" style="overflow:visible;enable-background:new 0 0 32 32" viewBox="0 0 32 32" width="32" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><g id="Error_1_"><g id="Error"><circle cx="16" cy="16" id="BG" r="16" style="fill:#D72828;"/><path d="M14.5,25h3v-3h-3V25z M14.5,6v13h3V6H14.5z" id="Exclamatory_x5F_Sign" style="fill:#E6E6E6;"/></g></g></g></svg>
+    <p>Tour Not found</p>
+    <hr>
+
+    @else
+
+    
 	@foreach($tours as $tour)
     <x-card-component
         placeName="{{ $tour->vendor->name }}"
@@ -27,9 +35,11 @@
 		id="{{ $tour->id }}"
     />
    @endforeach
+    
+    @endif
+
 	</div>
 	<div></div>
-
 
 
 	@include('components/footer')

@@ -29,8 +29,11 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\VendorBookingController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\CustomerPromotionController;
+<<<<<<< HEAD
 use App\Http\Controllers\AdminBookingController;
 
+=======
+>>>>>>> ce31f77 (close #79-search)
 use App\Mail\MyTestEmail;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\UpdateController;
@@ -40,6 +43,9 @@ Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
 Route::get('/detailpage', [DetailPageController::class, 'index'])->name('detailpage.index');
 Route::get('/signup', [HomeController::class, 'signup']);
+Route::get('/search',[HomeController::class,'index'])->name('search');
+Route::get('filter', [HomeController::class,'filter']);
+
 
 Route::resource('tour_list',TourListController::class);
 Route::get('/sport-category', [TourListController::class, 'sport_category'])->name('sport-category');
@@ -77,7 +83,7 @@ Route::post('/profile', [ProfileSettingController::class, 'updatePassword'])->na
 //     return view('welcome');
 // });
 
-// admin dashbaord Route backend only 
+// admin dashbaord Route backend only
 
 // Route::get('/theadmin', [AdminController::class, 'index']);
 
@@ -93,21 +99,21 @@ Route::middleware('admin')->group(function () {
     Route::get('/admins/view_slider', [SliderController::class, 'index']);
     Route::get('/admins/create_slider', [SliderController::class, 'create']);
     Route::post('/admins/slider_store', [SliderController::class, 'store']);
-    Route::get('/admins/slider/{id}/edit', [SliderController::class, 'edit']);  
+    Route::get('/admins/slider/{id}/edit', [SliderController::class, 'edit']);
     Route::get('/admins/delete_slider/{id}', [SliderController::class, 'destroy']);
-    Route::put('/admins/slider/{id}', [SliderController::class, 'update']); 
-    
+    Route::put('/admins/slider/{id}', [SliderController::class, 'update']);
+
     Route::get('/view_user', [UserController::class, 'index'])->name('admins.view_user');
     Route::get('/create_user', [UserController::class, 'create']);
     Route::post('/user_store', [UserController::class, 'store']);
     Route::get('/user/{id}/edit', [UserController::class, 'edit']);
     Route::put('/user/{id}', [UserController::class, 'update']);
     Route::get('/delete_user/{id}', [UserController::class, 'destroy']);
-    
+
     // Route::get('/delete_user/{id}', [UserController::class, 'destroy']);
     Route::get('/delete_user/{id}', [UserController::class, 'destroy']);
     Route::get('/reset_password', [UserController::class, 'reset_password']);
-    Route::get('/show_customer',[UserController::class, 'show_customer']); 
+    Route::get('/show_customer',[UserController::class, 'show_customer']);
     Route::get('/show_vendor',[UserController::class, 'show_vendor']);
     Route::get('/show_admin',[UserController::class, 'show_admin']);
 
@@ -117,14 +123,20 @@ Route::middleware('admin')->group(function () {
         // The email sending is done using the to method on the Mail facade
         Mail::to('sethamanith3333@gmail.com')->send(new MyTestEmail($name));
     });
-    
+
     Route::resource('promotion',PromotionController::class);
     Route::post("/tours", [PromotionController::class, 'getTour'])->name('get-tour');
 
+<<<<<<< HEAD
     Route::resource('booking',AdminBookingController::class);
 
   
     
+=======
+
+    Route::post("/tours", [PromotionController::class, 'getTour'])->name('get-tour');
+>>>>>>> ce31f77 (close #79-search)
+
 
     Route::get('/reset_password_form', [ResetPasswordController::class, 'index']);
     Route::post('/forgot-password', [ResetPasswordController::class, 'forgotPassword']);
@@ -188,7 +200,11 @@ Route::get('/test', function () {
 
 
 
+<<<<<<< HEAD
 // Booking 
+=======
+// Booking
+>>>>>>> ce31f77 (close #79-search)
 
 Route::resource('tour_list.booking',BookingController::class);
 
@@ -224,4 +240,7 @@ Route::get('/customer_promotion/{promotion}', [CustomerPromotionController::clas
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> ce31f77 (close #79-search)
