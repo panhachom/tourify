@@ -29,6 +29,7 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\VendorBookingController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\CustomerPromotionController;
+use App\Http\Controllers\AdminBookingController;
 
 use App\Mail\MyTestEmail;
 use Illuminate\Support\Facades\Mail;
@@ -119,6 +120,8 @@ Route::middleware('admin')->group(function () {
     
     Route::resource('promotion',PromotionController::class);
     Route::post("/tours", [PromotionController::class, 'getTour'])->name('get-tour');
+
+    Route::resource('booking',AdminBookingController::class);
 
   
     

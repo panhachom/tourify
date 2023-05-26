@@ -33,12 +33,12 @@
                       <td>{{ $promotion_item->created_at -> format('d/m/Y')}} </td>
                       <td>{{ $promotion_item->updated_at -> format('d/m/Y')}}</td>
                       <td>
-                          <a href="#" class="btn btn-sm btn-light"><i class="bi bi-pencil text-primary font-weight-bold"></i></a>
-                          <form action="{{ route('vendor.activity.destroy', ['vendor' => 1, 'activity' => $promotion_item->id]) }}" method="POST" class="d-inline">
+                          <a href=" {{route( 'promotion.edit',['promotion' => $promotion_item->id])}}" class="btn btn-sm btn-light"><i class="bi bi-pencil text-primary font-weight-bold p-3">Edit</i></a>
+                          <form action="{{route( 'promotion.destroy',['promotion' => $promotion_item->id])}}" method="POST" class="d-inline">
                                   @csrf
                                   @method('DELETE')
                                   <button type="submit" class="btn btn-sm btn-light" onclick="return confirm('Are you sure you want to delete this Activity?')">
-                                  <i class="bi bi-trash text-danger"></i>
+                                  <i class="bi bi-trash text-danger">Delete</i>
                                   </button>
                           </form>
                       </td>

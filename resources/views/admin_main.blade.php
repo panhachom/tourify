@@ -92,7 +92,7 @@
         </li>
         
        <li>
-        <a href="#">
+        <a href="{{ route('booking.index')}}">
             <i class='bx bx-heart' ></i>
             <span class="links_name">Booking </span>
         </a>
