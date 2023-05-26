@@ -95,7 +95,9 @@ class ActivityController extends Controller
         $activity->description = $validatedData['description'];
         $activity->save();
     
-        return redirect()->route('vendor.activity.index', ['vendor' => $vendor->id])->with('success', 'Activity updated successfully.');
+        return redirect()
+            ->route('vendor.activity.index', ['vendor' => $vendor->id])
+            ->with('success', 'Activity updated successfully.');
     }
 
     /**
@@ -104,12 +106,16 @@ class ActivityController extends Controller
      * @param  \App\Models\Activity  $activity
      * @return \Illuminate\Http\Response
      */
-    public function destroy($vendor_ID,$id)
-    {
-        $activity = Activity::findOrFail($id);
-        $vendor = Vendor::findOrFail($vendor_ID);
-        $activity -> delete();
+    public function destroy($vendor_ID, $id)
+{
+    $activity = Activity::findOrFail($id);
+    $vendor = Vendor::findOrFail($vendor_ID);
+    $activity->delete();
 
-        return redirect()->route('vendor.activity.index',['vendor' => $vendor->id]);
-    }
+    return redirect()
+        ->route('vendor.activity.index', ['vendor' => $vendor->id])
+        ->with('success', 'Activity deleted successfully.');
+}
+
+
 }

@@ -2,49 +2,118 @@
 @section('title', 'Home')
 @section('content')
 
-<div class="d-flex justify-content-between align-items-center mb-5">
-    <h3>{{ $promotion->title}}</h3>
-    <a href="{{ route('admins.promotion.index') }}" class="btn btn-success text-white">Back</a>
+<div class="d-flex justify-content-between align-items-center mb-5 w-full px-4 py-3 vendor-title">
+  <div class="d-flex justify-content-center align-items-center">
+    <i class="bi bi-back h4 me-3 vendor-icon "></i>
+    <h3>{{$promotion->title}}</h3>
+  </div>
+  <a href="{{ route('promotion.index') }}" class="btn btn-success text-white">Back</a>
 </div>
 
 <div class="border p-5 rounded">
-    <form action="{{ route('vendor.activity.update', ['vendor' => 1, 'activity' => $activity->id]) }}" method="POST">
-            @csrf
-            @method('PUT')
+    <form method="POST" action="{{ route('promotion.update', ['promotion' => $promotion->id]) }}" enctype="multipart/form-data">
+        @csrf
+        @method('PUT')
         <div class="row">
             <div class="form-group col-12 my-2">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" value="{{ old('name', $activity->name) }}"  name="name" required>
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="title" name="title" value="{{ old('title', $promotion->title) }}" required>
             </div>
-            @if ($errors->has('name'))
+            @if ($errors->has('title'))
                 <div class="alert alert-danger my-1">
-                    {{ $errors->first('name') }}
+                    {{ $errors->first('title') }}
                 </div>
             @endif
-
+        
             <div class="form-group col-12 my-2">
                 <label for="description">Description</label>
-                <textarea id="description" class="form-control" name="description" required>{{ old('description', $activity->description) }}</textarea>
+                <textarea id="description" class="form-control" name="description" required>{{ old('description', $promotion->description) }}</textarea>
             </div>
             @if ($errors->has('description'))
                 <div class="alert alert-danger my-1">
                     {{ $errors->first('description') }}
                 </div>
             @endif
+        
+            <div class="form-group col-6 my-2">
+                <label for="percent">Discount</label>
+                <input type="text" class="form-control" id="percent" name="percent" required value="{{ old('percent', $promotion->percent) }}">
+            </div>
+            @if ($errors->has('percent'))
+                <div class="alert alert-danger my-1">
+                    {{ $errors->first('percent') }}
+                </div>
+            @endif
 
+            <div class="form-group col-6 my-2">
+                <label for="vendor_id">Vendor</label>
+                <select class="form-control select2" name="vendor_id" id="vendor_id" required>
+                    <option value=""></option>
+                    @foreach($vendors as $vendor)
+                        <option value="{{$vendor->id}}" {{ old('vendor_id', $promotion->vendor_id) == $vendor->id ? 'selected' : '' }}>{{ old('name', $vendor->name)}}</option>
+                    @endforeach
+                </select>
+            </div>
+            @if ($errors->has('vendor_id')) 
+                <div class="alert alert-danger">
+                    {{ $errors->first('vendor_id') }}
+                </div>
+            @endif
 
+            <div>
+                <label for="image_name">Tour Image</label>
+                <input type="file" name="image_name" id="image_name">
+                @if ($errors->has('image_name'))
+                    <div class="alert alert-danger mx-1">
+                        {{ $errors->first('image_name') }}
+                    </div>
+                @endif
+            </div>
+
+            <div class="d-flex mt-2 mb-4 gap-2">
+            <div class="form-group w-25">
+    <label for="start_date" class="my-1">Start Date</label>
+    <input type="date" name="start_date" class="form-control" value="{{ old('start_date', $promotion->start_date ? date('Y-m-d', strtotime($promotion->start_date)) : null) }}">
+    @if ($errors->has('start_date'))
+        <div class="alert alert-danger my-1">
+            {{ $errors->first('start_date') }}
         </div>
-        <form action="{{ route('vendor.activity.update', ['vendor' => $vendor->id, 'activity' => $activity->id]) }}" method="POST" class="d-inline">
-    @csrf
-    @method('PUT')
-    <button type="submit" class="btn btn-success text-white mt-4" onclick="return confirm('Are you sure you want to update this Activity?')">
-        Update
-    </button>
-</form>
+    @endif
+</div>
+
+<div class="form-group w-25">
+    <label for="end_date" class="my-1">End Date</label>
+    <input type="date" name="end_date" class="form-control" value="{{ old('end_date', $promotion->end_date ? date('Y-m-d', strtotime($promotion->end_date)) : null) }}">
+    @if ($errors->has('end_date'))
+        <div class="alert alert-danger my-1">
+            {{ $errors->first('end_date') }}
+        </div>
+    @endif         
+</div>
+
+                
+                <div>
+                    <label>Status:</label>
+                    <input type="checkbox" name="status" style="width: 30px; height: 30px;" value="1" {{ old('status', $promotion->status) ? 'checked' : '' }}>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 offset-md-3 form-group">
+    <h6 class="pt-2">Tour:</h6>
+    <select class="tags form-control" id="booking_tour_id" name="tours[]" multiple="multiple" required>
+        <option value=""></option>
+        @foreach($tours as $tour)
+            <option value="{{ $tour->id }}" {{ in_array($tour->id, $promotion->tours->pluck('id')->toArray()) ? 'selected' : '' }}>
+                {{ $tour->name }}
+            </option>
+        @endforeach
+    </select>
+</div>
+
+        
+        <button type="submit" class="btn btn-success text-white mt-4">Edit</button>
     </form>
 </div>
 
-@endif
 @endsection
-    
-

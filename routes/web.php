@@ -29,6 +29,7 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\VendorBookingController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\CustomerPromotionController;
+
 use App\Mail\MyTestEmail;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\UpdateController;
@@ -120,7 +121,6 @@ Route::middleware('admin')->group(function () {
     Route::post("/tours", [PromotionController::class, 'getTour'])->name('get-tour');
 
   
-    Route::post("/tours", [PromotionController::class, 'getTour'])->name('get-tour');
     
 
     Route::get('/reset_password_form', [ResetPasswordController::class, 'index']);
