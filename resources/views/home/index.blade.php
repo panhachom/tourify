@@ -11,17 +11,18 @@
             <input type="text" class="rounded-3xl border-2 input-search">
             <button class="btn-search px-7 py-3">Search</button>
         </div>
-        <div class="flex gap-5">
+        <form method = "GET" class="flex gap-5" action= "/filter">
             <div class="flex flex-col">
                 <label for="">Start Date</label>
-                <input type="date" id="start-date" name="start-date" class="date-picker border-2" value ="">
+                <input type="date" id="start-date" name="sdate" class="date-picker border-2" value ="">
             </div>
             <div class="flex flex-col">
                 <label for="">End Date</label>
-                <input type="date" id="start-date" name="start-date" class="date-picker border-2" value ="">
+                <input type="date" id="end-date" name="edate" class="date-picker border-2" value ="">
             </div>
-        </div>
-
+            <button type= "input" class="btn-search px-10 mr-8 py-3 mt-40">Filter</button>
+        </form>
+        
     </div>
     <!-- <div class = "bg-secondary w-full home-page">
         <div class= "section-1 flex justify-between items-center pt-20 px-16">
