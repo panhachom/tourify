@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 
 
-class UserSeeder extends Seeder
+class CategorySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,24 +17,35 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $categories = [
+        DB::table('categories')->insert([
             [
-                'name' => 'Adventure',
+            'name' => 'Adventure',
+            'created_at' => NULL,
+            'updated_at' => NULL
+            // 'password' => Hash::make('john@123')
             ],
             [
-                'name' => 'Cultural',
+            'name' => 'Cultural',
+            'created_at' => NULL,
+            'updated_at' => NULL
             ],
             [
-                'name' => 'Sport',
+            'name' => 'Sport',
+            'created_at' => NULL,
+            'updated_at' => NULL
             ],
             [
-                'name' => 'Food and Drink',
+            'name' => 'Food and Drink',
+            'created_at' => NULL,
+            'updated_at' => NULL
             ],
             [
-                'name' => 'History',
-            ],
-        ];
-
-        Category::insert($categories);
+            'name' => 'History',
+            'created_at' => NULL,
+            'updated_at' => NULL
+            ]
+        ]
+    );
     }
 }
+    
