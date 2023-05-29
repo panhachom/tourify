@@ -3,7 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Laravel</title>
+        <title>Tourify</title>
+        <link rel="shortcut icon" href="{{ asset('images/logo.png') }}">
         @vite('resources/css/vendor_main.css')
         
 
@@ -34,11 +35,18 @@
         
     <div class="sidebar">
         <div class="logo-details">
-        <i class='bx bxl-c-plus-plus icon'></i>
-            <div class="logo_name">Admin</div>
+        <img src="{{ asset('images/logo.png') }}" alt="" width="45px" class="rounded-circle "></i>
+            <div class="logo_name" style="margin-left: 5%;">Admin</div>
             <i class='bx bx-menu' id="btn" ></i>
         </div>
         <div class="nav-list">
+        <li>
+            <a href="/view_dashboard">
+            <i class='bx bx-category'></i>
+            <span class="links_name">Dashboard</span>
+            </a>
+            <span class="tooltip">Dashboard</span>
+        </li>
         <li>
             <a href="/view_all_post">
             <i class='bx bx-grid-alt'></i>
@@ -61,10 +69,10 @@
         <span class="tooltip">Vendor</span>
         </li>
         <li>
-        <a href="#">
+        <!-- <a href="#">
             <i class='bx bx-category' ></i>
             <span class="links_name">Category</span>
-        </a>
+        </a> -->
         <span class="tooltip">Category</span>
         </li>
         <li>

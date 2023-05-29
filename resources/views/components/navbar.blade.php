@@ -1,14 +1,17 @@
 <nav class="px-5 py-3 bg-primary   text-white">
 	<div class="flex justify-between  items-center md:px-10 px-2">
-		<div class="navbar-section-1">
-			<div class="flex items-center gap-2">
-				<div class="logo w-12 h-12 rounded-full flex justify-center items-center">
-					<div class="font-bold text-white">T</div>
+		<div class="navbar-section-1"> <a href="/">
+				<div class="flex items-center gap-2">
+					<div class="logo w-12 h-12 rounded-full flex justify-center items-center">
+						<div class="font-bold text-white "><img src="{{ asset('images/logo.png') }}" alt="" class="rounded-full"></div>
+
+					</div>
+					<div>
+						<div class="font-bold tracking-wide	 text-lg">Tourify</div>
+					</div>
+
 				</div>
-				<div>
-					<div class="font-bold tracking-wide	 text-lg">DER LENG</div>
-				</div>
-			</div>
+			</a>
 		</div>
 		<div class="navbar-section-2 toggle-menu gap-10 flex justify-center items-center" id="center-menu">
 			<div class=""><a href="{{ route('home.index') }}">Home</a></div>
@@ -33,34 +36,33 @@
 			<div class=" sign-in "><a href="#">Register</a></div>
 		</div>
 
-	
 
-    
+
+
 		<div class="navbar-section-3">
 			@auth
-				<div class="flex gap-5">
-					<p>{{auth()->user()->username}}</p>
-					<a href="{{ route('logout.perform') }}" class="btn btn-outline-light me-2">Logout</a>
-				</div>
-     		@endauth
-			
+			<div class="flex gap-5">
+				<p>{{auth()->user()->username}}</p>
+				<a href="{{ route('logout.perform') }}" class="btn btn-outline-light me-2">Logout</a>
+			</div>
+			@endauth
+
 			@guest
-				<a  class="mx-2" href="{{ route('login.perform') }}">Login</a>
-				<a  class="mx-2" href="{{ route('register.perform') }}">Register</a>
+			<a class="mx-2" href="{{ route('login.perform') }}">Login</a>
+			<a class="mx-2" href="{{ route('register.perform') }}">Register</a>
 			@endguest
 
 		</div>
 		<div class="navbar-section-4">
-			<i class="fa-solid fa-bars" id ="hamberger-btn"></i>
+			<i class="fa-solid fa-bars" id="hamberger-btn"></i>
 		</div>
 	</div>
 </nav>
 <script>
-   const hambergerBtn = document.getElementById("hamberger-btn");
-   const  centerMenu = document.querySelector("#center-menu");
+	const hambergerBtn = document.getElementById("hamberger-btn");
+	const centerMenu = document.querySelector("#center-menu");
 
-   	hambergerBtn.addEventListener("click", function() {
-	centerMenu.classList.toggle("toggle-menu");
-   });
+	hambergerBtn.addEventListener("click", function() {
+		centerMenu.classList.toggle("toggle-menu");
+	});
 </script>
-

@@ -4,10 +4,10 @@
             <div class="content-1">
                 <div class="flex items-center gap-2 ">
                     <div class="logo w-12 h-12 rounded-full flex justify-center items-center">
-                        <div class="font-bold text-grey">T</div>
+                        <div class="font-bold text-grey"><img src="{{ asset('images/logo.png') }}" alt="" style="border-radius: 50%;"></div>
                     </div>
                     <div>
-                        <div class="font-bold tracking-wide	 text-lg">DER LENG</div>
+                        <div class="font-bold tracking-wide	 text-lg">Tourify</div>
                     </div>
                 </div>
                 <div class="text-xs font-extralight mt-2 pt">
@@ -50,7 +50,7 @@
         </div>
         <div class="content-3 pb-5 text-xs font-extralight flex justify-between items-center mt-12">
             <div class="content-3-child-1 ">
-                Copyright © Travala 2021
+                Copyright © Tourify 2023
             </div>
             <div class="content-3-child-1">
                 <span class="mx-1">Terms & Conditions</span>
