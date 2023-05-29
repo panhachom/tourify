@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Tour;
 use App\Models\Booking;
+use Exception;
 use Illuminate\Support\Facades\Session;
 
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class BookingController extends Controller
 {
@@ -48,7 +51,15 @@ class BookingController extends Controller
         $booking->save();
     
         $booking->tours()->attach($tour->id);
-        Session::flash('success', 'Booking deleted successfully!');
+        $data['email'] = 'sethamanith3333@gmail.com';
+        try{
+            Mail::send('mail/BookingMail', ['data' =>$data ], function ($message) use($data){
+                $message->to($data['email'])->subject('New Booking is Here');
+            });
+        }catch (Exception $e){
+            return redirect('/tour_list');
+        }
+        Session::flash('success', 'Booking successfully!');
 
     
         return redirect()->back();
