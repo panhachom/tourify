@@ -10,9 +10,9 @@
 
 
 
-
+        <link rel="shortcut icon" href="{{ asset('images/logo.png') }}">
          @vite('resources/css/about_us.css')
-        <title>Laravel</title>
+        <title>Tourify</title>
 
         <!-- Fonts -->
         <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">

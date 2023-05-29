@@ -21,6 +21,8 @@ use App\Http\Controllers\TourImageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\ActivityTourController;
+use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\AdminManageTourContoller;
 use App\Http\Controllers\AdminVendorController;
 use App\Http\Controllers\CountryTourController;
 use App\Http\Controllers\TourDateController;
@@ -29,6 +31,8 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\VendorBookingController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\CustomerPromotionController;
+
+
 use App\Mail\MyTestEmail;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\UpdateController;
@@ -91,7 +95,7 @@ Route::post('/profile', [ProfileSettingController::class, 'updatePassword'])->na
 
 Route::middleware('admin')->group(function () {
 
-    Route::get('/admins', function () {return view('admin.dashboard');})->name('admins');
+    Route::get('/admins', function () {return view('admin/dashboard');})->name('admins');
     Route::get('/admins/view_slider', [SliderController::class, 'index']);
     Route::get('/admins/create_slider', [SliderController::class, 'create']);
     Route::post('/admins/slider_store', [SliderController::class, 'store']);
@@ -152,6 +156,15 @@ Route::middleware('admin')->group(function () {
 
 
 
+
+    //Manage All Tour Post
+    Route::get('/view_all_post', [AdminManageTourContoller::class, 'index']);
+    Route::get('/tour/{id}/edit',[AdminManageTourContoller::class, 'edit']);
+    Route::put('/tour/{id}', [AdminManageTourContoller::class, 'update']);
+    Route::get('/delete_tour_post/{id}', [AdminManageTourContoller::class, 'destroy']);
+
+    Route::get('view_dashboard', [AdminDashboardController::class, 'index'])->name('admin_panel');
+    Route::get('view_dashboard_test', [AdminDashboardController::class, 'create']);
 
 });
 

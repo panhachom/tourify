@@ -35,15 +35,8 @@ class LoginController extends Controller
         if ($user->role === 'customer') {
             return redirect()->route('home.index');
         } elseif ($user->role === 'admin') {
-            return redirect()->route('admins');
-        } elseif ($user->role === 'vendor') {
-
-            $vendor = Vendor::where('user_id', $user->id)->first();
-
-            return redirect()->route('vendor.show', $vendor->id);
-
-        }            
-        else {
+            return redirect()->route('admin_panel');
+        } else {
             return redirect()->intended();
         }
     }
