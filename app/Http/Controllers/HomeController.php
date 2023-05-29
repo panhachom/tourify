@@ -8,6 +8,7 @@ use App\Models\TourDate;
 use Illuminate\Http\Request;
 use App\Models\Promotion;
 
+
 class HomeController extends Controller
 {
    public function index(Request $request)
@@ -55,5 +56,21 @@ class HomeController extends Controller
             ->whereDate('end_date', '<=', $end_date)
             ->get();
         return view('tour_list.index');
+        $start = $request->sdate;
+        // dd($start_date);
+
+        $end = $request->edate;
+       
+        $tourDate = TourDate::with('tour')->whereDate('start_date', '>=', $start)
+            ->whereDate('start_date', '<=', $end)
+            ->whereDate('end_date', '<=', $end)
+            ->get();
+            // ->toArray();
+        // dd($data);
+        $tours = $tourDate->map(function ($tourDate) {
+            return $tourDate->tour;
+        });
+    
+        return view('tour_list.index',compact('tours'));
     }
 }

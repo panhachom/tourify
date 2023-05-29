@@ -29,11 +29,6 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\VendorBookingController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\CustomerPromotionController;
-<<<<<<< HEAD
-use App\Http\Controllers\AdminBookingController;
-
-=======
->>>>>>> ce31f77 (close #79-search)
 use App\Mail\MyTestEmail;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\UpdateController;
@@ -46,6 +41,7 @@ Route::get('/signup', [HomeController::class, 'signup']);
 Route::get('/search',[HomeController::class,'index'])->name('search');
 Route::get('filter', [HomeController::class,'filter']);
 
+Route::get('/filter', [HomeController::class,'filter']);
 
 Route::resource('tour_list',TourListController::class);
 Route::get('/sport-category', [TourListController::class, 'sport_category'])->name('sport-category');
@@ -127,15 +123,12 @@ Route::middleware('admin')->group(function () {
     Route::resource('promotion',PromotionController::class);
     Route::post("/tours", [PromotionController::class, 'getTour'])->name('get-tour');
 
-<<<<<<< HEAD
     Route::resource('booking',AdminBookingController::class);
 
   
     
-=======
 
     Route::post("/tours", [PromotionController::class, 'getTour'])->name('get-tour');
->>>>>>> ce31f77 (close #79-search)
 
 
     Route::get('/reset_password_form', [ResetPasswordController::class, 'index']);
@@ -200,11 +193,7 @@ Route::get('/test', function () {
 
 
 
-<<<<<<< HEAD
-// Booking 
-=======
 // Booking
->>>>>>> ce31f77 (close #79-search)
 
 Route::resource('tour_list.booking',BookingController::class);
 
@@ -240,7 +229,4 @@ Route::get('/customer_promotion/{promotion}', [CustomerPromotionController::clas
 
 
 
-<<<<<<< HEAD
 
-=======
->>>>>>> ce31f77 (close #79-search)
