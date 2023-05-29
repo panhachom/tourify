@@ -33,6 +33,13 @@
         <div class="logo_name px-3">{{$vendor_info->name}}</div>
         </div>
         <div>
+        <li>
+            <a href="/view_vendor_dashbaord">
+            <i class='bx bx-category'></i>
+            <span class="links_name">Dashbaord</span>
+            </a>
+            <span class="tooltip">Dashboard</span>
+        </li>
      
         <li>
             <a href="{{ route('vendor.tours.index', ['vendor' => $vendor_id]) }}">
@@ -41,6 +48,7 @@
             </a>
             <span class="tooltip">Tour</span>
         </li>
+        
       
     
         
