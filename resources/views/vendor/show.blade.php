@@ -5,6 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Laravel</title>
         @vite('resources/css/vendor_main.css')
+        @vite('resources/css/dashboard.css')
+
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
         <!-- Fonts -->
@@ -20,8 +22,9 @@
     <body class="bg-secondary font-fontPoppins">
 
     <?php
-        $vendor_info = App\Models\Vendor::findOrFail($vendor_id);
-    ?>
+    $vendor_info = App\Models\Vendor::findOrFail($vendor_id);
+    $dashboard = 'http://127.0.0.1:8000/vendor/' . $vendor_info->id;
+   ?>
         
     <div class="sidebar">
         <div class="logo-details">
@@ -34,7 +37,7 @@
         </div>
         <div>
         <li>
-            <a href="/view_vendor_dashbaord">
+            <a href="/view_vendor_dashbaord, ['vendor' => $vendor_id]">
             <i class='bx bx-category'></i>
             <span class="links_name">Dashbaord</span>
             </a>
@@ -85,6 +88,9 @@
     </div>
     <section class="home-section">
         <div class="w-100 px-5 py-4">
+         @if ( request()->url() === $dashboard )
+            @include('components/dashboard')
+         @endif
          @yield('content')
         </div>
     </section>

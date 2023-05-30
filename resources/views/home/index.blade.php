@@ -7,18 +7,21 @@
 
 <div class="main-content">
     <div class="search-content section-1 flex justify-center items-center gap-20">
-        <div class="child-1">
-            <input type="text" class="rounded-3xl border-2 input-search">
-            <button class="btn-search px-7 py-3">Search</button>
-        </div>
+        <form action="/search" method="GET">
+            <div class="child-1">
+                <input type="text" name="search" class="rounded-3xl border-2 input-search">
+                <button class="btn-search px-7 py-3">Search</button>
+            </div>
+        </form>
+     
         <form method = "GET" class="flex gap-5" action= "/filter">
             <div class="flex flex-col">
                 <label for="">Start Date</label>
-                <input type="date" id="start-date" name="sdate" class="date-picker border-2" value ="">
+                <input type="date" id="start-date" name="start_date" class="date-picker border-2" value ="">
             </div>
             <div class="flex flex-col">
                 <label for="">End Date</label>
-                <input type="date" id="end-date" name="edate" class="date-picker border-2" value ="">
+                <input type="date" id="end-date" name="end_date" class="date-picker border-2" value ="">
             </div>
             <button type= "input" class="btn-search px-10 mr-8 py-3 mt-40">Filter</button>
         </form>

@@ -1,9 +1,6 @@
-@extends('vendor_main')
+@extends('vendor/show')
 @section('title', 'Home')
 @section('content')
 
- <h1>Vendor Page</h1>
-
-adfasdf
 
 @endsection

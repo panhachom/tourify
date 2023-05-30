@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Vendor;
+use App\Models\Tour;
+use App\Models\Booking;
+use App\Models\Activity;
+
+
 use Illuminate\Http\Request;
 
 class VendorController extends Controller
@@ -27,6 +32,12 @@ class VendorController extends Controller
         //
     }
 
+    public function dashboard(){
+
+        return view('vendor.dashboard');
+        
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -47,7 +58,18 @@ class VendorController extends Controller
     public function show($id)
     {
         $vendor_id = $id ;
-        return view('vendor.show', compact('vendor_id'));
+        $vendor = Vendor::findOrFail($vendor_id);
+        $tours = Tour::where('vendor_id', $vendor_id)->get();
+        $activities = Activity::all();
+        $bookings = Booking::all();
+        $recentTours = Tour::orderBy('created_at', 'desc')->take(5)->get();
+        $recentActivities = Activity::orderBy('created_at', 'desc')->take(5)->get();
+        $recentBookings = Booking::orderBy('created_at', 'desc')->take(5)->get();
+
+
+
+
+        return view('vendor.show', compact('vendor_id', 'vendor', 'tours', 'activities','bookings','recentTours','recentActivities','recentBookings'));
     }
 
     /**
