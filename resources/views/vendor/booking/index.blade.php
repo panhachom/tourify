@@ -37,16 +37,16 @@
                       <td>
                         {{ $i++}}
                      </td>
-                      <td> <strong> <i>
+                      <td> <strong> 
                            {{ strtoupper(substr($booking->tours->first()->vendor->name, 0, 3)) }}-{{ $booking->booking_number }}
-                      </i></strong></td>
+                      </strong></td>
                       <td>{{ $booking->tours->first()->name }}</td>
-                      <td class="text-center">{{ $booking->created_at }} </td>
+                      <td class="text-center">{{ $booking->created_at->format('Y-m-d') }}</td>
                       <td>
                       @if($booking->approved)
-                        <i class="bi bi-check-circle text-success"></i> <!-- Icon for tick -->
+                        <i class="bi bi-check-circle text-success"> Approved</i> <!-- Icon for tick -->
                       @else
-                        <i class="bi bi-clock text-warning"></i> <!-- Icon for pending -->
+                        <i class="bi bi-clock text-warning"> Pending</i> <!-- Icon for pending -->
                       @endif
                       </td>
                       <td class="text-success">

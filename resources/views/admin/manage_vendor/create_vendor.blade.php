@@ -3,10 +3,8 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-5">
     <h3>Create New Vendor</h3>
-    <a href="{{ route('admins.view_vendor') }}" class="btn btn-success text-white">Back</a>
+    <a href="{{ route('admins.view_vendor') }}" class="btn btn-primary text-white">Back</a>
 </div>
-
-
 
 <div class="border p-5 rounded">
     <form action="{{url('/vendor_store')}}" method="POST" enctype="multipart/form-data">

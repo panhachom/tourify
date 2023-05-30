@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\TourImage;
 use App\Models\Tour;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class TourImageController extends Controller
 {
@@ -19,7 +20,6 @@ class TourImageController extends Controller
         $images = $tour->tour_images()->get();
 
         $params = ['vendor' => $vendor_id, 'tour' => $tour_id];
-
         return view('vendor.tours.images.index', compact('tour', 'images', 'params' ,'vendor_id'));
     }
 
@@ -66,7 +66,7 @@ class TourImageController extends Controller
         $tourImage->tour_id = $tour_id;
         $tourImage->name = $imageName;
         $tourImage->save();
-
+        Session::flash('success', 'Image created successfully!');
         return redirect()->route('vendor.tours.images.index', [$vendor_id, $tour_id])->with('success', 'Tour image has been added successfully');
     }
 
@@ -103,6 +103,8 @@ class TourImageController extends Controller
     public function destroy($vendor_id, $tour_id, TourImage $image)
     {
         $image->delete();
+        Session::flash('success', 'Image delete successfully!');
+
         return redirect()->route('vendor.tours.images.index', [$vendor_id, $tour_id])->with('success', 'Tour image has been deleted successfully');
     }
 }

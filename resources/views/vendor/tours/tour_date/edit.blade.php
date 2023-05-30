@@ -10,7 +10,11 @@
   </div>
   <a href="{{ route('vendor.tours.index', ['vendor' => $vendor_id]) }}" class="btn btn-success text-white">Back</a>
 </div>
- 
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
 
 @include('components/tour_tabs')
 <div class="p-5 table_style radius">

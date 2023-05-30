@@ -102,18 +102,37 @@ class AdminVendorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $vendor = new Vendor;
-        $vendor -> where('id', $id)
-        ->update(['name' => $request -> name,
-                  'about_us' => $request-> about_us,
-                  'email' => $request->email,
-                  'contact'=> $request->contact,
-                  'user_id'=> $request->user_id
-                  ]
-                  );
-
-        return redirect('/view_vendor');
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'about_us' => 'required',
+            'email' => 'required|email',
+            'contact' => 'required',
+            'logo' => 'image',
+            'user_id' => 'required|integer',
+        ]);
+    
+        $vendor = Vendor::findOrFail($id);
+        // Retrieve the vendor record with the given ID
+    
+        $vendor->name = $validatedData['name'];
+        $vendor->about_us = $validatedData['about_us'];
+        $vendor->email = $validatedData['email'];
+        $vendor->contact = $validatedData['contact'];
+    
+        if ($request->hasFile('logo')) {
+            // Handle logo upload if a new file is provided
+            $image = $request->file('logo');
+            $imagename = time() . '.' . $image->getClientOriginalExtension();
+            $image->move('vendor', $imagename);
+            $vendor->logo = $imagename;
+        }
+    
+        $vendor->user_id = $validatedData['user_id'];
+        $vendor->save();
+    
+        return redirect('/view_vendor')->with('success', 'Vendor updated successfully!');
     }
+    
 
     /**
      * Remove the specified resource from storage.

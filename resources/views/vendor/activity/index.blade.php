@@ -8,8 +8,14 @@
     <h3>Activity</h3>
   </div>
   <a href="{{ route('vendor.activity.create', ['vendor' => $vendor_id]) }}" class="btn btn-success text-white">Create New Activity</a>
-
 </div>
+
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
 
 @if ($activities->isEmpty())
     <p>No Activity. Please add one.</p>
@@ -34,13 +40,12 @@
                       <td>{{ $activity_item->created_at -> format('d/m/Y')}} </td>
                       <td>{{ $activity_item->updated_at -> format('d/m/Y')}}</td>
                       <td>
-                          <a href="{{ route('vendor.activity.edit', ['vendor' => $vendor_id, 'activity' => $activity_item->id]) }}" class="btn btn-sm btn-light"><i class="bi bi-pencil text-primary font-weight-bold"></i></a>
+                          <a href="{{ route('vendor.activity.edit', ['vendor' => $vendor_id, 'activity' => $activity_item->id]) }}" class="btn btn-sm btn-light"><i class="bi bi-pencil text-primary font-weight-bold"> Edit</i></a>
                           <form action="{{ route('vendor.activity.destroy', ['vendor' => $vendor_id, 'activity' => $activity_item->id]) }}" method="POST" class="d-inline">
                                   @csrf
                                   @method('DELETE')
                                   <button type="submit" class="btn btn-sm btn-light" onclick="return confirm('Are you sure you want to delete this Activity?')">
-                                  <i class="bi bi-trash text-danger"></i>
-                                  <span><p>Delete</p></span>
+                                  <i class="bi bi-trash text-danger"> Delete</i>
                                   </button>
                           </form>
                       </td>

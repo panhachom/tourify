@@ -11,6 +11,12 @@
 
 </div>
 
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
 <div class="border p-5 table_style radius">
     <form action="{{ route('vendor.activity.update', ['vendor' => $vendor_id, 'activity' => $activity->id]) }}" method="POST">
             @csrf

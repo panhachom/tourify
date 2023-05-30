@@ -30,7 +30,10 @@
     </head>
     <body class="bg-secondary font-fontPoppins">
         <div>
-            @yield('content')
+        @include('flash_message')
+
+
+        @yield('content')
         </div>    
 
     <script src="../path/to/flowbite/dist/datepicker.js"></script>

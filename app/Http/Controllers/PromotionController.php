@@ -76,7 +76,9 @@ public function getTour(Request $request)
         $promotions -> image_name = $imageName;
         $promotions -> save();
 
-        $tours = $request->input('tours', []);
+        $vendorId = $request->input('vendor_id');
+        $tours = Tour::where('vendor_id', $vendorId)->pluck('id')->toArray();
+    
 
         foreach ($tours as $tourId) {
             $tour = Tour::find($tourId);
@@ -86,12 +88,15 @@ public function getTour(Request $request)
             }
         }
     
-        $promotions->tours()->attach($tours);
         
 
         $promotions->tours()->attach($tours);
     
         return redirect()->route('promotion.index')->with('success', 'Activity created successfully');
+    }
+
+    public function add_tour (){
+        
     }
     
 

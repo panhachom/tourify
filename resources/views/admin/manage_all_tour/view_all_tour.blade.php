@@ -32,9 +32,6 @@
                     <td>{{$tour_data->capacity}}</td>
                     <td>{{$tour_data->qty}}</td>
                     <td class="text-center">
-                    <a href="{{url('tour/'.$tour_data->id.'/edit')}}" class="btn btn-sm btn-light">
-                            <i class="bi bi-pencil text-primary font-weight-bold p-3 "> Edit</i>
-                        </a>
                         <a href="{{url('/delete_tour_post', $tour_data->id)}}"class="btn btn-sm btn-light">
                             <i class="bi bi-trash text-danger"> Delete</i>
                         </a>

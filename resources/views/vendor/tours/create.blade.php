@@ -4,8 +4,13 @@
 
 <div class="d-flex justify-content-between align-items-center mb-5">
     <h3>Create New Tour</h3>
-    <a href="{{ route('vendor.tours.index', ['vendor' => $vendor_id]) }}" class="btn btn-success text-white">Back</a>
+    <a href="{{ route('vendor.tours.index', ['vendor' => $vendor_id]) }}" class="btn btn-primary text-white">Back</a>
 </div>
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
 
 <div class="border p-5 rounded">
     <form method="POST" action="{{ route('vendor.tours.store', ['vendor' => $vendor_id]) }}">
@@ -83,11 +88,15 @@
                 </div>
             @endif
         </div>
+
+     
 </div>
 
         <button type="submit" class="btn btn-success text-white mt-4">Create</button>
     </form>
 </div>
+
+
 
 <script>
     $(document).ready(function() {

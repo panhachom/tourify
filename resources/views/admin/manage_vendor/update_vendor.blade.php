@@ -2,9 +2,12 @@
 @section('title', 'Home')
 @section('content')
 
-<div class="d-flex justify-content-between align-items-center mb-5">
-    
-    <a href="/view_vendor" class="btn btn-success text-white">Back</a>
+<div class="d-flex justify-content-between align-items-center mb-5 w-full  px-4 py-3 vendor-title">
+  <div class="d-flex justify-content-center align-items-center">
+    <i class="bi bi-back h4 me-3 vendor-icon "></i>
+    <h3>{{ $vendor->name}}</h3>
+  </div>
+  <a href="/view_vendor" class="btn btn-primary text-white">Back</a>
 </div>
 
 
@@ -36,12 +39,17 @@
                 <label for="role" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select User_ID for Vendor</label>
 
                 <select name="user_id" id="" class="px-1 py-1">
-                    <option selected>{{$vendor->user->username}}</option>
+                    <option selected>{{$vendor->user->id}}</option>
                     @foreach($user_ids as $data)
                     <option name="user_id" value="{{$data->id}}" class="text-black">{{$data->username}}</option>
                     @endforeach
                 </select>
 
+            </div>
+
+            <div>
+                <label for="logo">Logo:</label>
+                <input type="file" name="logo">
             </div>
 
       
@@ -50,10 +58,6 @@
                 <input type="file" class="form-control" id="contact" name="logo" required>
             </div>
 
-            <div class="w-full mt-5">
-                  <label for="current_image" class="block mb-2 text-xl font-medium text-gray-900 dark:text-white">Current Logo:</label>
-                  <img src="/vendor/{{$vendor->logo}}" alt="" width="200px" class="m-auto">
-              </div>
         </div>
         <button type="submit" class="btn btn-success text-white mt-4">Update</button>
     </form>
