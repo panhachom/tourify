@@ -45,7 +45,6 @@ Route::get('/signup', [HomeController::class, 'signup']);
 Route::get('/search',[HomeController::class,'index'])->name('search');
 Route::get('filter', [HomeController::class,'filter']);
 
-Route::get('/filter', [HomeController::class,'filter']);
 
 Route::resource('tour_list',TourListController::class);
 Route::get('/sport-category', [TourListController::class, 'sport_category'])->name('sport-category');
@@ -161,7 +160,7 @@ Route::middleware('admin')->group(function () {
     Route::get('/view_all_post', [AdminManageTourContoller::class, 'index']);
     Route::get('/tour/{id}/edit',[AdminManageTourContoller::class, 'edit']);
     Route::put('/tour/{id}', [AdminManageTourContoller::class, 'update']);
-    Route::get('/delete_tour_post/{id}', [AdminManageTourContoller::class, 'destroy']);
+    Route::get('/delete_tour_post/{id}',[AdminManageTourContoller::class, 'destroy']);
 
     Route::get('view_dashboard', [AdminDashboardController::class, 'index'])->name('admin_panel');
     Route::get('view_dashboard_test', [AdminDashboardController::class, 'create']);
@@ -191,6 +190,7 @@ Route::get('/vendor/{id}', [VendorController::class, 'show'])->name('vendor.show
     Route::resource('vendor.tours.country',CountryTourController::class);
     Route::get('vendor/tours/{tour}/country/{country}/add', [CountryTourController::class ,'add'])->name('vendor.tours.country.add');
     Route::delete('vendors/{vendor}/tours/{tour}/countries/{country}', [TourController::class ,'destroyCountry'])->name('vendor.tours.country.destroy');
+    Route::get('view_vendor_dashbaord', [VendorController::class, 'dashboard'])->name('vendor_dashboard');
 
 
 

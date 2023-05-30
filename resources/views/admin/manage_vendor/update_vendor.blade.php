@@ -45,10 +45,10 @@
             </div>
 
       
-            <!-- <div class="form-group col-6 my-2 ">
+            <div class="form-group col-6 my-2 ">
                 <label for="phone_number">Update Logo</label>
                 <input type="file" class="form-control" id="contact" name="logo" required>
-            </div> -->
+            </div>
 
             <div class="w-full mt-5">
                   <label for="current_image" class="block mb-2 text-xl font-medium text-gray-900 dark:text-white">Current Logo:</label>

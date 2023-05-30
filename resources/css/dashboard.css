@@ -1,0 +1,84 @@
+.dashboard-card-1 {
+    width: 280px;
+    height: 120px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-left: 6px solid rgb(81, 175, 74);
+    border-radius: 5px;
+}
+
+.dashboard-card-1 .circle-button {
+    width: 55px;
+    height: 55px;
+    background-color: rgb(81, 175, 74);
+    color: white;
+    border-radius: 50%;
+}
+
+.dashboard-card-1 .circle-button i {
+  font-size: 22px;
+}
+
+.dashboard-card-2 {
+  width: 280px;
+  height: 120px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-left: 6px solid rgb(67, 112, 155);
+  border-radius: 5px;
+}
+
+.dashboard-card-2 .circle-button {
+  width: 55px;
+  height: 55px;
+  background-color: rgb(67, 112, 155);;
+  color: white;
+  border-radius: 50%;
+}
+
+.dashboard-card-2 .circle-button i {
+font-size: 22px;
+}
+
+
+.dashboard-card-3 {
+  width: 280px;
+  height: 120px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-left: 6px solid rgb(204, 11, 181);
+  border-radius: 5px;
+}
+
+.dashboard-card-3 .circle-button {
+  width: 55px;
+  height: 55px;
+  background-color: rgb(204, 11, 181);
+  color: white;
+  border-radius: 50%;
+}
+
+.dashboard-card-3 .circle-button i {
+font-size: 22px;
+}
+
+.table-border-dashboard {
+  background-color:white;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+}
+
+ .h4-1 {
+  color: rgb(81, 175, 74);
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+.h4-2 {
+  color: rgb(204, 11, 181);
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+
+.h4-3 {
+  color: rgb(67, 112, 155);;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+

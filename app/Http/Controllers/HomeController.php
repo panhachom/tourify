@@ -52,25 +52,16 @@ class HomeController extends Controller
         // dd($start_date);
 
         $end_date = $request->end_date;
-        $tours = TourDate::whereDate('start_date', '>=', $start_date)
-            ->whereDate('end_date', '<=', $end_date)
-            ->get();
-        return view('tour_list.index');
-        $start = $request->sdate;
-        // dd($start_date);
-
-        $end = $request->edate;
        
-        $tourDate = TourDate::with('tour')->whereDate('start_date', '>=', $start)
-            ->whereDate('start_date', '<=', $end)
-            ->whereDate('end_date', '<=', $end)
+        $tours = TourDate::whereRaw('DATE(start_date) >= ?', [$start_date])
+            ->whereRaw('DATE(end_date) <= ?', [$end_date])
             ->get();
-            // ->toArray();
-        // dd($data);
-        $tours = $tourDate->map(function ($tourDate) {
-            return $tourDate->tour;
-        });
+
+        if($tours->isEmpty()) {
+            $tours = ['result'];
+            return view('tour_list.index', compact('tours'));
+        }
+        return view('tour_list.index', compact('tours'));
     
-        return view('tour_list.index',compact('tours'));
     }
 }

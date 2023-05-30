@@ -55,9 +55,6 @@ class TourListController extends Controller
         // dd($tour);
         return view('tour_list.show', compact('tour'));
     }
-
-   
-}
     public function getByCategory($category)
     {
         $tours = Category::where('name', $category)
@@ -67,4 +64,7 @@ class TourListController extends Controller
 
         return response()->    json($tours);
     }
+   
 }
+    
+
