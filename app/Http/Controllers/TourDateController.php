@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\TourDate;
 use App\Models\Tour;
+use Illuminate\Support\Facades\Session;
 
 use Illuminate\Http\Request;
 
@@ -54,8 +55,9 @@ class TourDateController extends Controller
         $tourdate->end_date = $validatedData['end_date'];
 
         $tourdate->save();
+        Session::flash('success', 'Date created successfully!');
 
-        return redirect()->route('vendor.tours.tour_date.index', ['vendor' => $vendor_id, 'tour' => $tour_id])->with('success', 'Tour dates added successfully.');
+        return redirect()->route('vendor.tours.tour_date.index', ['vendor' => $vendor_id, 'tour' => $tour_id]);
     }
 
     /**
@@ -102,8 +104,9 @@ class TourDateController extends Controller
         $tourDate->start_date = $validatedData['start_date'];
         $tourDate->end_date = $validatedData['end_date'];
         $tourDate->save();
-    
-        return redirect()->route('vendor.tours.tour_date.index', ['vendor' => $vendor_id, 'tour' => $tour_id])->with('success', 'Tour date updated successfully.');
+        Session::flash('success', 'Date updated successfully!');
+
+        return redirect()->route('vendor.tours.tour_date.index', ['vendor' => $vendor_id, 'tour' => $tour_id]);
     }
 
     /**
@@ -116,7 +119,8 @@ class TourDateController extends Controller
     {
         $tourDate = TourDate::findOrFail($tourDateId);
         $tourDate->delete();
+        Session::flash('success', 'Date delete successfully!');
 
-        return redirect()->route('vendor.tours.tour_date.index', ['vendor' => $vendor_id, 'tour' => $tour_id])->with('success', 'Tour date deleted successfully.');
+        return redirect()->route('vendor.tours.tour_date.index', ['vendor' => $vendor_id, 'tour' => $tour_id]);
     }
 }

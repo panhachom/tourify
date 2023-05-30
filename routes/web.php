@@ -30,6 +30,7 @@ use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\VendorBookingController;
 use App\Http\Controllers\PromotionController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerPromotionController;
 
 
@@ -149,7 +150,7 @@ Route::middleware('admin')->group(function () {
     Route::get('/view_manage_vendor', [VendorManagementController::class, 'index']);
 
     Route::get('/view_all_post', [AdminManageTourController::class, 'index']);
-    Route::get('/tour/{id}/edit',[AdminManageTourController::class, 'edit']);
+    Route::get('/tour/{id}/show',[AdminManageTourController::class, 'show']);
     Route::put('/tour/{id}', [AdminManageTourController::class, 'update']);
     Route::get('/delete_tour_post/{id}', [AdminManageTourController::class, 'destroy']);
 
@@ -174,6 +175,8 @@ Route::get('/vendor/{id}', [VendorController::class, 'show'])->name('vendor.show
 
     Route::resource('vendor.tours', TourController::class);
     Route::resource('vendor.activity',ActivityController::class);
+    Route::resource('vendor.category',CategoryController::class);
+
     Route::resource('vendor.booking',VendorBookingController::class);
     Route::get('/vendor/booking/approved_booking/{vendor}',[VendorBookingController::class, 'approved_booking'] )
         ->name('vendor.booking.approved_booking');

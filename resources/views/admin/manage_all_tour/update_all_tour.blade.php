@@ -9,6 +9,12 @@
   </div>
   <a href="/view_all_post" class="btn btn-success text-white">Back</a>
 </div>
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
 
 
 <div class="border p-5 table_style radius">

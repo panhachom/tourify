@@ -2,7 +2,6 @@
 @section('title', 'Home')
 @section('content')
 
-
 <div class="d-flex justify-content-between align-items-center mb-5 w-full  px-4 py-3 vendor-title">
   <div class="d-flex justify-content-center align-items-center">
     <i class="bi bi-back h4 me-3 vendor-icon "></i>
@@ -10,8 +9,11 @@
   </div>
   <a href="{{ route('vendor.tours.index', ['vendor' => $vendor_id]) }}" class="btn btn-success text-white">Back</a>
 </div>
- 
-
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
 @include('components/tour_tabs')
 
 <div class="border p-5 table_style radius">
@@ -92,12 +94,6 @@
             @endif
 
         </div>
-
-        @if(session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
 
         <button type="submit" class="btn btn-success text-white mt-4">Update</button>
     </form>

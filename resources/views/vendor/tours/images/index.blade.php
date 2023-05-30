@@ -9,8 +9,13 @@
     <h3>{{ $tour->name}}</h3>
   </div>
   <a href="{{ route('vendor.tours.images.create', $params) }}" class="btn btn-success">New Image</a>
-
 </div>
+
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
 
 
 @include('components/tour_tabs')

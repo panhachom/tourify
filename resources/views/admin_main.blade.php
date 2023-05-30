@@ -92,6 +92,8 @@
         </li>
 
         <li>
+  
+        <li>
         <a href="{{ route('promotion.index')}}">
         <i class="bi bi-gift"></i>
             <span class="links_name">Promotion</span>

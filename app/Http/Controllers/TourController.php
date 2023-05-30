@@ -7,6 +7,8 @@ use App\Models\Vendor;
 use App\Models\Category;
 use App\Models\Country;
 use App\Models\Activity;
+use Illuminate\Support\Facades\Session;
+
 
 use Illuminate\Http\Request;
 
@@ -35,10 +37,10 @@ class TourController extends Controller
     {
         $countries = Country::all();
         $categories = Category::all();
-
-        return view('vendor.tours.create', compact('countries', 'categories','vendor_id'));
-
+        return view('vendor.tours.create', compact('countries', 'categories', 'vendor_id'))
+            ->with('success', 'Tour created successfully!');
     }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -73,9 +75,8 @@ class TourController extends Controller
         $tour->categories()->attach($categories);
 
         $categories = Category::all();
-
-
-        return view('vendor.tours.edit', compact('tour','categories','vendor_id','tour','categories'))->with('success', 'Tour created successfully.');;
+        Session::flash('success', 'Booking created successfully!');
+        return view('vendor.tours.edit', compact('tour','categories','vendor_id','tour','categories'));
 
     }
 
@@ -92,6 +93,7 @@ class TourController extends Controller
         $categories = Category::all();
 
         return view('vendor.tours.edit', compact('tour','categories','vendor_id'));
+
         
     }
 
@@ -126,9 +128,9 @@ class TourController extends Controller
     
         $categories = $validatedData['categories'];
         $tour->categories()->sync($categories);
-    
-        return redirect()->route('vendor.tours.index', ['vendor' => $vendor->id])
-            ->with('success', 'Tour updated successfully.');
+        Session::flash('success', 'Booking update successfully!');
+        return redirect()->route('vendor.tours.index', ['vendor' => $vendor->id]);
+           
     }
 
     /**
@@ -142,7 +144,7 @@ class TourController extends Controller
         $tour = Tour::where('vendor_id', $vendor_id)->findOrFail($tourId);
         $tour->countries()->detach();
         $tour->delete();
-
+        Session::flash('success', 'Booking deleted successfully!');
         return redirect()->route('vendor.tours.index', ['vendor' => $vendor_id]);
     }
 

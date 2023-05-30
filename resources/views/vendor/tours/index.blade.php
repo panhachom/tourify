@@ -9,6 +9,11 @@
   </div>
   <a href="{{ route('vendor.tours.create', ['vendor' => $vendor_id]) }}" class="btn btn-success text-white">Create New Tour</a>
 </div>
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
 
 @if ($tours->isEmpty())
     <p>No Tour. Please add one.</p>
