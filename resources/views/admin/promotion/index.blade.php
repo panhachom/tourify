@@ -15,13 +15,14 @@
 @else
   <table class="table mt-5 table-borderless table-hover table_style">
     <thead class="thead-light header_color text-black">
-      <tr>
+      <tr >
           <th>No</th>
           <th>Title</th>
           <th>Description</th>
-          <th>Created at</th>
-          <th>Updated at</th>
-          <th>Action</th>
+          <th class="text-center">Created at</th>
+          <th class="text-center">Updated at</th>
+          <th class="text-center">Status</th>
+          <th class="text-center">Action</th>
       </tr>
     </thead>
     <tbody>
@@ -29,10 +30,20 @@
                   <tr>
                       <td>{{ $index + 1 }}</td>
                       <td>{{ $promotion_item->title }}</td>
-                      <td>{{ Str::limit($promotion_item->description, 50, '...') }}</td>
-                      <td>{{ $promotion_item->created_at -> format('d/m/Y')}} </td>
-                      <td>{{ $promotion_item->updated_at -> format('d/m/Y')}}</td>
-                      <td>
+                      <td >{{ Str::limit($promotion_item->description, 50, '...') }}</td>
+                      <td class="text-center">{{ $promotion_item->created_at -> format('d/m/Y')}} </td>
+                      <td class="text-center">{{ $promotion_item->updated_at -> format('d/m/Y')}}</td>
+                      <td class="text-center">
+                      @if($promotion_item->status == 1)
+                      <i class="bi bi-check-circle text-success"></i> <!-- Tick icon -->
+                      <span class="text-success">Active</span>
+                      @else
+                      <i class="bi bi-clock text-warning"></i> <!-- Clock icon -->
+                      <span class="text-warning">Inactive</span>
+                      @endif
+
+                    </td>
+                      <td class="text-center">
                           <a href=" {{route( 'promotion.edit',['promotion' => $promotion_item->id])}}" class="btn btn-sm btn-light"><i class="bi bi-pencil text-primary font-weight-bold p-3">Edit</i></a>
                           <form action="{{route( 'promotion.destroy',['promotion' => $promotion_item->id])}}" method="POST" class="d-inline">
                                   @csrf

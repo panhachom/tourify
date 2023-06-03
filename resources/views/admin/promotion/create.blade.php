@@ -89,8 +89,16 @@
                 </div>
                 @endif         
             </div>
-            <label>Status :</label>
-            <input type="checkbox" name="status" style="width: 30px; height: 30px;" value="1">
+            <div class="col-md-6 mb-3">
+                <label class="form-check-label">Status:</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="status" id="statusCheckbox" style="width: 30px; height: 30px;">
+                    <label class="form-check-label" for="statusCheckbox">
+                        <span id="statusText" class="ms-2">Inactive</span>
+                    </label>
+                </div>
+            </div>
+            
         </div>
         </div>
 
@@ -112,7 +120,19 @@
     </form>
 </div>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const statusCheckbox = document.getElementById('statusCheckbox');
+        const statusText = document.getElementById('statusText');
+
+        statusCheckbox.addEventListener('change', function () {
+            if (this.checked) {
+                statusText.textContent = 'Active';
+            } else {
+                statusText.textContent = 'Inactive';
+            }
+        });
+    });
+</script>
 
 @endsection
-    
-

@@ -7,7 +7,7 @@
     <i class="bi bi-back h4 me-3 vendor-icon "></i>
     <h3>{{$promotion->title}}</h3>
   </div>
-  <a href="{{ route('promotion.index') }}" class="btn btn-success text-white">Back</a>
+  <a href="{{ route('promotion.index') }}" class="btn btn-primary text-white">Back</a>
 </div>
 
 <div class="border p-5 rounded">
@@ -92,10 +92,15 @@
 </div>
 
                 
-                <div>
-                    <label>Status:</label>
-                    <input type="checkbox" name="status" style="width: 30px; height: 30px;" value="1" {{ old('status', $promotion->status) ? 'checked' : '' }}>
-                </div>
+<div class="col-md-6 mb-3">
+    <label class="form-check-label">Status:</label>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="status" id="statusCheckbox" style="width: 30px; height: 30px;" value="1" {{ old('status', $promotion->status) ? 'checked' : '' }}>
+        <label class="form-check-label" for="statusCheckbox">
+            <span id="statusText" class="ms-2">{{ old('status', $promotion->status) ? 'Active' : 'Inactive' }}</span>
+        </label>
+    </div>
+</div>
             </div>
         </div>
 
@@ -115,5 +120,20 @@
         <button type="submit" class="btn btn-success text-white mt-4">Edit</button>
     </form>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const statusCheckbox = document.getElementById('statusCheckbox');
+        const statusText = document.getElementById('statusText');
+
+        statusCheckbox.addEventListener('change', function () {
+            if (this.checked) {
+                statusText.textContent = 'Active';
+            } else {
+                statusText.textContent = 'Inactive';
+            }
+        });
+    });
+</script>
 
 @endsection
