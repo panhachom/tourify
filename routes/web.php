@@ -32,6 +32,7 @@ use App\Http\Controllers\VendorBookingController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerPromotionController;
+use App\Http\Controllers\AdminBookingController;
 
 
 use App\Mail\MyTestEmail;
@@ -48,6 +49,7 @@ Route::get('filter', [HomeController::class,'filter']);
 
 
 Route::resource('tour_list',TourListController::class);
+
 Route::get('/sport-category', [TourListController::class, 'sport_category'])->name('sport-category');
 Route::get('/adventure-category', [TourListController::class, 'adventure_category'])->name('adventure-category');
 Route::get('/cultural-category', [TourListController::class, 'cultural_category'])->name('cultural-category');

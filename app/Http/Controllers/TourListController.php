@@ -52,6 +52,7 @@ class TourListController extends Controller
     public function show($tourId)
     {
         $tour = Tour::findOrFail($tourId);
+        $tour->increment('view');
         // dd($tour);
         return view('tour_list.show', compact('tour'));
     }
