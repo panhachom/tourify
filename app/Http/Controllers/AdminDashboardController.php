@@ -6,6 +6,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Tour;
 use App\Models\User;
+use App\Models\Activity;
+use App\Models\Vendor;
+use App\Models\Booking;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 
@@ -18,17 +21,29 @@ class AdminDashboardController extends Controller
      */
     public function index()
     {
+        $tours = Tour::all();
+        $vendor = Vendor::all();
+        $activities = Activity::all();
+        $bookings = Booking::all();
+        $estimate_earn = Booking::where('approved', '1')->sum('price');
+        $pendding_booking= Booking::where('approved', '0')->count();
         $this_month = Carbon::now()->format('m');
         $data['total_post'] = Tour::count();
-        $data['total_user'] = User::count();
+        $total_user = User::count();
         $data['total_admin'] = User::where('role', 'admin')->count();
         $data['total_vendor'] = User::where('role', 'vendor')->count();
         $data['total_customer'] = User::where('role', 'customer')->count();
         $data['post_by_months'] = Tour::whereMonth('updated_at', $this_month)->count();
+        
+        $recentPost = Tour::orderBy('created_at', 'desc')->take(5)->get();
+        $last_vendor = Vendor::orderBy('created_at', 'desc')->take(5)->get();
+        $recentBookings = Booking::orderBy('created_at', 'desc')->take(5)->get();
+        $last_customer = User::orderBy('created_at', 'desc')->where('role', 'customer')->take(5)->get();
 
         
 
-        return view('admin/dashbaord.index', $data);
+        return view('admin/dashbaord.index', compact('tours', 'vendor', 'activities', 'bookings', 'estimate_earn' ,'total_user', 'pendding_booking' ,'recentPost'
+                    ,'last_vendor', 'recentBookings', 'last_customer'));
     }
 
     /**
