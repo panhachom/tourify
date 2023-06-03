@@ -134,9 +134,9 @@
             <td>{{ $booking->tours->first()->name }}</td>
             <td class="text-center">
               @if($booking->approved)
-                <i class="bi bi-check-circle text-success"></i> <!-- Icon for tick -->
+                <i class="bi bi-check-circle text-success"></i><span>Approve</span> <!-- Icon for tick -->
               @else
-                <i class="bi bi-clock text-warning"></i> <!-- Icon for pending -->
+                <i class="bi bi-clock text-warning"></i><span>Pendding</span> <!-- Icon for pending -->
               @endif
             </td>
             <td class="text-success">

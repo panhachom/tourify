@@ -59,6 +59,46 @@ font-size: 22px;
 font-size: 22px;
 }
 
+.dashboard-card-4 {
+  width: 280px;
+  height: 120px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-left: 6px solid #b14a30 ;
+  border-radius: 5px;
+}
+
+.dashboard-card-4 .circle-button {
+  width: 55px;
+  height: 55px;
+  background-color: #b14a30;
+  color: white;
+  border-radius: 50%;
+}
+
+.dashboard-card-4 .circle-button i {
+font-size: 22px;
+}
+
+.dashboard-card-5 {
+  width: 280px;
+  height: 120px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-left: 6px solid rgb(247, 203, 115);
+  border-radius: 5px;
+}
+
+.dashboard-card-5 .circle-button {
+  width: 55px;
+  height: 55px;
+  background-color: rgb(247, 203, 115);
+  color: white;
+  border-radius: 50%;
+}
+
+.dashboard-card-3 .circle-button i {
+font-size: 22px;
+}
+
 .table-border-dashboard {
   background-color:white;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
