@@ -6,6 +6,8 @@
     border-radius: 15px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     position: relative;
+    transition-duration: 0.5s;
+
   }
 
   .card-item .location-icon {
@@ -17,7 +19,12 @@
     background-color: rgba(109, 109, 109, 0.5);
     color: white;
     border-radius: 18px;
+
   }
+  .card-item:hover {
+    transform: translateY(-10px);
+
+}
   .card-image img{
     border-radius: 15px 15px 0 0px;
     height: 205px;
@@ -69,7 +76,7 @@
           <div>
           <div class="text-sm font-extralight">Price</div>
           <div>
-            <span class="font-bold">{{ $price }}</span>
+            <span class="font-bold"> $ {{ $price }}</span>
             <span class="text-sm font-extralight">/ Person</span>
           </div>
           

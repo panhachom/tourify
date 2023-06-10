@@ -36,7 +36,7 @@ class ActivityTourController extends Controller
         $tour->activities()->attach($activity);
 
 
-        return back()->with('success', 'Activity added successfully.');
+        return back();
     }
 
 }

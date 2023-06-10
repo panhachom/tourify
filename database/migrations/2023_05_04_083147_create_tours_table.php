@@ -22,7 +22,6 @@ return new class extends Migration
 
             $table->integer('capacity');
             $table->integer('qty');
-            $table->float('discount_price')->unsigned()->nullable();
 
             $table->timestamps();
 

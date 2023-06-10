@@ -7,7 +7,7 @@
     <i class="bi bi-back h4 me-3 vendor-icon "></i>
     <h3>{{ $tour->name}}</h3>
   </div>
-  <a href="{{ route('vendor.tours.index', ['vendor' => $vendor_id]) }}" class="btn btn-success text-white">Back</a>
+  <a href="{{ route('vendor.tours.index', ['vendor' => $vendor_id]) }}" class="btn btn-primary text-white">Back</a>
 
 </div>
 @if(session('success'))

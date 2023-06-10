@@ -22,7 +22,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\ActivityTourController;
 use App\Http\Controllers\AdminDashboardController;
-use App\Http\Controllers\AdminManageTourContoller;
 use App\Http\Controllers\AdminVendorController;
 use App\Http\Controllers\CountryTourController;
 use App\Http\Controllers\TourDateController;
@@ -160,10 +159,10 @@ Route::middleware('admin')->group(function () {
 
 
     //Manage All Tour Post
-    Route::get('/view_all_post', [AdminManageTourContoller::class, 'index']);
-    Route::get('/tour/{id}/edit',[AdminManageTourContoller::class, 'edit']);
-    Route::put('/tour/{id}', [AdminManageTourContoller::class, 'update']);
-    Route::get('/delete_tour_post/{id}',[AdminManageTourContoller::class, 'destroy']);
+    Route::get('/view_all_post', [AdminManageTourController::class, 'index']);
+    Route::get('/tour/{id}/edit',[AdminManageTourController::class, 'edit']);
+    Route::put('/tour/{id}', [AdminManageTourController::class, 'update']);
+    Route::get('/delete_tour_post/{id}',[AdminManageTourController::class, 'destroy']);
 
     Route::get('view_dashboard', [AdminDashboardController::class, 'index'])->name('admin_panel');
     Route::get('view_dashboard_test', [AdminDashboardController::class, 'create']);

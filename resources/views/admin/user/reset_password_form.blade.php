@@ -18,7 +18,7 @@
                         <input type="email" name="email" id="email"  placeholder="example@email.com">
                     <button type="submit" class="btn btn-primary">Reset</button>
                     <p class="text-sm font-light text-gray-500 dark:text-gray-400 p-5">
-                         <a href="/" class="btn btn-success">Back</a>
+                         <a href="/" class="btn btn-primary">Back</a>
                     </p>
                 </form>
             </div>
