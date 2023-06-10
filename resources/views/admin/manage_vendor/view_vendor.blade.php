@@ -19,7 +19,6 @@
             <!-- <th>About US</th> -->
             <th>Contact</th>
             <th>Logo</th>
-            <th>User ID</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -33,8 +32,7 @@
                     <td>{{$vendor_data->name}}</td>
                     <td>{{$vendor_data->email}}</td>         
                     <td>{{$vendor_data->contact}}</td>
-                    <td><img src="/vendor/{{$vendor_data->logo}}" alt="" width="100px" class="ml-5"></td>
-                    <td>{{$vendor_data->user_id}}</td>
+                    <td><img src="/vendor/{{$vendor_data->logo}}" alt="" width="50px" height="50px" class="ml-5"></td>
                     <td>
                     <a href="{{url('vendor/'.$vendor_data->id.'/edit')}}" class="btn btn-sm btn-light">
                             <i class="bi bi-pencil text-primary font-weight-bold  "> Edit</i>

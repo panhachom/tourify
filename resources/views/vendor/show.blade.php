@@ -23,26 +23,20 @@
 
     <?php
     $vendor_info = App\Models\Vendor::findOrFail($vendor_id);
-    $dashboard = 'http://127.0.0.1:8000/vendor/' . $vendor_info->id;
+    $dashboard = 'http://localhost:8000/vendor/' . $vendor_info->id;
    ?>
         
     <div class="sidebar">
         <div class="logo-details">
             @if($vendor_info->logo)
-            <img src="{{ asset('images/vendor/' . $vendor_info->logo) }}" id="btn-logo" class="ms-1" alt="Tour Image" style="width: 40px;height: 40px;">
+            <!-- <img src="{{ asset('images/vendor/' . $vendor_info->logo) }}" id="btn-logo" class="ms-1" alt="Tour Iasdfasdfsadfsmage" style="width: 40px;height: 40px;"> -->
+            <img src="https://png.pngtree.com/png-clipart/20230404/original/pngtree-beach-logo-design-template-png-image_9025206.png"id="btn-logo" class="ms-1" alt="Tour Iasdfasdfsadfsmage" style="width: 40px;height: 40px;">
             @else
                 <img src="{{ asset('images/default-logo.png') }}" alt="Default Image"  style="width: 40px;height: 40px;">
             @endif           
         <div class="logo_name px-3">{{$vendor_info->name}}</div>
         </div>
         <div>
-        <li>
-            <a href="/view_vendor_dashbaord, ['vendor' => $vendor_id]">
-            <i class='bx bx-category'></i>
-            <span class="links_name">Dashbaord</span>
-            </a>
-            <span class="tooltip">Dashboard</span>
-        </li>
      
         <li>
             <a href="{{ route('vendor.tours.index', ['vendor' => $vendor_id]) }}">
@@ -102,6 +96,7 @@
          @yield('content')
         </div>
     </section>
+
   <script>
         let sidebar = document.querySelector(".sidebar");
         let closeBtn = document.querySelector("#btn-logo");

@@ -40,13 +40,7 @@
             <i class='bx bx-menu' id="btn" ></i>
         </div>
         <div class="nav-list">
-        <li>
-            <a href="/view_dashboard">
-            <i class='bx bx-category'></i>
-            <span class="links_name">Dashboard</span>
-            </a>
-            <span class="tooltip">Dashboard</span>
-        </li>
+   
         <li>
             <a href="/view_all_post">
             <i class='bx bx-grid-alt'></i>
@@ -68,29 +62,7 @@
         </a>
         <span class="tooltip">Vendor</span>
         </li>
-        <li>
-        <!-- <a href="#">
-            <i class='bx bx-category' ></i>
-            <span class="links_name">Category</span>
-        </a> -->
-        <span class="tooltip">Category</span>
-        </li>
-        <li>
-        <li>
-        <a href="#">
-            <i class='bx bx-slideshow' ></i>
-            <span class="links_name">Slider</span>
-        </a>
-        <span class="tooltip">Slider</span>
-        </li>
-        <li>
-        <a href="#">
-            <i class='bx bx-location-plus' ></i>
-            <span class="links_name">Location</span>
-        </a>
-        <span class="tooltip">Location</span>
-        </li>
-
+     
         <li>
   
         <li>

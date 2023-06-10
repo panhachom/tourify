@@ -7,7 +7,7 @@
     <i class="bi bi-back h4 me-3 vendor-icon "></i>
     <h4> Booking Number : {{ strtoupper(substr($booking->tours->first()->vendor->name, 0, 3)) }}-{{ $booking->booking_number }}</h4>
   </div>
-  <a href="{{ route('vendor.booking.index', ['vendor' => $vendor_id]) }}" class="btn btn-success text-white">Back</a>
+  <a href="{{ route('vendor.booking.index', ['vendor' => $vendor_id]) }}" class="btn btn-primary text-white">Back</a>
 
 </div>
 

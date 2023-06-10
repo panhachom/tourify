@@ -53,8 +53,10 @@ class TourListController extends Controller
     {
         $tour = Tour::findOrFail($tourId);
         $tour->increment('view');
+        $latetours = Tour::take(3)->get();
+
         // dd($tour);
-        return view('tour_list.show', compact('tour'));
+        return view('tour_list.show', compact('tour','latetours'));
     }
     public function getByCategory($category)
     {

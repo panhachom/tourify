@@ -7,7 +7,7 @@
     <i class="bi bi-back h4 me-3 vendor-icon "></i>
     <h3>{{ $category->name}}</h3>
   </div>
-  <a href="{{ route('vendor.category.index', ['vendor' => $vendor_id]) }}" class="btn btn-success text-white">Back</a>
+  <a href="{{ route('vendor.category.index', ['vendor' => $vendor_id]) }}" class="btn btn-primary text-white">Back</a>
 
 </div>
 

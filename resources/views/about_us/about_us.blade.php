@@ -124,9 +124,9 @@
                   </ul>
               </div>
           </div> 
-          <div class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700">
+          <div class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-gray-800 dark:border-gray-700 w">
               <a href="#">
-                 <img class="w-72 h-56 rounded-lg sm:rounded-none sm:rounded-l-lg" src="{{ asset('images/mu.jpg') }}" alt="nita">
+                 <img class="w-72 h-56 rounded-lg sm:rounded-none sm:rounded-l-lg" src="{{ asset('images/mu.jpg') }}" alt="nita" width="200px">
               </a>
               <div class="p-5">
                   <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">

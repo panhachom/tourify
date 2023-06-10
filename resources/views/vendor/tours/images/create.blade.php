@@ -4,7 +4,7 @@
 
 <div class="d-flex justify-content-between align-items-center mb-5">
     <h3>{{ $tour->name}}</h3>
-    <a href="{{ route('vendor.tours.images.index', ['vendor' => $vendor_id,'tour' =>  $tour->id]) }}" class="btn btn-success text-white">Back</a>
+    <a href="{{ route('vendor.tours.images.index', ['vendor' => $vendor_id,'tour' =>  $tour->id]) }}" class="btn btn-primary text-white">Back</a>
 </div>
 
 @include('components/tour_tabs')

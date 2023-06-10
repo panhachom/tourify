@@ -4,7 +4,6 @@
 				<div class="flex items-center gap-2">
 					<div class="logo w-12 h-12 rounded-full flex justify-center items-center">
 						<div class="font-bold text-white "><img src="{{ asset('images/logo.png') }}" alt="" class="rounded-full"></div>
-
 					</div>
 					<div>
 						<div class="font-bold tracking-wide	 text-lg">Tourify</div>
@@ -43,6 +42,7 @@
 			@auth
 			<div class="flex gap-5">
 				<p>{{auth()->user()->username}}</p>
+
 				<a href="{{ route('logout.perform') }}" class="btn btn-outline-light me-2">Logout</a>
 			</div>
 			@endauth

@@ -3,7 +3,7 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-5">
     <h3>Create New Category</h3>
-    <a href="{{ route('vendor.category.index', ['vendor' => $vendor_id]) }}" class="btn btn-success text-white">Back</a>
+    <a href="{{ route('vendor.category.index', ['vendor' => $vendor_id]) }}" class="btn btn-primary text-white">Back</a>
 </div>
 
 <div class="border p-5 rounded">

@@ -42,7 +42,7 @@ public function getTour(Request $request)
         $request->validate([
             'image_name' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'title' => ['required', 'string', 'regex:/^[a-zA-Z0-9\s]+$/'],
-            'description' => ['required', 'string', 'regex:/^[a-zA-Z0-9\s]+$/'],
+            'description' => ['required', 'string'],
             'percent' => 'required|numeric|regex:/^\d+(\.\d{1,2})?$/',
             'start_date' => 'required|date',
             'end_date' => 'required|date|after:start_date',
@@ -52,7 +52,6 @@ public function getTour(Request $request)
             'image_name.mimes' => 'The uploaded file must be a JPEG, PNG, JPG, or GIF image.',
             'image_name.max' => 'The uploaded file may not be larger than 2MB.',
             'title.regex' => 'The title should not contain special characters.',
-            'description' => 'The description should not contain special characters.',
         ]);
 
         $image = $request ->file('image_name');
@@ -92,7 +91,7 @@ public function getTour(Request $request)
 
         $promotions->tours()->attach($tours);
     
-        return redirect()->route('promotion.index')->with('success', 'Activity created successfully');
+        return redirect()->route('promotion.index')->with('success', 'Promotion created successfully');
     }
 
     public function add_tour (){
@@ -115,7 +114,7 @@ public function getTour(Request $request)
     $validateData = $request->validate([
         'image_name' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         'title' => ['required', 'string', 'regex:/^[a-zA-Z0-9\s]+$/'],
-        'description' => ['required', 'string', 'regex:/^[a-zA-Z0-9\s]+$/'],
+        'description' => ['required', 'string'],
         'percent' => 'required|numeric|regex:/^\d+(\.\d{1,2})?$/',
         'start_date' => 'required|date',
         'end_date' => 'required|date|after:start_date',
@@ -127,7 +126,6 @@ public function getTour(Request $request)
         'image_name.mimes' => 'The uploaded file must be a JPEG, PNG, JPG, or GIF image.',
         'image_name.max' => 'The uploaded file may not be larger than 2MB.',
         'title.regex' => 'The title should not contain special characters.',
-        'description' => 'The description should not contain special characters.',
         'vendor_id.exists' => 'Invalid vendor selected.',
         'status.boolean' => 'The status field must be either true or false.',
     ]);

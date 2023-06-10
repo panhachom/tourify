@@ -7,7 +7,7 @@
     <i class="bi bi-back h4 me-3 vendor-icon "></i>
     <h3>Booking</h3>
   </div>
-  <a href="{{ route('booking.index') }}" class="btn btn-success text-white">Back</a>
+  <a href="{{ route('booking.index') }}" class="btn btn-primary text-white">Back</a>
 </div>
 
 <div class="border p-5 table_style radius">

@@ -7,7 +7,7 @@
     <i class="bi bi-back h4 me-3 vendor-icon "></i>
     <h3>{{ $tour->name}}</h3>
   </div>
-  <a href="/view_all_post" class="btn btn-success text-white">Back</a>
+  <a href="/view_all_post" class="btn btn-primary text-white">Back</a>
 </div>
 @if(session('success'))
     <div class="alert alert-success">
