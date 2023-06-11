@@ -16,32 +16,36 @@
 			<div class=""><a href="{{ route('home.index') }}">Home</a></div>
 			<div class=""><a href="{{ route('about.index') }}">About Us</a></div>
 			<div class=""><a href="{{ route('tour_list.index') }}">Tours</a></div>
-			<!-- <div class='max-w-md mx-auto'>
-				<div class="relative flex items-center w-full h-9 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
-					<div class="grid place-items-center h-full w-12 text-gray-300">
-						<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-						</svg>
-					</div>
-
-					<input
-					class="peer h-full w-full outline-none text-sm text-gray-700 pr-2"
-					type="text"
-					id="search"
-					placeholder="Search something.." /> 
-				</div>
-			</div> -->
 			<div class=" sign-in "><a href="#">Login</a></div>
 			<div class=" sign-in "><a href="#">Register</a></div>
 		</div>
 
-
-
-
 		<div class="navbar-section-3">
 			@auth
 			<div class="flex gap-5">
-				<p>{{auth()->user()->username}}</p>
+				<div class="max-w-lg mx-auto">
+   					 <button type="button" data-dropdown-toggle="dropdown">{{auth()->user()->username}}</button>
+				<div class="hidden bg-white text-base z-50 list-none divide-y divide-gray-100 rounded shadow my-4" id="dropdown">
+				
+					<ul class="py-1" aria-labelledby="dropdown">
+					<li>
+						<a href="{{ route('profile') }}" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Profile</a>
+					</li>
+					<li>
+						<a href="{{ route('wishlist') }}" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Wishlist</a>
+					</li>
+					<li>
+						<a href="#" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Earnings</a>
+					</li>
+					<li>
+						<a href="#" class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">Sign out</a>
+					</li>
+					</ul>
+				</div>
+
+			</div>
+
+
 
 				<a href="{{ route('logout.perform') }}" class="btn btn-outline-light me-2">Logout</a>
 			</div>
@@ -58,6 +62,8 @@
 		</div>
 	</div>
 </nav>
+
+
 <script>
 	const hambergerBtn = document.getElementById("hamberger-btn");
 	const centerMenu = document.querySelector("#center-menu");

@@ -1,11 +1,68 @@
     <!-- component -->
-     @extends('app')
+    @extends('app')
      @section('title', 'Home')
      @section('content')
 
 
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <style>
 
+       
+        @media (min-width: 768px) {
+        .user {
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .edit {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .md\:p-8 {
+            padding: 2rem;
+        }
+
+        .pb-8 {
+            padding-bottom: 2rem;
+        }
+
+        .md\:pb-0 {
+            padding-bottom: 0;
+        }
+
+        .mt-6 {
+            margin-top: 1.5rem;
+        }
+
+        .mt-4 {
+            margin-top: 1rem;
+        }
+
+        .mt-5 {
+            margin-top: 1.25rem;
+        }
+        }
+
+        @media (min-width: 1024px) {
+        .lg\:px-20 {
+            padding-left: 5rem;
+            padding-right: 5rem;
+        }
+
+        .mt-6 {
+            margin-top: 2rem;
+        }
+
+        .mt-4 {
+            margin-top: 1.5rem;
+        }
+
+        .mt-5 {
+            margin-top: 1.75rem;
+        }
+        }
+
+    </style>
    
  @include('components/navbar')
 <div class="my-50">
@@ -15,8 +72,8 @@
             <!-- Left Side -->
             <div class="w-full md:w-3/12 md:mx-2">
                 <!-- Profile Card -->
-                <div class="bg-white p-3 border-t-4 border-primary">
-                    <div class="image overflow-hidden m-9">
+                <div class=" user bg-white p-3 border-t-4 border-primary">
+                    <div class="image overflow-hidden m-9 items-center">
                        <svg height="200px" width="200px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" fill="#ed6f07" stroke="#ed6f07"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path style="fill:#FFFFFF;" d="M256,508C117.04,508,4,394.96,4,256S117.04,4,256,4s252,113.04,252,252S394.96,508,256,508z"></path> <path style="fill:#D6D6D6;" d="M256,8c136.752,0,248,111.248,248,248S392.752,504,256,504S8,392.752,8,256S119.248,8,256,8 M256,0 C114.608,0,0,114.608,0,256s114.608,256,256,256s256-114.608,256-256S397.392,0,256,0L256,0z"></path> <g> <ellipse style="fill:#e0720b;" cx="256" cy="175.648" rx="61.712" ry="60.48"></ellipse> <path style="fill:#e0720b;" d="M362.592,360.624c0-57.696-47.728-104.464-106.592-104.464s-106.592,46.768-106.592,104.464H362.592 z"></path> </g> </g></svg>
                     </div>
                      {{-- <form action="/upload" method="POST" enctype="multipate/form-data">
@@ -95,7 +152,7 @@
                 <div class="my-4"></div>
 
                 <!-- Edit Password -->
-                <div class="bg-white p-3 shadow-sm rounded-sm ">
+                <div class=" edit bg-white p-3 shadow-sm rounded-sm w-full md:w-11/12 ">
 
                     <div class="grid grid-cols-2  ">
                         <div>
@@ -172,5 +229,3 @@
 
 
 <!-- component --> 
-
-
