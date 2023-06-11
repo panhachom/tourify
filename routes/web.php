@@ -32,7 +32,7 @@ use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerPromotionController;
 use App\Http\Controllers\AdminBookingController;
-
+use App\Http\Controllers\WishlistController;
 
 use App\Mail\MyTestEmail;
 use Illuminate\Support\Facades\Mail;
@@ -65,8 +65,15 @@ Route::get('/input', [SignInController::class, 'input']);
 Route::get('/verification', [SignInController::class, 'verification']);
 
 Route::get('/list', [listourController::class, 'index']);
-Route::get('/profile', [ProfileSettingController::class, 'index']);
+Route::get('/profile', [ProfileSettingController::class, 'index'])->name('profile');
+Route::get('/wishlist', [WishlistController::class, 'index']);
+
 Route::post('/profile', [ProfileSettingController::class, 'updatePassword'])->name('update-password');
+Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist');
+Route::post('favorite-add/{id}', [WishlistController::class, 'favoriteAdd'])->name('favorite.add');
+Route::delete('favorite-remove/{id}', [WishlistController::class, 'favoriteRemove'])->name('favorite.remove');
+
+
 
 
 /*

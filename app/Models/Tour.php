@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Maize\Markable\Markable;
+use Maize\Markable\Models\Favorite;
 class Tour extends Model
 {
-    use HasFactory;
+    use HasFactory, Markable;
 
     protected $fillable =[
         'name',
@@ -16,6 +17,11 @@ class Tour extends Model
         'capacity',
         'qty',
         'inStock'
+    ];
+
+
+    protected static $marks = [
+        Favorite::class,
     ];
 
     public function vendor()

@@ -37,6 +37,8 @@
     font-size: 13px;
     border-radius: 18px;
     height: 35px;
+    color:red; 
+    background-color: transparent;
   }
   .max-line {
     overflow: hidden;
@@ -56,9 +58,10 @@
 <a href="{{ route('tour_list.show', ['tour_list' => intval($id)]) }}">
   <div class="card-item flex flex-col">
       <div class="location-icon px-5 py-2 flex">
-      <i class="fa-solid fa-location-dot me-3 my-1"></i>
-    
-      <p>{{ $placeName }}</p>
+        <i class="fa-solid fa-location-dot me-3 my-1 text-sm"></i>
+        <p>{{ $placeName }}</p>
+      </div>
+      <div>
       </div>
       <div class="card-image">
         <img src="{{ asset('images/tours/' . $image) }}" alt="Tour Image">
@@ -81,8 +84,17 @@
           </div>
           
         </div>
-          <button class="bg-primary text-white px-4 py-1"> View Detail</button>
-        </div>
+        <form action="{{ route('favorite.add', intval($id)) }}" method="POST" enctype="multipart/form-data">
+             @csrf
+          <button class="">
+              <div class="flex gap-2 justify-center items-center py-2 px-2">
+                <img src="https://cdn-icons-png.flaticon.com/128/7245/7245139.png" width="35" alt="">
+                <div class=' text-gray-500'> Add to Favorite</div>
+              </div>
+          </button>
+      </form>
+      </div>
+
       </div>
   </div>
 
