@@ -2,7 +2,7 @@
     @extends('app')
     @section('title', 'Home')
     @section('content')
-        @include('components/navbar')
+        
         <title>Detailpage</title>
         <style>
             .image .mx-auto{
@@ -157,5 +157,5 @@
 
  
   
-@include('components/footer')
+
 @endsection

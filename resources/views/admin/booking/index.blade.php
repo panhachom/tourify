@@ -29,7 +29,6 @@
           <th>Tour Name</th>
           <th class= "text-center">Customer</th>
           <th class="text-center">Quantity</th>
-          <th class= "text-center">Approved</th>
           <th class= "text-center">Action</th>
       </tr>
     </thead>
@@ -37,17 +36,11 @@
       @foreach($bookings as $index => $booking_item)
                   <tr>
                       <td>{{ $index + 1 }}</td>
-                      <td>{{ $booking_item->booking_number }}</td>
-                      <td>{{ $booking_item->tours->first()->name}}</td>
+                      <td> <strong> 
+                           {{ strtoupper(substr($booking_item->tour->vendor->name, 0, 3)) }}-{{ $booking_item->booking_number }}
+                      </strong></td>                      <td>{{ $booking_item->tour->name}}</td>
                       <td class="text-center">{{ $booking_item->user->email}}</td>
                       <td class="text-center">{{ $booking_item->quantity}}</td>
-                      <td class="text-center">
-                        @if($booking_item->approved)
-                        <i class="bi bi-check-circle text-success"></i> <!-- Icon for tick -->
-                        @else
-                        <i class="bi bi-clock text-warning"></i> <!-- Icon for pending -->
-                        @endif
-                      </td>
                       <td class="text-center">
                           <a href="{{route('booking.show', ['booking' => $booking_item->id])}}" class="btn btn-sm btn-light">
                               <i class="bi bi-eye text-primary font-weight-bold p-3"></i>View

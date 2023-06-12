@@ -3,7 +3,7 @@
      @section('title', 'Home')
      @section('content')
 
-	@include('components/navbar')
+	
 	<div class="bg-secondary">
 		<nav class=" z-10 flex justify-center space-x-4 px-10 py-6 mt-16 bg-secondary ">
 		<a href="{{ route('tour_list.index') }}" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900 hover:underline underline-offset-8 uderline decoration-2"><i class="fa-solid fa-campground " style="color: #D5603F;" ></i> All Tours</a>
@@ -32,5 +32,5 @@
 
 
 
-	@include('components/footer')
+	
 	@endsection

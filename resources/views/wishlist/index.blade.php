@@ -3,7 +3,7 @@
 @section('content')
 
 
-@include('components/navbar')
+
      <style>
         .wishlist{
             margin-top: 100px;
@@ -30,7 +30,7 @@
      </style>
 
 
-     @include('components/navbar') 
+      
 
 <div class="wishlist">
     <h2 class="mt-5 text-3xl font-medium text-center"><i class="fa thin fa-cart-shopping" style="mr-2.5"></i> My Wishlist Products</h2>
@@ -102,7 +102,7 @@
     </div>
 </div>
 
-@include('components/footer')
+
 
 
 @endsection

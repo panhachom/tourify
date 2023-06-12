@@ -54,10 +54,12 @@ class Tour extends Model
         return $this->belongsToMany(Category::class);
     }
 
+
     public function bookings()
     {
-        return $this->belongsToMany(Booking::class);
+        return $this->hasMany(Booking::class);
     }
+
 
     public function updateStatusIfQuantityPositive()
     {

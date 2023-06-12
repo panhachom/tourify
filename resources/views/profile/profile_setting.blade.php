@@ -64,7 +64,7 @@
 
     </style>
    
- @include('components/navbar')
+ 
 <div class="my-50">
     <!-- End of Navbar -->
     <div class="container mx-auto my-20 p-5">
@@ -223,7 +223,7 @@
 </div>
 </div>
 <div class="mt-96">
-@include('components/footer')
+
 </div>
 
 

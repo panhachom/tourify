@@ -11,7 +11,7 @@
     @extends('app')
     @section('title', 'Home')
     @section('content')
-        @include('components/navbar')
+        
         <title>Detailpage</title>
         <style>
             .image .mx-auto{
@@ -145,6 +145,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
 
     </body>
-    @include('components/footer')
+    
 @endsection
 </html>

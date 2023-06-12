@@ -107,7 +107,7 @@
         </table>
     </div>
     <div class="col-5 ">
-        <h4 class="my-3 h4-2 text-warning">Last 5 Vendor</h4>
+        <h4 class="my-3 h4-2 text-warning">Latest Vendor</h4>
 
         <table class="table align-middle mb-0 bg-white table-border-dashboard">
             <thead class="bg-light">
@@ -154,10 +154,10 @@
           <tr>
             <td>
               <strong> <i>
-                  {{ strtoupper(substr($booking->tours->first()->vendor->name, 0, 3)) }}-{{ $booking->booking_number }}
+                  {{ strtoupper(substr($booking->tour->vendor->name, 0, 3)) }}-{{ $booking->booking_number }}
               </i></strong>
             </td>
-            <td>{{ $booking->tours->first()->name }}</td>
+            <td>{{ $booking->tour->name }}</td>
             <td class="text-center">
               @if($booking->approved)
                 <i class="bi bi-check-circle text-success"></i> <span>Approve</span> <!-- Icon for tick -->

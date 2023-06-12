@@ -10,16 +10,21 @@ class Booking extends Model
 {
     use HasFactory;
 
+
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-
-    public function tours()
-    {
-        return $this->belongsToMany(Tour::class);
-    }
     
+    public function tour()
+    {
+        return $this->belongsTo(Tour::class);
+    }
+
+    public function payment()
+    {
+        return $this->belongsTo(Payment::class);
+    }
 
    public static function generateBookingNumber($vendorId)
     {
