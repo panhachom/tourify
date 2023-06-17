@@ -33,22 +33,26 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerPromotionController;
 use App\Http\Controllers\AdminBookingController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\VendorPaymentController;
+use App\Http\Controllers\AdminPaymentController;
+
 
 use App\Mail\MyTestEmail;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\UpdateController;
 
+// HOMEPAGE 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
-
-
 Route::get('/detailpage', [DetailPageController::class, 'index'])->name('detailpage.index');
 Route::get('/signup', [HomeController::class, 'signup']);
 Route::get('/search',[HomeController::class,'index'])->name('search');
 Route::get('filter', [HomeController::class,'filter']);
+Route::get('/about', [AboutusController::class, 'index'])->name('about.index');
 
+
+// TOURLIST 
 
 Route::resource('tour_list',TourListController::class);
-
 Route::get('/sport-category', [TourListController::class, 'sport_category'])->name('sport-category');
 Route::get('/adventure-category', [TourListController::class, 'adventure_category'])->name('adventure-category');
 Route::get('/cultural-category', [TourListController::class, 'cultural_category'])->name('cultural-category');
@@ -56,9 +60,7 @@ Route::get('/food_and_drink-category', [TourListController::class, 'food_and_dri
 Route::get('/history-category', [TourListController::class, 'history_category'])->name('history-category');
 
 
-
-// Route::get('/list', [listourController::class, 'index'])->name('list.index');
-Route::get('/about', [AboutusController::class, 'index'])->name('about.index');
+// LOGIN AND SIGN UP 
 Route::get('/SignIn', [SignInController::class, 'index']);
 Route::get('/phoneNumber', [SignInController::class, 'phoneNumber']);
 Route::get('/input', [SignInController::class, 'input']);
@@ -76,33 +78,9 @@ Route::delete('favorite-remove/{id}', [WishlistController::class, 'favoriteRemov
 
 
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-// admin dashbaord Route backend only
-
-// Route::get('/theadmin', [AdminController::class, 'index']);
-
-
-// Route::get('/admins', function () {
-//     return view('admin.dashboard');
-// })->name('admins');
-
+// ADMIN 
 
 Route::middleware('admin')->group(function () {
-
     Route::get('/admins', function () {return view('admin/dashboard');})->name('admins');
     Route::get('/admins/view_slider', [SliderController::class, 'index']);
     Route::get('/admins/create_slider', [SliderController::class, 'create']);
@@ -118,7 +96,6 @@ Route::middleware('admin')->group(function () {
     Route::put('/user/{id}', [UserController::class, 'update']);
     Route::get('/delete_user/{id}', [UserController::class, 'destroy']);
 
-    // Route::get('/delete_user/{id}', [UserController::class, 'destroy']);
     Route::get('/delete_user/{id}', [UserController::class, 'destroy']);
     Route::get('/reset_password', [UserController::class, 'reset_password']);
     Route::get('/show_customer',[UserController::class, 'show_customer']);
@@ -134,12 +111,6 @@ Route::middleware('admin')->group(function () {
 
     Route::resource('promotion',PromotionController::class);
     Route::post("/tours", [PromotionController::class, 'getTour'])->name('get-tour');
-
-    Route::resource('booking',AdminBookingController::class);
-
-  
-    
-
     Route::post("/tours", [PromotionController::class, 'getTour'])->name('get-tour');
 
 
@@ -162,9 +133,6 @@ Route::middleware('admin')->group(function () {
     Route::put('/tour/{id}', [AdminManageTourController::class, 'update']);
     Route::get('/delete_tour_post/{id}', [AdminManageTourController::class, 'destroy']);
 
-
-
-
     //Manage All Tour Post
     Route::get('/view_all_post', [AdminManageTourController::class, 'index']);
     Route::get('/tour/{id}/edit',[AdminManageTourController::class, 'edit']);
@@ -174,18 +142,24 @@ Route::middleware('admin')->group(function () {
     Route::get('view_dashboard', [AdminDashboardController::class, 'index'])->name('admin_panel');
     Route::get('view_dashboard_test', [AdminDashboardController::class, 'create']);
 
+    Route::resource('booking',AdminBookingController::class);
+    Route::resource('payment',AdminPaymentController::class);
+
+
+
 });
 
+// VENDOR 
 
 Route::middleware('auth.vendor')->group(function () {
-Route::get('/vendor/{id}', [VendorController::class, 'show'])->name('vendor.show');
-
-
+    Route::get('/vendor/{id}', [VendorController::class, 'show'])->name('vendor.show');
     Route::resource('vendor.tours', TourController::class);
     Route::resource('vendor.activity',ActivityController::class);
     Route::resource('vendor.category',CategoryController::class);
 
     Route::resource('vendor.booking',VendorBookingController::class);
+    Route::resource('vendor.payment',VendorPaymentController::class);
+
     Route::get('/vendor/booking/approved_booking/{vendor}',[VendorBookingController::class, 'approved_booking'] )
         ->name('vendor.booking.approved_booking');
     Route::get('/vendor/booking/unapproved_booking/{vendor}',[VendorBookingController::class, 'unapproved_booking'] )
@@ -212,14 +186,20 @@ Route::get('/test', function () {
 });
 
 
-//slider Management
 
 
 
 
-// Booking
+// PAYMENT
 
-Route::resource('tour_list.booking',BookingController::class);
+// Route::resource('tour_list.booking',BookingController::class);
+Route::get('/tour_list/{tour_list}/booking/create', [BookingController::class, 'create'])
+    ->name('tour_list.booking.create');
+Route::post('/tour_list/{tour_list}/booking/pay', [BookingController::class, 'pay'])
+    ->name('pay');
+
+
+Route::get('success', [BookingController::class, 'success']);
 
 
 

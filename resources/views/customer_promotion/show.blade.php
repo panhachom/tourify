@@ -1,7 +1,7 @@
 @extends('app')
 @section('title', 'Home')
 @section('content')
-@include('components/navbar')
+
 <div class="main-content">
     <div class="">
       <nav class=" z-10 flex justify-between items-center space-x-4 px-10 py-6 mt-16 bg-pink ">
@@ -42,7 +42,7 @@
     <input type="text">
 </div>
       
-@include('components/footer')
+
 @endsection
 
 

@@ -22,10 +22,10 @@
           <th>No.</th>
           <th>Booking Number</th>
           <th>Tour</th>
-          <th>Booking Date</th>
-          <th>Status</th>
+          <!-- <th>Booking Date</th> -->
+          <!-- <th>Status</th> -->
           <th>Total</th>
-          <th>Action</th>
+          <th colspan="2" >Action</th>
       </tr>
     </thead>
     <tbody class="text-center">
@@ -38,30 +38,22 @@
                         {{ $i++}}
                      </td>
                       <td> <strong> 
-                           {{ strtoupper(substr($booking->tours->first()->vendor->name, 0, 3)) }}-{{ $booking->booking_number }}
+                           {{ strtoupper(substr($booking->tour->vendor->name, 0, 3)) }}-{{ $booking->booking_number }}
                       </strong></td>
-                      <td>{{ $booking->tours->first()->name }}</td>
-                      <td class="text-center">{{ $booking->created_at->format('Y-m-d') }}</td>
-                      <td>
-                      @if($booking->approved)
-                        <i class="bi bi-check-circle text-success"> Approved</i> <!-- Icon for tick -->
-                      @else
-                        <i class="bi bi-clock text-warning"> Pending</i> <!-- Icon for pending -->
-                      @endif
-                      </td>
+                      <td>{{ $booking->tour->name }}</td>
                       <td class="text-success">
                           $ {{ $booking->total }} 
                       </td>
 
-                      <td>
-                          <a href="{{ route('vendor.booking.edit', ['vendor' => $vendor_id, 'booking' => $booking->id]) }}" class="btn btn-sm btn-light"><i class="bi bi-pencil text-primary font-weight-bold"> Edit</i></a>
-                          <form action="{{ route('vendor.booking.destroy', ['vendor' => $vendor_id, 'booking' => $booking->id]) }}" method="POST">
+                      <td colspan="2">
+                          <a href="{{ route('vendor.booking.show', ['vendor' => $vendor_id, 'booking' => $booking->id]) }}" class="btn btn-sm btn-light"><i class="bi bi-pencil text-primary font-weight-bold"> Show</i></a>
+                          <!-- <form action="{{ route('vendor.booking.destroy', ['vendor' => $vendor_id, 'booking' => $booking->id]) }}" method="POST">
                               @csrf
                               @method('DELETE')
                                   <button type="submit" class="btn btn-sm btn-light" onclick="return confirm('Are you sure you want to delete this tour?')">
                                   <i class="bi bi-trash text-danger"> Delete</i>
                                   </button>
-                          </form>
+                          </form> -->
                       </td>
                   </tr>
 

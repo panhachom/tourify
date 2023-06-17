@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Booking</title>
-    <style>
-        .input-field {
+
+@extends('app')
+@section('title', 'Home')
+@section('content')
+
+<style>
+  .input-field {
             background-color: #f7fafc;
             border: 1px solid #e2e8f0;
             color: #2d3748;
@@ -32,92 +30,18 @@
         cursor: pointer;
         transition: background-color 0.2s ease-in-out;
         }
+       
 
-        .notification {
-        padding: 0.5rem 1rem;
-        border-radius: 0.375rem;
-        font-size: 0.875rem;
-        }
-
-        .error {
-        background-color: #fed7d7;
-        color: #c53030;
-        }
-
-        .success {
-        background-color: #c6f6d5;
-        color: #38a169;
-        }
-
-        @media (min-width: 768px) {
-        .main-content {
-            padding-left: 2rem;
-            padding-right: 2rem;
-        }
-
-        .grid-cols-2 {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-
-        .md\:p-8 {
-            padding: 2rem;
-        }
-
-        .pb-8 {
-            padding-bottom: 2rem;
-        }
-
-        .md\:pb-0 {
-            padding-bottom: 0;
-        }
-
-        .mt-6 {
-            margin-top: 1.5rem;
-        }
-
-        .mt-4 {
-            margin-top: 1rem;
-        }
-
-        .mt-5 {
-            margin-top: 1.25rem;
-        }
-        }
-
-        @media (min-width: 1024px) {
-        .lg\:px-20 {
-            padding-left: 5rem;
-            padding-right: 5rem;
-        }
-
-        .mt-6 {
-            margin-top: 2rem;
-        }
-
-        .mt-4 {
-            margin-top: 1.5rem;
-        }
-
-        .mt-5 {
-            margin-top: 1.75rem;
-        }
-        }
-
-    </style>
-</head>
-<body>
-    
-@extends('app')
-@section('title', 'Home')
-@section('content')
-    @include('components/navbar')
-
-    <div class="main-content">
-  <div class="px-4 md:px-10 lg:px-20 section-4 mb-10">
+        .modal {
+      display: none; /* Hide the modal by default */
+      /* ... */
+    }
+</style>
+  <div class="section-4  ">
     <div class="place-items-center grid grid-cols-1 md:grid-cols-2 gap-8 p-4 md:p-8">
       <div class="md:pb-0">
         <h1 class="pb-12 text-3xl font-bold text-black">Traveler Detail</h1>
-        <form method="POST" action="{{ route('tour_list.booking.store', ['tour_list' => $tour->id]) }}">
+        <form method="POST" action="{{ route('pay', ['tour_list' => $tour->id]) }}">
 
           @csrf
 
@@ -132,13 +56,21 @@
               <input type="text" id="phone_number" class="input-field" value="{{ old('phone_number', $user->phone_number) }}" required>
             </div>
 
+            <div class="d-fex">
             <div class="col-span-2">
               <label for="quantity">Select Number of People</label>
-              <select name="quantity" class="input-field">
+              <select name="quantity" id='quantity' class="input-field">
                 @for ($i = 1; $i <= $tour->qty; $i++)
-                <option value="{{ $i }}">{{ $i }}</option>
+                <option id=""value="{{ $i }}">{{ $i }}</option>
                 @endfor
               </select>
+            </div>
+
+            <div class="mt-1">
+              <label for="total" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Total ($)</label>
+              <input type="text" class='input-field' id="total-price" value = "{{ $tour->price }}" readonly name='amount'>
+            </div>
+
             </div>
 
             <div class="col-span-2">
@@ -179,10 +111,48 @@
       </div>
     </div>
   </div>
-</div>
 
-    @include('components/footer')
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      @include('components/modal')
+    </div>
+  </div>
+  
+
+
+<script>
+        // Get the necessary elements
+        var quantityInput = document.getElementById('quantity');
+        var totalPriceInput = document.getElementById('total-price');
+        var tourPrice = parseFloat( {{ $tour->price }}); 
+        
+        quantityInput.addEventListener('change', function() {
+            var quantity = parseInt(quantityInput.value);
+            var totalAmount = tourPrice * quantity;
+            totalPriceInput.value = totalAmount.toFixed(2);
+        });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var modal = document.getElementById('myModal');
+      var closeBtn = document.getElementById('modalCloseBtn');
+      var bookingSuccess = '<?php echo session('booking_success'); ?>';
+
+      // If booking success, show the modal
+      if (bookingSuccess) {
+        modal.style.display = 'block';
+      }
+
+      // Close the modal when the close button is clicked
+      closeBtn.addEventListener('click', function() {
+        modal.style.display = 'none';
+      });
+    });
+  </script>
+
 @endsection
 
 </body>
 </html>
+

@@ -23,13 +23,14 @@ class VendorBookingController extends Controller
         $unapprovedBookings = Booking::where('approved', false)->get();
         return view('vendor.booking.unapproved_booking', compact('unapprovedBookings','vendor_id'));
     }
-    public function show($id)
+    public function show($vendor_id, $bookingId)
     {
-        $booking = Booking::findOrFail($id);
-        $booking->load('tours');
-        return view('vendor.booking.show', compact('booking'));
-    }
+        $tours = Tour::where('vendor_id', $vendor_id)->get();
+        $booking = Booking::findOrFail($bookingId);
 
+        return view('vendor.booking.show', compact('booking','tours','vendor_id'));
+        
+    }
     public function edit($vendor_id, $bookingId)
     {
         $tours = Tour::where('vendor_id', $vendor_id)->get();
@@ -70,16 +71,13 @@ class VendorBookingController extends Controller
     public function destroy($vendor_id, $bookingId)
     {
         $booking = Booking::findOrFail($bookingId);
-        
-        // Delete any relationships with tours
-        $booking->tours()->detach();
-        
-        // Delete the booking
+    
+        // Delete the tours associated with the booking
+        // Delete the booking itself
         $booking->delete();
-        
+    
         return redirect()->route('vendor.booking.index', ['vendor' => $vendor_id]);
     }
-
     
 
 
