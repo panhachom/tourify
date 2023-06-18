@@ -12,6 +12,7 @@
 		<a href="{{ route('cultural-category') }}" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900 hover:underline underline-offset-8 uderline decoration-2"><i class="fa-brands fa-react" style="color: #D5603F;"></i> Cultural</a>
 		<a href="{{ route('food_and_drink-category') }}" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900 hover:underline underline-offset-8 uderline decoration-2 "><i class="fa-regular fa-wine-glass-empty" style="color: #D5603F; "></i> Food and Drink</a>
 		<a href="{{ route('history-category') }}" class="font-medium px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900 hover:underline underline-offset-8 uderline decoration-2"><i class="fa-brands fa-react" style="color: #D5603F;"></i> History</a>
+       
 
 		</nav>
     </div>
