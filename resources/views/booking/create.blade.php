@@ -68,7 +68,7 @@
 
             <div class="mt-1">
               <label for="total" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Total ($)</label>
-              <input type="text" class='input-field' id="total-price" value = "{{ $tour->price }}" readonly name='amount'>
+              <input type="text" class="input-field" id="total-price" value="{{ $tour->discount_price ?? $tour->proc_nice }}" readonly name="amount">
             </div>
 
             </div>
@@ -107,6 +107,8 @@
           price="{{ $tour->price }}"
           image="{{ $tour->tour_images->isNotEmpty() ? $tour->tour_images->first()->name : null }}"
           id="{{ $tour->id }}"
+          discount="{{ $tour->discount_price }}"
+
         />
       </div>
     </div>
@@ -124,7 +126,7 @@
         // Get the necessary elements
         var quantityInput = document.getElementById('quantity');
         var totalPriceInput = document.getElementById('total-price');
-        var tourPrice = parseFloat( {{ $tour->price }}); 
+        var tourPrice = parseFloat({{ $tour->discount_price ??  $tour->price  }}); 
         
         quantityInput.addEventListener('change', function() {
             var quantity = parseInt(quantityInput.value);

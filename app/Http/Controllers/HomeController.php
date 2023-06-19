@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Tour;
 use App\Models\Vendor;
 use App\Models\TourDate;
+use App\Models\User;
+
 use Illuminate\Http\Request;
 use App\Models\Promotion;
 
@@ -43,7 +45,7 @@ class HomeController extends Controller
             $vendor_id = $vendor->id;
             return redirect()->route('vendor.show', ['id' => $vendor_id]);
         }
-        $promotions = Promotion::all();
+        $promotions = Promotion::where('status', true)->get();
         $tours = Tour::latest()->take(3)->get();
         $latetours = Tour::take(3)->get();
 
@@ -74,4 +76,7 @@ class HomeController extends Controller
         return view('tour_list.index', compact('tours'));
     
     }
+
+
+
 }

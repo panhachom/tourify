@@ -83,7 +83,11 @@ class BookingController extends Controller
                 $user = auth()->user();
                 $booking = new Booking();
                 $booking->quantity = $validatedData['quantity'];
-                $booking->price = $tour->price;
+                if ($tour->discount_price !== null) {
+                    $booking->price = $tour->discount_price;
+                } else {
+                    $booking->price = $tour->price;
+                }                
                 $booking->total = $booking->quantity * $booking->price;
                 $booking->booking_number = Booking::generateBookingNumber($vendorId);
                 $booking->payment_method = 'Paypal';

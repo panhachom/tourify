@@ -83,7 +83,10 @@ public function getTour(Request $request)
             $tour = Tour::find($tourId);
             if ($tour) {
                 $tour->discount_price = $tour->price - ($promotions -> percent * $tour->price / 100);
+                $promotions->tours()->attach($tour->id, ['price' => $tour->discount_price]);
+                $tour->is_discount = true ;
                 $tour->save();
+                $promotions->save();
             }
         }
     

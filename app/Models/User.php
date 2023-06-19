@@ -23,6 +23,7 @@ class User extends Authenticatable
         'username',
         'phone_number',
         'password',
+        'device_token'
     ];
 
     public function setPasswordAttribute($value)
