@@ -6,13 +6,13 @@ use Illuminate\View\Component;
 
 class CardComponent extends Component
 {
-    public $placeName , $description, $name, $price ,$image, $id ;
+    public $placeName , $description, $name, $price ,$image, $id, $discount ;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($placeName = '',$description='',$name ='',$price = '' ,$image = '' ,$id = '')
+    public function __construct($placeName = '',$description='',$name ='',$price = '' ,$image = '' ,$id = '', $discount ='')
     {
         $this->placeName = $placeName ;
         $this->description = $description ;
@@ -20,6 +20,7 @@ class CardComponent extends Component
         $this->price = $price ;
         $this->image = $image ;
         $this->id = $id ;
+        $this->discount= $discount;
 
     }
 

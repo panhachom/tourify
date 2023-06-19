@@ -78,10 +78,18 @@
         <div class="flex justify-between align-middle px-3 py-3 mt-1 ">
           <div>
           <div class="text-sm font-extralight">Price</div>
+          @if($discount != '')
+          <div> 
+            <span class="font-bold text-xl text-red-700	"> $ {{ $discount }}</span>
+            <span class="font-bold text-sm line-through	"> $ {{ $price }}</span>
+            <span class="text-sm font-extralight">/ Person</span>
+          </div>
+          @else
           <div>
             <span class="font-bold"> $ {{ $price }}</span>
             <span class="text-sm font-extralight">/ Person</span>
           </div>
+          @endif
           
         </div>
         <form action="{{ route('favorite.add', intval($id)) }}" method="POST" enctype="multipart/form-data">

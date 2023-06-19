@@ -35,6 +35,8 @@
             price="{{ $tour->price }}"
             image="{{ $tour->tour_images->isNotEmpty() ? $tour->tour_images->first()->name : null }}"
             id="{{ $tour->id }}"
+            discount="{{ $tour->discount_price }}"
+
         />
         @endforeach
     </div>
@@ -90,7 +92,9 @@
         if (distance < 0) {
             clearInterval(x);
             document.getElementById("demo").innerHTML = "EXPIRED";
-            location.reload();            
+            window.location.reload();
+            window.location.href = "/";
+            
         }
     }, 1000);
 </script>

@@ -69,5 +69,12 @@ class Tour extends Model
         }
     }
 
+    public function promotions()
+    {
+        return $this->belongsToMany(Promotion::class, 'promotion_tour')
+            ->withPivot('price')
+            ->withTimestamps();
+    }
+
 
 }

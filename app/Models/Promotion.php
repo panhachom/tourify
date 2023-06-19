@@ -15,8 +15,11 @@ class Promotion extends Model
         return $this->belongsTo(Vendor::class);
     }
 
-    public function tours(){
-        return $this->belongsToMany(Tour::class);
+    public function tours()
+    {
+        return $this->belongsToMany(Tour::class, 'promotion_tour')
+            ->withPivot('price')
+            ->withTimestamps();
     }
     
     protected $table = 'promotions';
@@ -33,7 +36,7 @@ class Promotion extends Model
 
     public function updateToursIfEndDateEqualsStartDate()
     {
-        if ($this->end_date === $this->start_date) {
+        if ($this->end_date === $this->start_date || $this->end_date->isPast()) {
             // End date is equal to the start date
             $this->end_date = $this->start_date;
             $this->save();
@@ -41,7 +44,7 @@ class Promotion extends Model
             // Set tour prices to null
             $this->tours()->syncWithoutDetaching(
                 $this->tours()->pluck('id')->mapWithKeys(function ($id) {
-                    return [$id => ['discount_price' => null]];
+                    return [$id => ['is_discount' => false]];
                 })
             );
         }

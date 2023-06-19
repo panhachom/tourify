@@ -34,6 +34,8 @@
         price="{{ $tour->price }}"
         image="{{ $tour->tour_images->isNotEmpty() ? $tour->tour_images->first()->name : null }}"
 		id="{{ $tour->id }}"
+        discount="{{ $tour->discount_price }}"
+
     />
    @endforeach
     

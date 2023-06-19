@@ -66,7 +66,11 @@
                             <tr>
                                 
                                <td class="full-table whitespace-nowrap  px-6 py-4 font-medium dark:border-neutral-500">
-                                  <img  clss="object-cover" width="185px" height="40px" src="{{ asset('images/tours/' . $tour->tour_images->first()->name) }}">
+                                  @if ($tour->tour_images->isNotEmpty())
+                                     <img src="{{ asset('images/tours/' . $tour->tour_images->first()->name) }}" alt="Tour Image" width="185px" height="40px">
+                                @else
+                                <span>No image available</span>
+                                @endif
                                </td>
                                <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap"> {{ $tour->name }}</td>
                                <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap"> $ {{ $tour -> price }}</td> 
