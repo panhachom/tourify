@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Tour;
+use App\Models\Vendor;
 use App\Models\Booking;
 use App\Models\Payment;
 use Exception;
@@ -172,4 +173,18 @@ class BookingController extends Controller
     
         return view('booking.create', compact('user','tour'));
     }
+    public function bookingHistory($tour_id)
+    {
+        // if (!Auth::check()) {
+        //     return redirect()->route('login.show');
+        // }
+
+        // $user = Auth::user();
+        $tours = Tour::all();
+
+        // dd($tour);
+    
+        return view('booking.bookingHistory', compact('tours'));
+    }
+   
 }

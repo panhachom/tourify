@@ -195,11 +195,12 @@ Route::get('/test', function () {
 // Route::resource('tour_list.booking',BookingController::class);
 Route::get('/tour_list/{tour_list}/booking/create', [BookingController::class, 'create'])
     ->name('tour_list.booking.create');
+
 Route::post('/tour_list/{tour_list}/booking/pay', [BookingController::class, 'pay'])
     ->name('pay');
 
-
 Route::get('success', [BookingController::class, 'success']);
+Route::get('/tour_list/{tour_list}/booking/create/bookingHistory', [BookingController::class, 'bookingHistory']);
 
 
 
