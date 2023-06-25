@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,200;1,300;1,400;1,500;1,600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.image .mx-auto{
+    width: 83%;
+    height: 450px;
+    overflow: hidden;
+    object-fit: cover;
+}
+img{
+    border-radius: 10px;
+}
+.small_img{
+    width: 7rem;
+    height: 7rem;
+    object-fit: cover;
+    display: flex;
+    column-gap: 10px;
+    position: absolute;
+    bottom: 1px;
+    left: 35%;
+    transform: translateX(-50%);
+}
+
+.img-heigth {
+    width: 1200px;
+    height: 520px;
+    border-radius: 10px;
+}
+@media screen and (max-width: 1300px) {
+    .img-heigth {
+        width: 900px;
+        padding: 10px;
+        border-radius: 10px;
+
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .img-heigth {
+        width: 500px;
+        padding: 10px;
+        border-radius: 10px;
+
+    }
+}
+
+button {
+    font-size: 18px;
+    border-radius: 18px;
+    height: 45px;
+    width: 150px;
+}
+
+.option_type {
+    width: 90%;
+    margin : auto ;
+}
+
+.button-content {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+
+.image-width {
+    min-width: 10rem;
+   min-height: 6rem;
+   height: 6rem;
+}
+
+
+.min-image {
+    width: 400px;
+}

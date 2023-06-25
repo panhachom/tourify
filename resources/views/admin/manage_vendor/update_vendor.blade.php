@@ -1,5 +1,5 @@
 @extends('admin_main')
-@section('title', 'Home')
+@section('title', 'Vendor')
 @section('content')
 
 <div class="d-flex justify-content-between align-items-center mb-5 w-full  px-4 py-3 vendor-title">

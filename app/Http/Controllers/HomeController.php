@@ -10,6 +10,7 @@ use App\Models\User;
 
 use Illuminate\Http\Request;
 use App\Models\Promotion;
+use Carbon\Carbon;
 
 
 class HomeController extends Controller
@@ -20,7 +21,9 @@ class HomeController extends Controller
             $tours = [];
             $search = $request->input('search');
             if($search != ''){
-                $tours = Tour::where('name', '=', $search)->get();
+                $tours = Tour::where('name', $search)
+                ->where('status', 1)
+                ->get();               
                 if($tours->isEmpty()) {
                     $tours = ['result'];
                     return view('tour_list.index', compact('tours'));
@@ -45,12 +48,16 @@ class HomeController extends Controller
             $vendor_id = $vendor->id;
             return redirect()->route('vendor.show', ['id' => $vendor_id]);
         }
+        $tours = Tour::latest()->where('status', true)->take(3)->get(); 
+        $latetours = Tour::where('status', true)->take(3)->get(); 
+        $popularTours = Tour::where('status', true)->orderBy('view', 'desc')->take(3)->get(); 
+        
+        
+        Promotion::updateExpiredPromotionsStatus();
         $promotions = Promotion::where('status', true)->get();
-        $tours = Tour::latest()->take(3)->get();
-        $latetours = Tour::take(3)->get();
 
 
-        return view('home.index', compact('promotions','tours','latetours'));
+        return view('home.index', compact('promotions','popularTours','latetours'));
     }
 
 

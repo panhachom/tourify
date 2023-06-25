@@ -1,27 +1,24 @@
 @extends('app')
 @section('title', 'Home')
 @section('content')
-
-<div class="main-content">
-    <div class="">
-      <nav class=" z-10 flex justify-between items-center space-x-4 px-10 py-6 mt-16 bg-pink ">
+<nav class=" z-10 flex justify-between items-center space-x-4 px-10 py-6 mt-16 bg-pink ">
                   <div class="flex justify-center items-center gap-x-4" >
                      <i class="fa-solid fa-bell text-orange-300 text-3xl"></i>  
                      <div class="text-white text-lg font-bold"> {{$promotion->title}}</div>
                   </div>
                                   
                   <p id="demo"></p>
-      </nav>
-    </div>
-    <div class="pt-1"></div>
+</nav>
+<div>
+   
     <div class=" px-10">
-      <div class="mt-24 flex justify-center items-center px-24 py-8 shadow-box">
+      <div class="mt-24 flex justify-evenly items-start px-24 py-8 shadow-box">
         <div class="">
             <div class="text-4xl font-bold mb-9">Welcome to our promotion</div>
             <div class="w-1/2">{{$promotion->description}}</div>
         </div>
           <div class="">
-            <img src="{{ asset('images/promotions/' . $promotion->image_name) }}" alt="Tour Image" class="image-promotion">
+            <img src="{{ asset('images/promotions/' . $promotion->image_name) }}" alt="Tour Image" class="image-promotion w-96 h-96" >
         </div>
       </div>
     </div>
@@ -93,8 +90,11 @@
             clearInterval(x);
             document.getElementById("demo").innerHTML = "EXPIRED";
             window.location.reload();
-            window.location.href = "/";
+            location.replace('/');
             
         }
     }, 1000);
 </script>
+
+   
+ 

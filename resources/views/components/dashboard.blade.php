@@ -118,7 +118,7 @@
           <tr>
             <th>Booking Number</th>
             <th>Tours</th>
-            <th class="text-center">Status</th>
+            <th class="text-center">Paymet Method</th>
             <th>Price</th>
           </tr>
         </thead>
@@ -128,16 +128,12 @@
           <tr>
             <td>
               <strong> <i>
-                  {{ strtoupper(substr($booking->tours->first()->vendor->name, 0, 3)) }}-{{ $booking->booking_number }}
+                  {{ strtoupper(substr($booking->tour->vendor->name, 0, 3)) }}-{{ $booking->booking_number }}
               </i></strong>
             </td>
-            <td>{{ $booking->tours->first()->name }}</td>
+            <td>{{ $booking->tour->name }}</td>
             <td class="text-center">
-              @if($booking->approved)
-                <i class="bi bi-check-circle text-success"></i><span>Approve</span> <!-- Icon for tick -->
-              @else
-                <i class="bi bi-clock text-warning"></i><span>Pendding</span> <!-- Icon for pending -->
-              @endif
+               Paypal
             </td>
             <td class="text-success">
                           $ {{ $booking->total }} 

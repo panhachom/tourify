@@ -15,6 +15,13 @@
     </div>
 @endif
 
+
+@if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
+
 @if ($tours->isEmpty())
     <p>No Tour. Please add one.</p>
 @else
@@ -25,6 +32,7 @@
           <th>Name</th>
           <th>Price</th>
           <th class="text-center">Capacity</th>
+          <th>Publish</th>
           <th class="text-center">Actions</th>
       </tr>
     </thead>
@@ -46,7 +54,16 @@
                       </td>
                       <td class="text-success">${{ $tour->price }}</td>
                       <td class="text-center">{{ $tour->capacity }} </td>
+                      <td>
+                      <form action="{{ route('tours.updateStatus',  $tour->id ) }}" method="POST">
+                        @csrf
+                        @method('PUT')
 
+                        <button type="submit" class="btn btn-sm {{ $tour->status ? 'btn-success' : 'btn-secondary' }}">
+                            {{ $tour->status ? 'Public' : 'Hide' }}
+                        </button>
+                    </form>
+                      </td>
                       <td class="text-center">
                           <a href="{{ route('vendor.tours.edit', ['vendor' => $vendor_id, 'tour' => $tour->id]) }}" class="btn btn-sm btn-light"><i class="bi bi-pencil text-primary font-weight-bold"> Edit</i></a>
                           <form action="{{ route('vendor.tours.destroy', ['vendor' => $vendor_id, 'tour' => $tour->id]) }}" method="POST" class="d-inline">

@@ -1,5 +1,5 @@
 @extends('vendor/show')
-@section('title', 'Home')
+@section('title', 'Tour Date')
 @section('content')
 
 

@@ -1,5 +1,5 @@
 @extends('vendor/show')
-@section('title', 'Home')
+@section('title', 'Category')
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-5">
     <h3>Create New Category</h3>

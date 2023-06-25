@@ -1,87 +1,41 @@
 @vite('resources/css/app.css')
     @extends('app')
-    @section('title', 'Home')
+    @section('title', 'Tour')
     @section('content')
         
-        <title>Detailpage</title>
-        <style>
-            .image .mx-auto{
-                width: 83%;
-                height: 450px;
-                overflow: hidden;
-                object-fit: cover;
-            }
-            img{
-                border-radius: 10px;
-            }
-            .small_img{
-                width: 7rem;
-                height: 7rem;
-                object-fit: cover;
-                display: flex;
-                column-gap: 10px;
-                position: absolute;
-                bottom: 1px;
-                left: 35%;
-                transform: translateX(-50%);
-            }
+     <title>Detailpage</title>
 
-            button {
-                font-size: 18px;
-                border-radius: 18px;
-                height: 45px;
-                width: 150px;
-            }
-
-            .option_type {
-                width: 90%;
-                margin : auto ;
-            }
-
-            .button-content {
-                box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-            }
-           
-
-           
-        </style>
-  
-       <div class="image">
-            <p class="text-muny text-3xl pt-24 flex justify-center font-medium pb-10 "> {{ $tour->name }}</p>
+       <div>
+            <p class="text-muny text-3xl pt-6 lg:pt-24 flex justify-center font-medium pb- md:pb-10 "> {{ $tour->name }}</p>
       </div>
 
-      <div class="slider-section mt-16">
-        <div class="main-slider">
-            <div class="slider">
-            <div class="slides">
-                <!--radio buttons start-->
-                <input type="radio" name="radio-btn" id="radio1">
-                <input type="radio" name="radio-btn" id="radio2">
-
-                @foreach($tour->tour_images as $index => $promotion)
-                    <input type="radio" name="radio-btn" id="radio{{ $index + 1 }}">
-                @endforeach
-
-                @foreach($tour->tour_images as $index => $promotion)
-                    <div class="slide{{ $index === 0 ? ' first' : '' }}">
-                            <img src="{{ asset('images/tours/' . $promotion->name) }}" alt="Tour Image">    
-                    </div>
-                @endforeach
-                <div class="navigation-auto">
-                    @foreach($tour->tour_images as $index => $promotion)
-                        <div class="auto-btn{{ $index + 1 }}"></div>
-                    @endforeach
-                </div>
-            </div>
-        
+      @if($tour->tour_images->isEmpty())
+      <span></span>
+      @else
+      <div class="">
+        <div>
+            <div class="slides justify-center items-start mt-10 md:mt-0 w-full">
+                <img src="{{ asset('images/tours/' . $tour->tour_images->first()->name) }}" class="img-heigth" alt="Tour Image" >    
             </div>
         </div>
 
-      
-
-
+        <div class="px-0 lg:px-48 flex flex-col m-auto p-auto">
+            <h1 class="flex py-5 justify-center items-center lg:mx-40 md:mx-20 mx-5 font-bold text-4xl text-black text-center"></h1>
+                <div class="">
+                    <div class="flex overflow-x-scroll pb-10 hide-scroll-bar">
+                        <div class="flex flex-nowrap lg:ml-10 md:ml-5 ml-1  ">
+                            @foreach($tour->tour_images as $index => $promotion)
+                                <div class="inline-block px-1  ">
+                                    <img src="{{ asset('images/tours/' . $promotion->name) }}" class="image-width min-w-40 overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out" onclick="showBigImage(this)">
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+        </div>
+        @endif
            
-        <div class="flex justify-between items-center option_type pt-12">
+        <div class="flex justify-between flex-col md:flex-row  items-center option_type pt-12">
             <div class="ps-10">
                     <!-- description -->
                     <div class=" ">
@@ -110,19 +64,27 @@
                 </div>
                 <div>
                     <div class=" p-12 mb-5 button-content ">
-                        <p class="text-3xl font-medium text-muny "> Price : $ {{ $tour->price }}</p>
+                        <p class="text-3xl font-medium text-muny "> 
+                         @if($tour->discount_price != '')
+                            Price :
+                            <span class="text-red-600 font-bold"> $ {{ $tour->discount_price }}</span>    
+                            <span class="text-lg line-through">$ {{ $tour->price }}</span>
+                        @else 
+                            <p class="text-3xl font-medium text-muny "> Price : $ {{ $tour->price }}</p>
+                        @endif
+                       </p>
                         <p class="mb-5"><small> Per Person</small></p>
                         <a href="{{ route('tour_list.booking.create', ['tour_list' => $tour->id]) }}" class="bg-primary px-3 py-2 text-white rounded-xl ">Create Booking</a>
                     </div>
                     @if($tour->tour_dates->isEmpty())
                       <span></span>
                     @else 
-                        <div class=" p-12 mb-5 button-content ">
-                                <p class="text-3xl font-medium text-muny mb-1 "> Tour Date</p>
-                                @foreach($tour->tour_dates as $date)
-                                    <div class="my-1"> {{ \Carbon\Carbon::parse($date->start_date)->format('d F, Y') }} - {{ \Carbon\Carbon::parse($date->end_date)->format('d F, Y') }}</div>
-                                @endforeach     
-                        </div>
+                    <div class=" p-12 mb-5 button-content ">
+                            <p class="text-3xl font-medium text-muny mb-1 "> Tour Date</p>
+                            @foreach($tour->tour_dates as $date)
+                                <div class="my-1"> {{ \Carbon\Carbon::parse($date->start_date)->format('d F, Y') }} - {{ \Carbon\Carbon::parse($date->end_date)->format('d F, Y') }}</div>
+                            @endforeach     
+                    </div>
                     @endif
                 </div>
         </div>
@@ -147,14 +109,11 @@
         </div>
 
 <script type="text/javascript">
-    var counter = 1;
-    setInterval(function(){
-        document.getElementById('radio' + counter).checked = true;
-        counter++;
-        if(counter > 4){
-        counter = 1;
-        }
-    }, 5000);
+
+    function showBigImage(element) {
+        var bigImage = document.querySelector('.slides');
+        bigImage.innerHTML = '<img src="' + element.src + '" class="img-heigth" alt="Tour Image">';
+    }
 </script>
 
  

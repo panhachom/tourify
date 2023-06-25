@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
      @extends('app')
-     @section('title', 'Home')
+     @section('title', 'Sign in')
      @section('content')
 </head>
 <body>

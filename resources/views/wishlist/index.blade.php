@@ -1,5 +1,5 @@
 @extends('app')
-@section('title', 'Home')
+@section('title', 'Wishlist')
 @section('content')
 
 

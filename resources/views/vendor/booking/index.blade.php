@@ -1,5 +1,5 @@
 @extends('vendor/show')
-@section('title', 'Home')
+@section('title', 'Booking')
 @section('content')
 
 <div class="d-flex justify-content-between align-items-center mb-5 w-full  px-4 py-3 vendor-title">
@@ -14,7 +14,6 @@
     <p>No Booking Yet</p>
 @else
 
-@include('components/booking_tabs')
 
   <table class="table mt-5 table-borderless table-hover table_style">
     <thead class=" header_color  text-black text-center">

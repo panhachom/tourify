@@ -1,6 +1,6 @@
     <!-- component -->
     @extends('app')
-     @section('title', 'Home')
+     @section('title', 'Profile')
      @section('content')
 
 

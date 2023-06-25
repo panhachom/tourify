@@ -6,6 +6,7 @@ use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use App\Console\Commands\CheckPromotionExpiration;
 
+
 class Kernel extends ConsoleKernel
 {
     /**
@@ -17,7 +18,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
-        $schedule->command(CheckPromotionExpiration::class)->daily();
+        // $schedule->command(CheckPromotionExpiration::class)->everySecond()->runInBackground();
 
     }
 

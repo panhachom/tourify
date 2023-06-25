@@ -1,6 +1,6 @@
 
 @extends('app')
-@section('title', 'Home')
+@section('title', 'Booking')
 @section('content')
 
 <style>
@@ -68,7 +68,7 @@
 
             <div class="mt-1">
               <label for="total" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Total ($)</label>
-              <input type="text" class="input-field" id="total-price" value="{{ $tour->discount_price ?? $tour->proc_nice }}" readonly name="amount">
+              <input type="text" class="input-field" id="total-price" value="{{ $tour->discount_price ?? $tour->price }}" readonly name="amount">
             </div>
 
             </div>
