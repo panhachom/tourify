@@ -62,7 +62,6 @@
          </div>
       </div>
       <div class="flex justify-center items-center gap-6 mt-10">
-        <a href="{{ route('home.index') }}" class=" rounded-full bg-green-50 hover:bg-green-100 p-4"><i class="fa-solid fa-download text-green-600 text-lg"></i> </a>
         <a href="{{ route('home.index') }}" class=" rounded-full bg-orange-50 hover:bg-orange-100 p-4"><i class="fa-solid fa-house text-primary text-lg"></i></a>
 
     </div>

@@ -92,7 +92,7 @@
 </div>
 
                 
-<div class="col-md-6 mb-3">
+<!-- <div class="col-md-6 mb-3">
     <label class="form-check-label">Status:</label>
     <div class="form-check">
         <input class="form-check-input" type="checkbox" name="status" id="statusCheckbox" style="width: 30px; height: 30px;" value="1" {{ old('status', $promotion->status) ? 'checked' : '' }}>
@@ -100,7 +100,7 @@
             <span id="statusText" class="ms-2">{{ old('status', $promotion->status) ? 'Active' : 'Inactive' }}</span>
         </label>
     </div>
-</div>
+</div> -->
             </div>
         </div>
 
@@ -117,7 +117,7 @@
 </div>
 
         
-        <button type="submit" class="btn btn-success text-white mt-4">Edit</button>
+        <button type="submit" class="btn btn-success text-white mt-4">Update</button>
     </form>
 </div>
 

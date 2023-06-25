@@ -1,5 +1,5 @@
 @extends('admin_main')
-@section('title', 'Home')
+@section('title', 'Dashbaord')
 @section('content')
 @vite('resources/css/dashboard.css')
 

@@ -108,10 +108,12 @@ Route::middleware('admin')->group(function () {
         // The email sending is done using the to method on the Mail facade
         Mail::to('sethamanith3333@gmail.com')->send(new MyTestEmail($name));
     });
-
+    
     Route::resource('promotion',PromotionController::class);
+    Route::put('promotion/{id}/toggle-activation', [PromotionController::class, 'toggleActivation'])->name('promotion.toggleActivation');
+
     Route::post("/tours", [PromotionController::class, 'getTour'])->name('get-tour');
-    Route::post("/tours", [PromotionController::class, 'getTour'])->name('get-tour');
+    // Route::post("/tours", [PromotionController::class, 'getTour'])->name('get-tour');
 
 
     Route::get('/reset_password_form', [ResetPasswordController::class, 'index']);
@@ -154,6 +156,9 @@ Route::middleware('admin')->group(function () {
 Route::middleware('auth.vendor')->group(function () {
     Route::get('/vendor/{id}', [VendorController::class, 'show'])->name('vendor.show');
     Route::resource('vendor.tours', TourController::class);
+    Route::put('vendor/tours/{id}/update-status', [TourController::class, 'updateStatus'])->name('tours.updateStatus');
+
+    
     Route::resource('vendor.activity',ActivityController::class);
     Route::resource('vendor.category',CategoryController::class);
 

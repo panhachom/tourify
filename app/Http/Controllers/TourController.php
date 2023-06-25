@@ -22,7 +22,7 @@ class TourController extends Controller
      */
     public function index($vendor_id)
     {
-        $tours = Tour::all();
+        $tours = Tour::where('vendor_id', $vendor_id)->get();
 
         return view('vendor.tours.index', compact('tours','vendor_id'));
 
@@ -176,4 +176,16 @@ class TourController extends Controller
         
         return redirect()->back()->with('success', 'Country removed successfully.');
     }
+
+    public function updateStatus($id)
+    {
+        $tour = Tour::findOrFail($id);
+    
+            $tour->status = ! $tour->status;
+            $tour->save();
+    
+        return redirect()->back();
+    }
+
+    
 }

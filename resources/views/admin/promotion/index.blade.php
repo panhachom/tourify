@@ -1,7 +1,17 @@
 @extends('admin_main')
-@section('title', 'Home')
+@section('title', 'Promotion')
 @section('content')
+@if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif
 
+@if (session('fail'))
+    <div class="alert alert-danger">
+        {{ session('fail') }}
+    </div>
+@endif
 <div class="d-flex justify-content-between align-items-center mb-5 w-full  px-4 py-3 vendor-title">
   <div class="d-flex justify-content-center align-items-center">
     <i class="bi bi-back h4 me-3 vendor-icon "></i>
@@ -19,9 +29,8 @@
           <th>No</th>
           <th>Title</th>
           <th>Description</th>
-          <th class="text-center">Created at</th>
-          <th class="text-center">Updated at</th>
-          <th class="text-center">Status</th>
+          <th class="text-center">Vendor</th>
+          <th class="text-center">Activate</th>
           <th class="text-center">Action</th>
       </tr>
     </thead>
@@ -31,25 +40,24 @@
                       <td>{{ $index + 1 }}</td>
                       <td>{{ $promotion_item->title }}</td>
                       <td >{{ Str::limit($promotion_item->description, 50, '...') }}</td>
-                      <td class="text-center">{{ $promotion_item->created_at -> format('d/m/Y')}} </td>
-                      <td class="text-center">{{ $promotion_item->updated_at -> format('d/m/Y')}}</td>
+                      <td class="text-center text-info fw-bold">{{ $promotion_item->vendor->name}} </td>
                       <td class="text-center">
-                      @if($promotion_item->status == 1)
-                      <i class="bi bi-check-circle text-success"></i> <!-- Tick icon -->
-                      <span class="text-success">Active</span>
-                      @else
-                      <i class="bi bi-clock text-warning"></i> <!-- Clock icon -->
-                      <span class="text-warning">Inactive</span>
-                      @endif
+                      <form action="{{ route('promotion.toggleActivation', ['id' => $promotion_item->id]) }}" method="POST">
+                              @method('PUT')
+                              @csrf
+                              <button type="submit" class="btn text-white {{  $promotion_item->status ? 'btn-success' : 'btn-warning' }}">
+                                  {{ $promotion_item->status ? 'Activated' : 'Activate' }}
+                              </button>                      
+                      </form>
 
                     </td>
                       <td class="text-center">
-                          <a href=" {{route( 'promotion.edit',['promotion' => $promotion_item->id])}}" class="btn btn-sm btn-light"><i class="bi bi-pencil text-primary font-weight-bold p-3">Edit</i></a>
+                          <a href=" {{route( 'promotion.edit',['promotion' => $promotion_item->id])}}" class="btn btn-sm btn-light"><i class="bi bi-pencil text-primary font-weight-bold p-3"> Edit</i></a>
                           <form action="{{route( 'promotion.destroy',['promotion' => $promotion_item->id])}}" method="POST" class="d-inline">
                                   @csrf
                                   @method('DELETE')
                                   <button type="submit" class="btn btn-sm btn-light" onclick="return confirm('Are you sure you want to delete this Activity?')">
-                                  <i class="bi bi-trash text-danger">Delete</i>
+                                  <i class="bi bi-trash text-danger"> Delete</i>
                                   </button>
                           </form>
                       </td>

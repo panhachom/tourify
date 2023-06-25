@@ -33,21 +33,58 @@ class Promotion extends Model
         'status'
     ];
 
-
-    public function updateToursIfEndDateEqualsStartDate()
+    public function notifications()
     {
-        if ($this->end_date === $this->start_date || $this->end_date->isPast()) {
-            // End date is equal to the start date
-            $this->end_date = $this->start_date;
-            $this->save();
-
-            // Set tour prices to null
-            $this->tours()->syncWithoutDetaching(
-                $this->tours()->pluck('id')->mapWithKeys(function ($id) {
-                    return [$id => ['is_discount' => false]];
-                })
-            );
-        }
+        return $this->morphMany('App\Models\Notification', 'notifiable');
     }
 
+
+
+    public static function updateExpiredPromotionsStatus()
+        {
+            $expiredPromotions = self::where('end_date', '<=', now()->format('Y-m-d H:i:s'))->where('status', true)->get();
+
+            foreach ($expiredPromotions as $promotion) {
+                $promotion->status = false;
+                $promotion->save();
+            }
+        }
+
+        public function toggleActivate()
+        {
+            if ($this->status) {
+                $this->status = false;
+
+                $promotionTours = $this->tours()->get();
+                foreach ($promotionTours as $promotionTour) {
+                    $tour = Tour::find($promotionTour->pivot->tour_id);
+                    if ($tour) {
+                        $tour->discount_price = null;
+                        $tour->is_discount = false;
+                        $tour->save();
+                    }
+                }
+
+            } else {
+                // Deactivate all other promotions
+                Promotion::where('vendor_id', $this->vendor_id)->where('id', '<>', $this->id)->update(['status' => false]);
+                $promotionTours = $this->tours()->get();
+        
+                foreach ($promotionTours as $promotionTour) {
+                    $tour = Tour::find($promotionTour->pivot->tour_id);
+                    if ($tour) {
+                        $tour->discount_price = $tour->price - ($this->percent * $tour->price / 100);
+                        $tour->is_discount = true;
+                        $tour->save();
+                    }
+                }
+        
+                $this->status = true;
+            }
+        
+            $this->save();
+        }
+        
+
 }
+

@@ -23,9 +23,8 @@
 
     <?php
     $vendor_info = App\Models\Vendor::findOrFail($vendor_id);
-    $dashboard = 'http://localhost:8000/vendor/' . $vendor_info->id;
+    $dashboard = 'http://127.0.0.1:8000/vendor/' . $vendor_info->id;
    ?>
-        
     <div class="sidebar">
         <div class="logo-details">
             @if($vendor_info->logo)

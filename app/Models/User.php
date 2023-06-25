@@ -68,4 +68,9 @@ class User extends Authenticatable
         return $this -> hasOne(Vendor::class);
     }
 
+    public function notifications()
+    {
+        return $this->morphMany(Notification::class, 'notifiable');
+    }
+
 }

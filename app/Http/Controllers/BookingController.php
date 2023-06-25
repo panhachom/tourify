@@ -6,6 +6,10 @@ use App\Models\Tour;
 use App\Models\Vendor;
 use App\Models\Booking;
 use App\Models\Payment;
+use App\Notifications\TourifyNotification;
+use Illuminate\Support\Facades\Notification;
+
+
 use Exception;
 use Omnipay\Omnipay;
 use Illuminate\Support\Facades\Session;
@@ -115,6 +119,7 @@ class BookingController extends Controller
     
                 if ($booking->save() && $payment->save()) {
                     session()->flash('booking_success', true);
+                    Notification::send($user, new TourifyNotification ('Your Payment Success'));
                     return redirect()->back();
                 } else {
                     $error = $payment->getError();

@@ -8,6 +8,10 @@
     margin-top: 150px;
 }
 
+.margin-left {
+    margin-left: -1px;
+}
+
 .search-content .child-1 {
     position: relative;
 }
@@ -69,7 +73,41 @@
     max-height: 48px;
 
 }
-@media screen and (max-width: 535px) {
+
+.promotion-card-width{
+    min-width: 23rem;
+    min-height: 20rem;
+    max-width: 23rem;
+    max-height: 20rem;
+}
+
+.back-image {
+    position: relative;
+  }
+  
+  .back-image::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('https://wallpaperaccess.com/full/706938.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5; /* Adjust the opacity value for desired lightness */
+  }
+  
+  .content {
+    position: relative;
+    z-index: 1;
+  }
+@media screen and (max-width: 800px) {
+
+    .promotion-card-width{
+        min-width: 16rem;
+        min-height: 16rem;
+    }
 }
 
 
@@ -153,3 +191,23 @@
 
 
 
+
+
+.hide-scroll-bar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.hide-scroll-bar::-webkit-scrollbar {
+  display: none;
+}
+
+
+.link-tour-card{
+    width: 230px;
+    height: 200px;
+    color: white; 
+}
+i {
+    font-weight: bold; 
+    font-size : 25px
+}

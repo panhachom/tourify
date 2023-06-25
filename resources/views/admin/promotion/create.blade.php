@@ -1,5 +1,5 @@
 @extends('admin_main')
-@section('title', 'Home')
+@section('title', 'Promotion')
 @section('content')
 
 <div class="d-flex justify-content-between align-items-center mb-5 w-full px-4 py-3 vendor-title">
@@ -89,7 +89,7 @@
                 </div>
                 @endif         
             </div>
-            <div class="col-md-6 mb-3">
+            <!-- <div class="col-md-6 mb-3">
                 <label class="form-check-label">Status:</label>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" name="status" id="statusCheckbox" style="width: 30px; height: 30px;">
@@ -97,7 +97,7 @@
                         <span id="statusText" class="ms-2">Inactive</span>
                     </label>
                 </div>
-            </div>
+            </div> -->
             
         </div>
         </div>

@@ -16,8 +16,10 @@ class Tour extends Model
         'price',
         'capacity',
         'qty',
-        'inStock'
+        'inStock',
+        'status'
     ];
+
 
 
     protected static $marks = [
@@ -75,6 +77,11 @@ class Tour extends Model
             ->withPivot('price')
             ->withTimestamps();
     }
+
+    // public function getStatusAttribute($value)
+    // {
+    //     return $value ? 'public' : 'hide';
+    // }
 
 
 }

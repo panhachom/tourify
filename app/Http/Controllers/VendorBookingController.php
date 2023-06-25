@@ -12,7 +12,9 @@ use Illuminate\Http\Request;
 class VendorBookingController extends Controller
 {
     public function index ($vendor_id){
-        $bookings = Booking::all(); 
+        $bookings = Booking::whereHas('tour', function ($query) use ($vendor_id) {
+            $query->where('vendor_id', $vendor_id);
+        })->get();
         return view('vendor.booking.index',compact('bookings','vendor_id'));
     }
     public function approved_booking ($vendor_id){
