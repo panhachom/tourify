@@ -25,17 +25,27 @@
     $vendor_info = App\Models\Vendor::findOrFail($vendor_id);
     $dashboard = 'http://127.0.0.1:8000/vendor/' . $vendor_info->id;
    ?>
+
+
     <div class="sidebar">
         <div class="logo-details">
-            @if($vendor_info->logo)
-            <!-- <img src="{{ asset('images/vendor/' . $vendor_info->logo) }}" id="btn-logo" class="ms-1" alt="Tour Iasdfasdfsadfsmage" style="width: 40px;height: 40px;"> -->
-            <img src="https://png.pngtree.com/png-clipart/20230404/original/pngtree-beach-logo-design-template-png-image_9025206.png"id="btn-logo" class="ms-1" alt="Tour Iasdfasdfsadfsmage" style="width: 40px;height: 40px;">
+            @if($vendor_info->logo != '' )
+            <img src="/vendor/{{$vendor_info->logo}}" alt="" width="50px"  class="rounded-circle ml-1" id="btn-logo">
+            
             @else
-                <img src="{{ asset('images/default-logo.png') }}" alt="Default Image"  style="width: 40px;height: 40px;">
+            <img src="https://png.pngtree.com/png-clipart/20230404/original/pngtree-beach-logo-design-template-png-image_9025206.png" id="btn-logo" class="ms-1" alt="Tour Iasdfasdfsadfsmage" style="width: 40px;height: 40px;">
             @endif           
         <div class="logo_name px-3">{{$vendor_info->name}}</div>
         </div>
         <div>
+
+        <li>
+            <a href=" {{ route('vendor.show', ['id' => $vendor_info->id]);}}">
+            <i class="bi bi-clipboard2-data"></i>            
+            <span class="links_name">Dashboard</span>
+            </a>
+            <span class="tooltip">Dashboard</span>
+        </li>
      
         <li>
             <a href="{{ route('vendor.tours.index', ['vendor' => $vendor_id]) }}">
@@ -75,9 +85,9 @@
       
         <li class="profile">
             <div class="profile-details">
-            <img src="profile.jpg" alt="profileImg">
+            <img src="{{ asset('images/logo.png') }}" alt="" width="45px" class="rounded-circle "></i>
             <div class="name_job">
-                <div class="job">GetYourGuide</div>
+                <div class="job">Tourify</div>
             </div>
             </div>
             <i class='bx bx-log-out' id="log_out" ></i>

@@ -54,8 +54,10 @@ class TourListController extends Controller
     {
         $tour = Tour::findOrFail($tourId);
         $tour->increment('view');
-        $latetours = Tour::where('status', true)->take(3)->get();
-        // dd($tour);
+        $latetours = Tour::where('status', true)
+        ->where('id', '!=', $tourId) // Exclude the current tour
+        ->take(3)
+        ->get();        // dd($tour);
         return view('tour_list.show', compact('tour','latetours'));
     }
     public function getByCategory($category)

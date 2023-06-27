@@ -26,10 +26,10 @@
                 <input type="text" class="form-control" id="about_us" name="about_us" value="{{$vendor->about_us}}">
             </div>
 
-            <div class="form-group col-6 my-2 ">
+            <!-- <div class="form-group col-6 my-2 ">
                 <label for="password">Email</label>
                 <input type="email" class="form-control" id="email" name="email" value="{{$vendor->email}}">
-            </div>
+            </div> -->
 
             <div class="form-group col-6 my-2 ">
                 <label for="phone_number">Contact</label>
@@ -47,15 +47,11 @@
 
             </div>
 
-            <div>
-                <label for="logo">Logo:</label>
-                <input type="file" name="logo">
-            </div>
-
+        
       
             <div class="form-group col-6 my-2 ">
-                <label for="phone_number">Update Logo</label>
-                <input type="file" class="form-control" id="contact" name="logo" required>
+                <label for="logo">Update Logo</label>
+                <input type="file" class="form-control" id="logo" name="logo" required>
             </div>
 
         </div>

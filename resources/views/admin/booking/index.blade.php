@@ -5,18 +5,18 @@
 <div class="d-flex justify-content-between align-items-center mb-5 w-full  px-4 py-3 vendor-title">
   <div class="d-flex justify-content-center align-items-center">
     <i class="bi bi-back h4 me-3 vendor-icon "></i>
-    <h3>Booking</h3>
+    <h3>Bookings</h3>
   </div>
 </div>
 
-<div class="mb-3">
+<!-- <div class="mb-3">
     <label for="filter" class="form-label">Filter:</label>
     <select id="filter" class="form-select" onchange="filterBookings(this.value)">
         <option value="">All</option>
         <option value="approved">Approved</option>
         <option value="pending">Pending</option>
     </select>
-</div>
+</div> -->
 
 @if ($bookings->isEmpty())
     <p>No Booking.</p>

@@ -63,6 +63,9 @@
             <div>
                 <label for="image_name">Tour Image</label>
                 <input type="file" name="image_name" id="image_name">
+                @if ($promotion->image_name)
+                    <p class="mt-2">Current Image: <img src="{{ asset('images/promotions/'.$promotion->image_name) }}" alt="Current Image" height="100"></p>
+                @endif
                 @if ($errors->has('image_name'))
                     <div class="alert alert-danger mx-1">
                         {{ $errors->first('image_name') }}
@@ -73,7 +76,7 @@
             <div class="d-flex mt-2 mb-4 gap-2">
             <div class="form-group w-25">
     <label for="start_date" class="my-1">Start Date</label>
-    <input type="date" name="start_date" class="form-control" value="{{ old('start_date', $promotion->start_date ? date('Y-m-d', strtotime($promotion->start_date)) : null) }}">
+    <input type="date" name="start_date" class="form-control" value="{{ old('start_date', $promotion->start_date) }}">
     @if ($errors->has('start_date'))
         <div class="alert alert-danger my-1">
             {{ $errors->first('start_date') }}
@@ -83,7 +86,7 @@
 
 <div class="form-group w-25">
     <label for="end_date" class="my-1">End Date</label>
-    <input type="date" name="end_date" class="form-control" value="{{ old('end_date', $promotion->end_date ? date('Y-m-d', strtotime($promotion->end_date)) : null) }}">
+    <input type="date" name="end_date" class="form-control" value="{{ old('end_date', $promotion->end_date) }}">
     @if ($errors->has('end_date'))
         <div class="alert alert-danger my-1">
             {{ $errors->first('end_date') }}

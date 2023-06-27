@@ -68,10 +68,9 @@ Route::get('/verification', [SignInController::class, 'verification']);
 
 Route::get('/list', [listourController::class, 'index']);
 Route::get('/profile', [ProfileSettingController::class, 'index'])->name('profile');
-Route::get('/wishlist', [WishlistController::class, 'index']);
+Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist');
 
 Route::post('/profile', [ProfileSettingController::class, 'updatePassword'])->name('update-password');
-Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist');
 Route::post('favorite-add/{id}', [WishlistController::class, 'favoriteAdd'])->name('favorite.add');
 Route::delete('favorite-remove/{id}', [WishlistController::class, 'favoriteRemove'])->name('favorite.remove');
 
@@ -205,7 +204,7 @@ Route::post('/tour_list/{tour_list}/booking/pay', [BookingController::class, 'pa
     ->name('pay');
 
 Route::get('success', [BookingController::class, 'success']);
-Route::get('/tour_list/{tour_list}/booking/create/bookingHistory', [BookingController::class, 'bookingHistory']);
+Route::get('bookingHistory', [BookingController::class, 'bookingHistory'])->name('booking-history');
 
 
 

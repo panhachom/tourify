@@ -65,7 +65,7 @@
     </style>
    
  
-<div class="my-50">
+<div class=" mt-40">
     <!-- End of Navbar -->
     <div class="container mx-auto my-20 p-5">
         <div class="md:flex no-wrap md:-mx-2 ">
@@ -109,7 +109,7 @@
             <div class="w-full md:w-9/12 mx-2 h-64">
                 <!-- Profile tab -->
                 <!-- About Section -->
-                <div class="bg-white p-3 shadow-sm rounded-sm">
+                <div class="bg-white p-3 shadow-md rounded-sm">
                     <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
                         <span clas="text-green-500">
                             <svg class="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"

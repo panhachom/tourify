@@ -20,10 +20,10 @@
                 <input type="text" class="form-control" id="about_us" name="about_us" required>
             </div>
 
-            <div class="form-group col-6 my-2 ">
+            <!-- <div class="form-group col-6 my-2 ">
                 <label for="password">Email</label>
                 <input type="email" class="form-control" id="email" name="email" required>
-            </div>
+            </div> -->
 
             <div class="form-group col-6 my-2 ">
                 <label for="phone_number">Contact</label>

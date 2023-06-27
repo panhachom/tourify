@@ -61,10 +61,14 @@ class VendorController extends Controller
         $vendor = Vendor::findOrFail($vendor_id);
         $tours = Tour::where('vendor_id', $vendor_id)->get();
         $activities = Activity::all();
-        $bookings = Booking::all();
-        $recentTours = Tour::orderBy('created_at', 'desc')->take(5)->get();
+        $bookings = Booking::whereHas('tour', function ($query) use ($vendor_id) {
+            $query->where('vendor_id', $vendor_id);
+        })->get();        
+        $recentTours = Tour::where('vendor_id',$vendor_id)->orderBy('created_at', 'desc')->take(5)->get();
         $recentActivities = Activity::orderBy('created_at', 'desc')->take(5)->get();
-        $recentBookings = Booking::orderBy('created_at', 'desc')->take(5)->get();
+        $recentBookings = Booking::whereHas('tour', function ($query) use ($vendor_id) {
+            $query->where('vendor_id', $vendor_id);
+        })->get();  
 
 
 

@@ -34,17 +34,23 @@
                 </div>
         </div>
         @endif
+
+        <div class="ps-10 option_type mt-24">
+            <p class="text-3xl font-medium text-muny pb-5">Overview</p>
+            <div class="pe-0 lg:pe-16">{{$tour->description}}</div>
+        </div>
            
         <div class="flex justify-between flex-col md:flex-row  items-center option_type pt-12">
             <div class="ps-10">
                     <!-- description -->
+                  
                     <div class=" ">
                         <p class="text-3xl font-medium text-muny pb-5">About this tours</p>
                     </div>
                     @foreach($tour->activities as $activity)
                         <div class="my-4">
                             <div>
-                                <i class="fa-solid fa-check"></i>                       
+                                <i class="fa-solid fa-check text-sm"></i>                       
                                 <a class="font-medium px-2 ">{{ $activity->name }}</a><br>
                                 <a class="ps-6 text-gray-600">{{ $activity->description }}</a><br>
                             </div>
@@ -74,7 +80,7 @@
                         @endif
                        </p>
                         <p class="mb-5"><small> Per Person</small></p>
-                        <a href="{{ route('tour_list.booking.create', ['tour_list' => $tour->id]) }}" class="bg-primary px-3 py-2 text-white rounded-xl ">Create Booking</a>
+                        <a href="{{ route('tour_list.booking.create', ['tour_list' => $tour->id]) }}" class="bg-primary px-3 py-2 text-white rounded-xl ">Book Tour</a>
                     </div>
                     @if($tour->tour_dates->isEmpty())
                       <span></span>

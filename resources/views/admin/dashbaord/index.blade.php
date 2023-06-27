@@ -28,14 +28,14 @@
     <div class="dashboard-card-4">
         <div class="px-4 py-3 d-flex justify-content-between align-items-start">
             <div>
-                <h4>$ {{ $estimate_earn }}</h4>
+                <h4>{{ $estimate_earn }}</h4>
                 <p class="f-bold">
-                    <strong class="text-secondary"> Estimate Earn </strong>
+                    <strong class="text-secondary"> Vendors </strong>
                 </p>
             </div>
             <div class="circle-button d-flex justify-content-center align-items-center">
-                <i class="bi bi-coin"></i>
-            </div>
+            <i class="bi bi-shop"></i>            
+        </div>
         </div>
     </div>
     <div class="dashboard-card-2">
@@ -57,7 +57,7 @@
             <div>
                 <h4>{{ $total_user }} </h4>
                 <p class="f-bold">
-                    <strong class="text-secondary"> Total User </strong>
+                    <strong class="text-secondary"> Total Customer </strong>
                 </p>
             </div>
             <div class="circle-button d-flex justify-content-center align-items-center">
@@ -71,7 +71,7 @@
             <div>
                 <h4>{{ $pendding_booking }} </h4>
                 <p class="f-bold">
-                    <strong class="text-secondary"> Pendding Booking </strong>
+                    <strong class="text-secondary"> Active Promotion </strong>
                 </p>
             </div>
             <div class="circle-button d-flex justify-content-center align-items-center">
@@ -81,33 +81,33 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row mt-5">
 
     <div class="col-5">
-        <h4 class="my-3 h4-2 text-danger">Last 5 Post</h4>
+        <h4 class="my-3 h4-2  text-black">Latest 5 Post</h4>
 
         <table class="table align-middle mb-0 bg-white table-border-dashboard">
             <thead class="bg-light">
-                <tr class="text-center " style="background-color:  #ffcec1 ;">
-                    <th>Post Title</th>
-                    <th>Price Per Seat</th>
-                    <th>Post By Vendor</th>
+                <tr class=" " style="background-color:  #ffcec1 ;">
+                    <th>Title</th>
+                    <th>Price </th>
+                    <th>Vendor</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($recentPost as $recentPost_data)
 
-                <tr class="text-center">
+                <tr class="">
                     <td>{{ $recentPost_data->name }}</td>
                     <td>$ {{ $recentPost_data->price }}</td>
-                    <td>{{$recentPost_data->vendor_id}}</td>
+                    <td>{{$recentPost_data->vendor->name}}</td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
     <div class="col-5 ">
-        <h4 class="my-3 h4-2 text-warning">Latest Vendor</h4>
+        <h4 class="my-3 h4-2 text-black">Latest Vendor</h4>
 
         <table class="table align-middle mb-0 bg-white table-border-dashboard">
             <thead class="bg-light">
@@ -137,7 +137,7 @@
 <div class="row" >
 
     <div class="col-7">
-        <h4 class="my-3 h4-2 text-danger">Lastest Booking</h4>
+        <h4 class="my-3 h4-2 text-black">Lastest Booking</h4>
 
         <table class="table align-middle mb-0 bg-white table-border-dashboard">
         <thead class="" style="background-color:  #ffcec1 ;">
@@ -159,11 +159,8 @@
             </td>
             <td>{{ $booking->tour->name }}</td>
             <td class="text-center">
-              @if($booking->approved)
-                <i class="bi bi-check-circle text-success"></i> <span>Approve</span> <!-- Icon for tick -->
-              @else
-                <i class="bi bi-clock text-warning"></i> <span>Pendding</span> <!-- Icon for pending -->
-              @endif
+                <i class="bi bi-check-circle text-success"></i> <span>{{ $booking->payment->payment_status }}</span> <!-- Icon for tick -->
+
             </td>
             <td class="text-success">
                           $ {{ $booking->total }} 
@@ -174,7 +171,7 @@
       </table>
     </div>
 
-    <div class="col-5 ">
+    <!-- <div class="col-5 ">
         <h4 class="my-3 h4-2 text-dark">Lastest Register Customer</h4>
 
         <table class="table align-middle mb-0 bg-white table-border-dashboard">
@@ -198,7 +195,7 @@
                 @endforeach
             </tbody>
         </table>
-    </div>
+    </div> -->
     
     
 

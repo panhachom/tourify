@@ -5,7 +5,7 @@
 <div class="d-flex justify-content-between align-items-center mb-5 w-full  px-4 py-3 vendor-title">
   <div class="d-flex justify-content-center align-items-center">
     <i class="bi bi-back h4 me-3 vendor-icon "></i>
-    <h3>User</h3>
+    <h3>Users</h3>
   </div>
     <a href="{{ url('create_user') }}" class="btn btn-success text-white">Create New User</a>
 </div>
