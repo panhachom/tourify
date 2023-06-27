@@ -33,9 +33,11 @@
       
 
 <div class="wishlist">
-    <h2 class="mt-5 text-3xl font-medium text-center"><i class="fa thin fa-cart-shopping" style="mr-2.5"></i> My Wishlist Products</h2>
+    <h2 class="mt-5 py-5 text-3xl font-medium text-center"><i class="fa thin fa-cart-shopping" style="mr-2.5"></i> My favorite Tours</h2>
     <div class="mt-5 flex flex-col items-center">
       <!-- component -->
+@if($tours->isNotEmpty()) 
+
 <section class="container px-4 mx-auto">
     <div class="flex flex-col">
         <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -75,13 +77,14 @@
                                <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap"> {{ $tour->name }}</td>
                                <td class="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap"> $ {{ $tour -> price }}</td> 
                                 <td class="px-4 py-4 text-sm whitespace-nowrap">
-                                  <button type="button" class="text-white  bg-green-600  focus:outline-none focus:ring-4  font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 "><i class="fa thin fa-plus"></i> Booking Now</button>
+                                <a href="{{ route('tour_list.booking.create', ['tour_list' => $tour->id]) }}" class="bg-primary px-3 py-2 text-white rounded-xl ">Book Tour</a>
+
                                   <form action="{{ route('favorite.remove',$tour->id) }}" method="POST"
                                                     onsubmit="return confirm('{{ trans('are You Sure ? ') }}');"
                                                     style="display: inline-block;">
                                                     <input type="hidden" name="_method" value="DELETE">
                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                    <input type="submit" class="text-white bg-red-600  focus:outline-none focus:ring-4  font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                                                    <input type="submit" class="bg-red-600 px-3 py-2 text-white rounded-xl"
                                                         value="Delete">
                                                 </form>
                                 </td>
@@ -103,6 +106,12 @@
     @endif
     </div>
 </section>
+  
+@else
+
+<p>No Wished Tour Yet</p>
+@endif
+
     </div>
 </div>
 

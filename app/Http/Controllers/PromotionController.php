@@ -80,22 +80,20 @@ public function getTour(Request $request)
         $vendorId = $request->input('vendor_id');
         // $tours = Tour::where('vendor_id', $vendorId)->pluck('id')->toArray();
         $tours = $request->input('tours', []);
+        $toursWithPrices = [];
+
 
 
         foreach ($tours as $tourId) {
             $tour = Tour::find($tourId);
             if ($tour) {
-                $price_discount = $tour->price - ($promotions -> percent * $tour->price / 100);
-                $promotions->tours()->attach($tour->id, ['price' => $price_discount]);
-                // $tour->is_discount = true ;
-                // $tour->save();
-                $promotions->save();
+                $price_discount = $tour->price - ($promotions->percent * $tour->price / 100);
+                $toursWithPrices[$tourId] = ['price' => $price_discount];
             }
         }
-    
         
 
-        $promotions->tours()->attach($tours);
+        $promotions->tours()->sync($toursWithPrices);
     
         return redirect()->route('promotion.index')->with('success', 'Promotion created successfully');
     }
@@ -126,15 +124,15 @@ public function getTour(Request $request)
             'image_name.max' => 'The uploaded file may not be larger than 2MB.',
             'title.regex' => 'The title should not contain special characters.',
         ]);
-
+    
         $image = $request->file('image_name');
         $imageName = time() . '.' . $image->getClientOriginalExtension();
         $image->move(public_path('images/promotions'), $imageName);
-
+    
         $vendorName = $request->input('vendor_name');
         $vendor = Vendor::where('name', $vendorName)->first();
         $vendorID = $vendor->id ?? null;
-
+    
         $promotion->title = $validateData['title'];
         $promotion->description = $validateData['description'];
         $promotion->percent = $validateData['percent'];
@@ -144,17 +142,34 @@ public function getTour(Request $request)
             $promotion->vendor_id = $validateData['vendor_id'];
         }    
         $promotion->image_name = $imageName;
-        $tours = $request->input('tours', []);
-        $promotion->tours()->attach($tours);
-        $promotion->status = false;
-        $promotion->save();
-        return redirect()->route('promotion.index')->with('success', 'Promotion updated successfully.');
+    
+        $selectedTours = $request->input('tours', []);
+        $existingTours = $promotion->tours->pluck('id')->toArray();
+
+    foreach ($selectedTours as $tourId) {
+        $tour = Tour::find($tourId);
+        if ($tour) {
+            $price_discount = $tour->price - ($promotion->percent * $tour->price / 100);
+            $promotion->tours()->sync([$tour->id => ['price' => $price_discount]], false);
+        }
     }
 
+    // Get the updated list of tours after adding the new selected tours
+    $tours = array_merge($existingTours, $selectedTours);
+
+    $promotion->tours()->sync($tours);
+
+    return redirect()->route('promotion.index')->with('success', 'Promotion updated successfully.');
+
+    }
+    
+    
 
     public function destroy($promotion_id){
         $promotion = Promotion::findOrFail($promotion_id);
+        $promotion->remove_promotion_tour();
         $promotion->delete();
+
     
         return redirect()
             ->route('promotion.index') 
@@ -165,6 +180,8 @@ public function getTour(Request $request)
     {
         $promotion = Promotion::findOrFail($id);
         if (Carbon::parse($promotion->end_date)->isPast()) {
+            $promotion->toggleActivate();
+
             return redirect()->back()->with('fail', 'Promotion is Expired');
         }
         $promotion->toggleActivate();

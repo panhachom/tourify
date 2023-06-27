@@ -53,7 +53,7 @@
 }
 
 .dropdown {
-  background-color: rgb(1, 139, 139);
+  background-color: D5603F;
   padding: 1em 0;
   position: absolute; /*WITH RESPECT TO PARENT*/
   display: none;
@@ -72,7 +72,7 @@
 }
 
 .dropdown li:hover {
-  background-color: #4c9e9e;
+  background-color: #D5603F;
 }
 
 .services:hover .dropdown {
@@ -96,16 +96,17 @@ input[type=checkbox] {
  .menu {
     display:none;
     position: absolute;
-    background-color:teal;
+    background-color:#D5603F;
     right: 0;
     left: 0;
     text-align: center;
     padding: 16px 0;
+    margin-top: 20px;
   }
 
   .menu li:hover {
     display: inline-block;
-    background-color:#4c9e9e;
+    background-color:#D5603F;
     transition: 0.3s ease;
   }
 
@@ -128,6 +129,9 @@ input[type=checkbox] {
   }
 
   .dropdown li:hover {
-    background-color: #4c9e9e;
+    background-color: #D5603F;
   }
+}
+.btn-username{
+  margin-top: -8px;
 }

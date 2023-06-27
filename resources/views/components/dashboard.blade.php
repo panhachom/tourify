@@ -106,7 +106,7 @@
 
 </div>
 
-
+@if($recentBookings->isNotEmpty())
 
 <div class="row mt-4">
 
@@ -143,6 +143,8 @@
         </tbody>
       </table>
 </div>
+
+@endif
 
 </div>
 

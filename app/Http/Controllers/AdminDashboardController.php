@@ -9,6 +9,8 @@ use App\Models\User;
 use App\Models\Activity;
 use App\Models\Vendor;
 use App\Models\Booking;
+use App\Models\Promotion;
+
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 
@@ -25,11 +27,11 @@ class AdminDashboardController extends Controller
         $vendor = Vendor::all();
         $activities = Activity::all();
         $bookings = Booking::all();
-        $estimate_earn = Booking::where('approved', '1')->sum('price');
-        $pendding_booking= Booking::where('approved', '0')->count();
+        $estimate_earn = Vendor::all()->count();
+        $pendding_booking= Promotion::where('status', '1')->count();
         $this_month = Carbon::now()->format('m');
         $data['total_post'] = Tour::count();
-        $total_user = User::count();
+        $total_user = User::where('role', 'customer')->count();
         $data['total_admin'] = User::where('role', 'admin')->count();
         $data['total_vendor'] = User::where('role', 'vendor')->count();
         $data['total_customer'] = User::where('role', 'customer')->count();

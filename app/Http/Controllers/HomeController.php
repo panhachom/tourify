@@ -21,7 +21,7 @@ class HomeController extends Controller
             $tours = [];
             $search = $request->input('search');
             if($search != ''){
-                $tours = Tour::where('name', $search)
+                $tours = Tour::where('name', 'REGEXP', '[[:<:]]' . $search . '[[:>:]]')
                 ->where('status', 1)
                 ->get();               
                 if($tours->isEmpty()) {
@@ -40,7 +40,7 @@ class HomeController extends Controller
 
 
         if (Auth::check() && Auth::user()->role === 'admin') {
-            return redirect()->route('admins');
+            return redirect()->route('admin_panel');
         }
         if (Auth::check() && Auth::user()->role === 'vendor') {
             $user_id = Auth::user()->id ;
@@ -49,7 +49,7 @@ class HomeController extends Controller
             return redirect()->route('vendor.show', ['id' => $vendor_id]);
         }
         $tours = Tour::latest()->where('status', true)->take(3)->get(); 
-        $latetours = Tour::where('status', true)->take(3)->get(); 
+        $latetours = Tour::where('status', true)->latest()->take(3)->get();
         $popularTours = Tour::where('status', true)->orderBy('view', 'desc')->take(3)->get(); 
         
         

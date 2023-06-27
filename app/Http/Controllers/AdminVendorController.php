@@ -50,7 +50,7 @@ class AdminVendorController extends Controller
         $vendor = new Vendor;
         $vendor->name = $request->name;
         $vendor->about_us = $request->about_us;
-        $vendor->email = $request->email;
+        // $vendor->email = $request->email;
         $vendor->contact = $request->contact;
 
 
@@ -105,7 +105,7 @@ class AdminVendorController extends Controller
         $validatedData = $request->validate([
             'name' => 'required',
             'about_us' => 'required',
-            'email' => 'required|email',
+            // 'email' => 'required|email',
             'contact' => 'required',
             'logo' => 'image',
             'user_id' => 'required|integer',
@@ -116,7 +116,7 @@ class AdminVendorController extends Controller
     
         $vendor->name = $validatedData['name'];
         $vendor->about_us = $validatedData['about_us'];
-        $vendor->email = $validatedData['email'];
+        // $vendor->email = $validatedData['email'];
         $vendor->contact = $validatedData['contact'];
     
         if ($request->hasFile('logo')) {

@@ -50,6 +50,19 @@ class Promotion extends Model
             }
         }
 
+        public function  remove_promotion_tour(){
+            $promotionTours = $this->tours()->get();
+            foreach ($promotionTours as $promotionTour) {
+                $tour = Tour::find($promotionTour->pivot->tour_id);
+                if ($tour) {
+                    $tour->discount_price = null;
+                    $tour->is_discount = false;
+                    $tour->save();
+                }
+            }
+
+        }
+
         public function toggleActivate()
         {
             if ($this->status) {

@@ -17,7 +17,7 @@ class AdminManageTourController extends Controller
     public function index()
     {
         $tour = Tour::all();
-        $tour = Tour::OrderBy('id', 'desc')->get();
+        $tour = Tour::OrderBy('vendor_id', 'desc')->get();
         return view('admin/manage_all_tour.view_all_tour', compact('tour'));
     }
 

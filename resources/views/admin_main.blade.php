@@ -6,7 +6,8 @@
         <title>Tourify</title>
         <link rel="shortcut icon" href="{{ asset('images/logo.png') }}">
         @vite('resources/css/vendor_main.css')
-        
+        @vite('resources/css/admin_main.css')
+
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
@@ -33,14 +34,21 @@
     </head>
     <body class="bg-secondary font-fontPoppins">
         
-    <div class="sidebar">
+    <div class="sidebar ">
         <div class="logo-details">
+  
         <img src="{{ asset('images/logo.png') }}" alt="" width="45px" class="rounded-circle "></i>
             <div class="logo_name" style="margin-left: 5%;">Admin</div>
             <i class='bx bx-menu' id="btn" ></i>
         </div>
         <div class="nav-list">
-   
+        <li>
+            <a href=" {{ route('admin_panel') }}">
+            <i class="bi bi-clipboard2-data"></i>            
+            <span class="links_name">Dashboard</span>
+            </a>
+            <span class="tooltip">Dashboard</span>
+        </li>
         <li>
             <a href="/view_all_post">
             <i class='bx bx-grid-alt'></i>
@@ -83,15 +91,9 @@
         
       
         <li class="profile">
-            <div class="profile-details">
-            <img src="profile.jpg" alt="profileImg">
-            <div class="name_job">
-                <div class="name">Admin Panel</div>
-                <div class="job">Touify</div>
-            </div>
-            </div>
             <a href="{{ route('logout.perform') }}" class="btn btn-outline-dark  me-2">
                  <i class='bx bx-log-out' id="log_out" ></i>
+                 Logout
             </a>
 
         </li>

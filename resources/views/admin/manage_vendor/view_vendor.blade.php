@@ -5,7 +5,7 @@
 <div class="d-flex justify-content-between align-items-center mb-5 w-full  px-4 py-3 vendor-title">
   <div class="d-flex justify-content-center align-items-center">
     <i class="bi bi-back h4 me-3 vendor-icon "></i>
-    <h3>Vendor Management</h3>
+    <h3>Vendors</h3>
   </div>
     <a href="{{ url('create_vendor') }}" class="btn btn-success text-white">Create New Vendor</a>
 </div>
@@ -30,7 +30,7 @@
                 <tr class="text-center ">
                     <td>{{ $i++}}</td>
                     <td>{{$vendor_data->name}}</td>
-                    <td>{{$vendor_data->email}}</td>         
+                    <td>{{$vendor_data->user->email}}</td>         
                     <td>{{$vendor_data->contact}}</td>
                     <td><img src="/vendor/{{$vendor_data->logo}}" alt="" width="50px" height="50px" class="ml-5"></td>
                     <td>

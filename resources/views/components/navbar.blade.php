@@ -16,22 +16,24 @@
 			<li>
 				<div class="max-w-lg mx-auto">
 					<div class="flex flex-row">
-						<button class="" type="button" data-dropdown-toggle="dropdown">{{auth()->user()->username}}
+						<button class="btn-username" type="button" data-dropdown-toggle="dropdown">{{auth()->user()->username}}
 						
 						</button>
 						<div class="hidden  " id="dropdown">
-							<ul class="py-1 w-72 mt-7 bg-white text-black" aria-labelledby="dropdown">
-								<li>hello</li>
-								<li>hello</li>
-								<li>hello</li>
-								<li>hello</li>
+							<ul class="py-1 w-72 mt-5 bg-white text-gray-600 font-bold" aria-labelledby="dropdown">
+							<li><a href="{{ route('booking-history') }}" class="">Book history</a></li>
+								<li><a href="{{ route('profile') }}" class="">My Profile</a></li>
+								<li><a href="{{ route('wishlist') }}" class="">Wishlist</a></li>
+								<li><a href="{{ route('logout.perform') }}" class="">Logout</a></li>
 							</ul>
 						</div>
 					</div>
 			</li>
 			
-			<li><a href="{{ route('logout.perform') }}" class="">Logout</a></li>
-			<li>
+
+
+			
+			<!-- <li>
 				<div class="max-w-lg mx-auto">
 					<div class="flex flex-row">
 						<button class="" type="button" data-dropdown-toggle="dropdown-2"> 
@@ -47,7 +49,7 @@
 							</ul>
 						</div>
 					</div>
-			</li>
+			</li> -->
 			@endauth
 
 			@guest

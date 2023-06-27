@@ -119,7 +119,6 @@ class BookingController extends Controller
     
                 if ($booking->save() && $payment->save()) {
                     session()->flash('booking_success', true);
-                    Notification::send($user, new TourifyNotification ('Your Payment Success'));
                     return redirect()->back();
                 } else {
                     $error = $payment->getError();
@@ -182,18 +181,16 @@ class BookingController extends Controller
     
         return view('booking.create', compact('user','tour'));
     }
-    public function bookingHistory($tour_id)
+    public function bookingHistory()
     {
-        // if (!Auth::check()) {
-        //     return redirect()->route('login.show');
-        // }
+        if (!Auth::check()) {
+            return redirect()->route('login.show');
+        }
 
-        // $user = Auth::user();
-        $tours = Tour::all();
-
-        // dd($tour);
+        $user = Auth::user();
+        $bookings = Booking::where('user_id', $user->id)->get();
     
-        return view('booking.bookingHistory', compact('tours'));
+        return view('booking.bookingHistory', compact('bookings','user'));
     }
    
 }

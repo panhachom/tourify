@@ -120,6 +120,63 @@
     </div>
   </div>
   
+  <?php 
+    use App\Models\Promotion;
+    $promotions = $promotions = Promotion::where('status', true)->get();
+
+?>
+    
+    @if ($promotions === null || $promotions->isEmpty())
+     <div></div>
+    @else
+
+
+
+        <p id="demo"></p>
+        <script>
+            var promotions = @json($promotions);
+            var hasExpiredPromotion = false;
+
+            promotions.forEach(function($promotion) {
+                var startDateTime = "{{ $promotion->start_date }}"; 
+            var endDateTime = "{{ $promotion->end_date }}";
+            var countDownDate = new Date(endDateTime).getTime();
+
+            var x = setInterval(function() {
+                var now = new Date().getTime();
+                var distance = countDownDate - now;
+            
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // Add leading zeros to the values
+                days = days.toString().padStart(2, '0');
+                hours = hours.toString().padStart(2, '0');
+                minutes = minutes.toString().padStart(2, '0');
+                seconds = seconds.toString().padStart(2, '0');
+
+                document.getElementById("demo").innerHTML = `
+                <div class="flex font-size invisible ">
+                ${days}${hours}${minutes}${seconds}
+                </div>
+                `;
+
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("demo").innerHTML = "EXPIRED";
+                    window.location.reload();
+                    location.replace('/');
+                    
+                }
+            }, 1000);
+
+        });
+        </script>
+    @endif
+
+
 
 
 <script>
